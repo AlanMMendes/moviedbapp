@@ -1,6 +1,11 @@
 "use client";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { fetchData } from "./features/fetchDataSlice";
 import { useAppSelector } from "./store";
 
@@ -12,28 +17,28 @@ export default function Home() {
     dispatch(fetchData());
   }, [dispatch]);
 
-  console.log(data);
-
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
-      {data?.results?.map((item: any, key: any) => {
-        return (
-          <div className="py-5" key={key}>
-            <img
-              src={`http://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
-              alt={item?.original_title}
-              width={500}
-              height={100}
-              className="rounded-lg"
-            />
-            <span>
-              {item?.original_title} {item?.release_date}
-            </span>
-            <hr />
-            <span>{item?.overview}</span>
-          </div>
-        );
-      })}
+    <div className="">
+      <Swiper navigation={true} modules={[Navigation]}>
+        {data?.results?.map((item: any, key: any) => {
+          return (
+            <SwiperSlide>
+              <img
+                src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
+                alt={item?.original_title}
+                className="opacity-30 w-full"
+              />
+              <div className="flex flex-col gap-5">
+                <span>
+                  {item?.original_title} {item?.release_date}
+                </span>
+
+                <span>{item?.overview}</span>
+              </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </div>
   );
 }
