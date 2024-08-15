@@ -33,6 +33,16 @@ body {
   mask-image: linear-gradient(black, transparent);
 }
 
+.custom-pagination .swiper-pagination-bullet {
+  top: 0px;
+  @apply w-4 h-1 bg-gray-400 rounded-full transition-colors;
+}
+
+.custom-pagination .swiper-pagination-bullet-active {
+  top: 0px;
+  @apply bg-white;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
