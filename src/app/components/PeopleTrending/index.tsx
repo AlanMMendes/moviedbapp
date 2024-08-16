@@ -2,7 +2,7 @@
 import { fetchPeopleData } from "@/app/features/fetchPeopleSlice";
 import { useAppSelector } from "@/app/store";
 import Image from "next/image";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { FaRankingStar } from "react-icons/fa6";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useDispatch } from "react-redux";
@@ -12,9 +12,12 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../globals.css";
+import ModalPeople from "../ModalPeople";
 
 function PeopleTrending() {
   const dispatch: any = useDispatch();
+  const [isModalCastOpen, setIsModalCastOpen] = useState(false);
+  const [modalPropsCast, setModalPropsCast] = useState({});
   const sliderPeopleRef: any = useRef(null);
   const peopleData: any = useAppSelector(
     (state: any) => state.fetchPeopleData.data
@@ -24,6 +27,18 @@ function PeopleTrending() {
     if (!sliderPeopleRef.current) return;
     sliderPeopleRef.current.swiper.slideNext();
   }, []);
+
+  const openModalCast = (props: any) => {
+    setModalPropsCast({
+      ...props,
+    });
+    setIsModalCastOpen(true);
+  };
+
+  const closeModalCast = () => {
+    setIsModalCastOpen(false);
+    setModalPropsCast({});
+  };
 
   useEffect(() => {
     dispatch(fetchPeopleData());
@@ -76,7 +91,16 @@ function PeopleTrending() {
               {peopleData?.results?.map((item: any, key: any) => {
                 return (
                   <SwiperSlide key={key}>
-                    <div className="relative w-full h-auto justify-start items-start flex flex-col hover:scale-95 cursor-pointer">
+                    <div
+                      onClick={() =>
+                        openModalCast({
+                          id: item?.id,
+                          name: item?.name,
+                          know: item?.known_for,
+                        })
+                      }
+                      className="relative w-full h-auto justify-start items-start flex flex-col hover:scale-95 cursor-pointer"
+                    >
                       <Image
                         src={`https://image.tmdb.org/t/p/original/${item?.profile_path}`}
                         alt={item?.backdrop_path}
@@ -87,12 +111,10 @@ function PeopleTrending() {
                       />
 
                       <div className="absolute w-full bottom-0 py-3 px-2">
-                        <div className="">
-                          <span>{item?.name}</span>
-                          <div className="flex flex-row gap-2 justify-start items-center">
-                            <FaRankingStar className="text-yellow-400 h-5 w-5" />
-                            <span>{Math.floor(item?.popularity)}</span>
-                          </div>
+                        <span>{item?.name}</span>
+                        <div className="flex flex-row gap-2 justify-start items-center">
+                          <FaRankingStar className="text-yellow-400 h-5 w-5" />
+                          <span>{Math.floor(item?.popularity)}</span>
                         </div>
                       </div>
                     </div>
@@ -107,6 +129,11 @@ function PeopleTrending() {
               </div>
             </Swiper>
           </div>
+          <ModalPeople
+            isOpen={isModalCastOpen}
+            onClose={closeModalCast}
+            props={modalPropsCast}
+          />
         </>
       )}
     </>

@@ -36,7 +36,6 @@ function SeriesTrending() {
         <>Loading</>
       ) : (
         <>
-          {" "}
           <div className="px-3">
             <div className="py-5 px-2">
               <button className="w-auto px-4 py-4 hover:scale-105  flex justify-center items-center border-2 border-white border-opacity-10 gap-2 rounded-full">
@@ -46,7 +45,7 @@ function SeriesTrending() {
               </button>
             </div>
             <Swiper
-              spaceBetween={20}
+              spaceBetween={15}
               loop={true}
               breakpoints={{
                 "0": {
@@ -78,7 +77,7 @@ function SeriesTrending() {
               {seriesData?.results?.map((item: any, key: any) => {
                 return (
                   <SwiperSlide>
-                    <div className="relative w-full h-auto justify-start items-start flex flex-col">
+                    <div className="relative">
                       <Image
                         src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
                         alt={item?.backdrop_path}

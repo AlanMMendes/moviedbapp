@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import fetchDataSlice from "../features/fetchDataSlice"; // Importe o slice que você criará mais tarde
 import fetchMovieCreditsSlice from "../features/fetchMovieCredits";
+import fetchPeopleDetailDataSlice from "../features/fetchPeopleDetails";
 import fetchPeopleDataSlice from "../features/fetchPeopleSlice";
 import fetchSeriesTrendingSlice from "../features/fetchSeriesTrendingSlice";
 import fetchVideosSlice from "../features/fetchVideosSlice";
@@ -14,6 +15,7 @@ export const store = configureStore({
     fetchSeriesTrending: fetchSeriesTrendingSlice,
     fetchMovieCredits: fetchMovieCreditsSlice,
     fetchPeopleData: fetchPeopleDataSlice,
+    fetchPeopleDetailsData: fetchPeopleDetailDataSlice,
   },
 });
 

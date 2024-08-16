@@ -90,7 +90,7 @@ function MovieTrending() {
                   sizes="100vw"
                 />
 
-                <div className="relative w-full lg:absolute md:absolute  lg:w-3/4 md:w-3/4 px-5 md:py-5 gap-4">
+                <div className="relative w-full lg:absolute md:absolute lg:w-3/4 md:w-3/4 px-5 md:py-5 gap-4">
                   <div className="flex flex-col gap-5 w-4/4 lg:py-5">
                     <span className="lg:text-5xl text-2xl md:text-2xl font-semibold">
                       {item?.original_title}
