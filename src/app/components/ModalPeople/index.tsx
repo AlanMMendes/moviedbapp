@@ -4,7 +4,6 @@ import { fetchMovieCredits } from "@/app/features/fetchMovieCredits";
 import { useAppSelector } from "@/app/store";
 import Image from "next/image";
 import { useCallback, useEffect, useRef } from "react";
-import { FaRankingStar } from "react-icons/fa6";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import "swiper/css";
@@ -13,15 +12,15 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-function ModalCast({ isOpen, onClose, props }: any) {
-  const sliderPeopleRef: any = useRef(null);
+function ModalPeople({ isOpen, onClose, props }: any) {
+  const sliderSeriesRef: any = useRef(null);
   const dispatch: any = useDispatch();
   const data: any = useAppSelector(
     (state: any) => state.fetchMovieCredits.data
   );
   const handleNext = useCallback(() => {
-    if (!sliderPeopleRef.current) return;
-    sliderPeopleRef.current.swiper.slideNext();
+    if (!sliderSeriesRef.current) return;
+    sliderSeriesRef.current.swiper.slideNext();
   }, []);
 
   useEffect(() => {
@@ -39,12 +38,13 @@ function ModalCast({ isOpen, onClose, props }: any) {
         </button>
         <h2 className="text-3xl font-bold mb-4">{props?.title} - Cast</h2>
 
-        <div className="h-full w-full flex justify-center items-center  py-5 ">
+        <div className="h-full w-full flex justify-center items-center py-5 ">
           <Swiper
             spaceBetween={0}
+            loop={true}
             breakpoints={{
               "0": {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetween: 10,
               },
               "480": {
@@ -53,52 +53,43 @@ function ModalCast({ isOpen, onClose, props }: any) {
               },
               // when window width is >= 640px
               "768": {
-                slidesPerView: 3,
+                slidesPerView: 4,
                 spaceBetween: 30,
               },
               // when window width is >= 768px
               "1024": {
-                slidesPerView: 3,
+                slidesPerView: 4,
                 spaceBetween: 40,
               },
               "1200": {
-                slidesPerView: 3,
+                slidesPerView: 4,
                 spaceBetween: 50,
               },
             }}
-            ref={sliderPeopleRef}
+            ref={sliderSeriesRef}
             modules={[Pagination, Navigation]}
           >
             {data?.cast?.map((item: any, key: any) => {
               return (
-                <SwiperSlide key={key}>
-                  <div className="relative max-w-44 h-auto justify-center items-center flex flex-col hover:scale-95 cursor-pointer">
-                    <Image
-                      src={`https://image.tmdb.org/t/p/w500/${item?.profile_path}`}
-                      alt={item?.profile_path}
-                      className="mask rounded-3xl h-44 w-44 "
-                      width={44}
-                      height={44}
-                      sizes="100vw"
-                      placeholder="blur"
-                      blurDataURL={`https://image.tmdb.org/t/p/w500/${item?.profile_path}`}
-                    />
-
-                    <div className=" w-full bottom-0 py-3 px-2">
-                      <div className="">
-                        <span>{item?.name}</span>
-                        <div className="flex flex-row gap-2 justify-start items-center">
-                          <FaRankingStar className="text-yellow-400 h-5 w-5" />
-                          <span>{Math.floor(item?.popularity)}</span>
-                        </div>
-                      </div>
+                <SwiperSlide>
+                  <div className="flex flex-row gap-2 justify-center items-center">
+                    <div className="flex  w-full h-full shadow-lg flex-col justify-center items-center py-2 gap-2 ">
+                      <Image
+                        src={`https://image.tmdb.org/t/p/original/${item?.profile_path}`}
+                        alt={item?.backdrop_path}
+                        className="rounded-full"
+                        width={100}
+                        height={0}
+                        sizes="100vw"
+                      />
+                      <span className="font-extralight">{item?.name}</span>
                     </div>
                   </div>
                 </SwiperSlide>
               );
             })}
             <div
-              className="absolute z-50 px-2 lg:top-2/4 top-2/4 right-0 flex"
+              className="absolute z-50 px-2 lg:top-1/4 top-12 right-0 flex"
               onClick={() => handleNext()}
             >
               <MdKeyboardArrowRight className="text-white w-14 h-14 opacity-80 cursor-pointer" />
@@ -110,4 +101,4 @@ function ModalCast({ isOpen, onClose, props }: any) {
   );
 }
 
-export default ModalCast;
+export default ModalPeople;
