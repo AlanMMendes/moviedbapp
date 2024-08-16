@@ -2,12 +2,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import fetchDataSlice from "../features/fetchDataSlice"; // Importe o slice que você criará mais tarde
-import fetchParticipantsSlice from "../features/fetchParticipantsSlice";
+import fetchMovieCreditsSlice from "../features/fetchMovieCredits";
+import fetchSeriesTrendingSlice from "../features/fetchSeriesTrendingSlice";
+import fetchVideosSlice from "../features/fetchVideosSlice";
 
 export const store = configureStore({
   reducer: {
     fetchData: fetchDataSlice, // Adicione seu slice aqui
-    fetchParticipants: fetchParticipantsSlice, // Adicione seu slice aqui
+    fetchVideos: fetchVideosSlice, // Adicione seu slice aqui
+    fetchSeriesTrending: fetchSeriesTrendingSlice,
+    fetchMovieCredits: fetchMovieCreditsSlice,
   },
 });
 

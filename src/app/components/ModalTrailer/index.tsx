@@ -1,18 +1,16 @@
 "use client";
-import { fetchParticipants } from "@/app/features/fetchParticipantsSlice";
+import { fetchVideos } from "@/app/features/fetchVideosSlice";
 import { useAppSelector } from "@/app/store";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 function ModalTrailer({ isOpen, onClose, props }: any) {
   const dispatch: any = useDispatch();
-  const data: any = useAppSelector(
-    (state: any) => state.fetchParticipants.data
-  );
+  const data: any = useAppSelector((state: any) => state.fetchVideos.data);
 
   useEffect(() => {
     if (!props) return;
-    dispatch(fetchParticipants(props.movieId));
+    dispatch(fetchVideos(props.movieId));
   }, [props]);
 
   if (!isOpen) return null;

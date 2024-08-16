@@ -1,12 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+process.env.NEXT_PUBLIC_BASE_API_URL;
+
 // Definindo uma thunk assíncrona para a chamada da API
-export const fetchParticipants = createAsyncThunk(
+export const fetchMovieCredits = createAsyncThunk(
   "fetchParticipantsData/fetchData",
   async (id: any) => {
     if (!id) return;
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_BASE_API_URL}`,
       {
         method: "GET",
         headers: {
@@ -25,7 +27,7 @@ export const fetchParticipants = createAsyncThunk(
 );
 
 // Criando o slice
-const fetchParticipantsSlice = createSlice({
+const fetchMovieCreditsSlice = createSlice({
   name: "fetchParticipants",
   initialState: {
     data: null,
@@ -35,18 +37,18 @@ const fetchParticipantsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchParticipants.pending, (state) => {
+      .addCase(fetchMovieCredits.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchParticipants.fulfilled, (state, action) => {
+      .addCase(fetchMovieCredits.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload;
       })
-      .addCase(fetchParticipants.rejected, (state: any, action) => {
+      .addCase(fetchMovieCredits.rejected, (state: any, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
   },
 });
 
-export default fetchParticipantsSlice.reducer;
+export default fetchMovieCreditsSlice.reducer;
