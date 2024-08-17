@@ -18,6 +18,9 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+
+  border-radius: 25px;
+
   background: linear-gradient(
       to bottom,
       transparent,
@@ -31,6 +34,13 @@ body {
   width: 100%;
   -webkit-mask-image: linear-gradient(black, transparent);
   mask-image: linear-gradient(black, transparent);
+}
+
+.maskSeries {
+  height: auto;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(black, transparent 100%);
+  mask-image: linear-gradient(black, transparent 160%);
 }
 
 @layer utilities {

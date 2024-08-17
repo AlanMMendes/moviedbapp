@@ -14,8 +14,8 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../globals.css";
-import ModalCast from "../ModalCast";
-import ModalTrailer from "../ModalTrailer";
+import ModalCast from "./ModalCast";
+import ModalTrailer from "./ModalTrailer";
 
 function MovieTrending() {
   const dispatch: any = useDispatch();
@@ -64,7 +64,7 @@ function MovieTrending() {
     genres.filter((genre) => idsToCheck.includes(genre.id));
 
   return (
-    <>
+    <div className="flex justify-center items-start">
       <Swiper
         spaceBetween={30}
         slidesPerView={1}
@@ -79,19 +79,19 @@ function MovieTrending() {
         {data?.results?.slice(0, 6).map((item: any, key: any) => {
           const genres: any = filteredGenres(item.genre_ids);
           return (
-            <SwiperSlide>
-              <div className="relative w-full h-auto justify-start items-start flex flex-col">
+            <SwiperSlide key={key}>
+              <div className="relative w-full h-auto justify-center items-start flex flex-col">
                 <Image
                   src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
                   alt={item?.backdrop_path}
-                  className="mask rounded-b-lg"
+                  className="mask "
                   width={0}
                   height={0}
                   sizes="100vw"
                 />
 
                 <div className="relative w-full lg:absolute md:absolute lg:w-3/4 md:w-3/4 px-5 md:py-5 gap-4">
-                  <div className="flex flex-col gap-5 w-4/4 lg:py-5">
+                  <div className="flex flex-col gap-5 w-4/4 ">
                     <span className="lg:text-5xl text-2xl md:text-2xl font-semibold">
                       {item?.original_title}
                     </span>
@@ -153,13 +153,13 @@ function MovieTrending() {
             </SwiperSlide>
           );
         })}
-        <div
-          className="absolute z-50 px-2 lg:top-1/4 top-12 right-0 flex"
-          onClick={() => handleNext()}
-        >
-          <MdKeyboardArrowRight className="text-white w-14 h-14 opacity-80 cursor-pointer" />
-        </div>
       </Swiper>
+      <div
+        className="absolute right-0 z-50 py-10 md:py-56 lg:py-56"
+        onClick={() => handleNext()}
+      >
+        <MdKeyboardArrowRight className="text-white w-14 h-14 opacity-80 cursor-pointer" />
+      </div>
       <ModalTrailer
         isOpen={isModalTrailerOpen}
         onClose={closeModalTrailer}
@@ -170,7 +170,7 @@ function MovieTrending() {
         onClose={closeModalCast}
         props={modalPropsCast}
       />
-    </>
+    </div>
   );
 }
 

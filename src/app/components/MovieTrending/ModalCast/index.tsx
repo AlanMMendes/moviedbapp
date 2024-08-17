@@ -3,7 +3,7 @@
 import { fetchMovieCredits } from "@/app/features/fetchMovieCredits";
 import { useAppSelector } from "@/app/store";
 import Image from "next/image";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import { FaRankingStar } from "react-icons/fa6";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useDispatch } from "react-redux";
@@ -24,10 +24,10 @@ function ModalCast({ isOpen, onClose, props }: any) {
     sliderPeopleRef.current.swiper.slideNext();
   }, []);
 
-  useEffect(() => {
+  useMemo(() => {
     if (!props) return;
     dispatch(fetchMovieCredits(props.movieId));
-  }, [props]);
+  }, [props, dispatch]);
 
   if (!isOpen) return null;
 

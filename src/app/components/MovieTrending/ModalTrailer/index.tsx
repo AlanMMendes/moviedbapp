@@ -1,17 +1,18 @@
 "use client";
 import { fetchVideos } from "@/app/features/fetchVideosSlice";
 import { useAppSelector } from "@/app/store";
-import { useEffect } from "react";
+import { useMemo } from "react";
 import { useDispatch } from "react-redux";
 
 function ModalTrailer({ isOpen, onClose, props }: any) {
   const dispatch: any = useDispatch();
   const data: any = useAppSelector((state: any) => state.fetchVideos.data);
 
-  useEffect(() => {
+  useMemo(() => {
+    if (!isOpen) return;
     if (!props) return;
     dispatch(fetchVideos(props.movieId));
-  }, [props]);
+  }, [props, dispatch, isOpen]);
 
   if (!isOpen) return null;
 
@@ -25,7 +26,7 @@ function ModalTrailer({ isOpen, onClose, props }: any) {
         <div className="aspect-w-16 aspect-h-9 h-64 lg:h-96  md:h-96 w-full">
           <iframe
             className="w-full h-full rounded-3xl"
-            src={`https://www.youtube.com/embed/${data?.results[0]?.key}`}
+            src={`https://www.youtube.com/embed/${data?.results[0]?.key || ""}`}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen

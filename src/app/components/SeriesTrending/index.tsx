@@ -36,14 +36,7 @@ function SeriesTrending() {
         <>Loading</>
       ) : (
         <>
-          <div className="px-3">
-            <div className="py-5 px-2">
-              <button className="w-auto px-4 py-4 hover:scale-105  flex justify-center items-center border-2 border-white border-opacity-10 gap-2 rounded-full">
-                <span className="font-extralight">
-                  Series Trending This Week
-                </span>
-              </button>
-            </div>
+          <div className="relative px-2 w-full h-full flex flex-row justify-center items-center">
             <Swiper
               spaceBetween={15}
               loop={true}
@@ -67,7 +60,7 @@ function SeriesTrending() {
                   spaceBetween: 40,
                 },
                 "1200": {
-                  slidesPerView: 4,
+                  slidesPerView: 3,
                   spaceBetween: 50,
                 },
               }}
@@ -76,12 +69,12 @@ function SeriesTrending() {
             >
               {seriesData?.results?.map((item: any, key: any) => {
                 return (
-                  <SwiperSlide>
-                    <div className="relative">
+                  <SwiperSlide key={key}>
+                    <div className="relative w-full h-full">
                       <Image
                         src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
                         alt={item?.backdrop_path}
-                        className="mask rounded-3xl"
+                        className="maskSeries rounded-3xl"
                         width={0}
                         height={0}
                         sizes="100vw"
@@ -102,13 +95,13 @@ function SeriesTrending() {
                   </SwiperSlide>
                 );
               })}
-              <div
-                className="absolute z-50 px-2  lg:top-24 top-20 right-0 flex"
-                onClick={() => handleNextSeries()}
-              >
-                <MdKeyboardArrowRight className="text-white w-14 h-14 opacity-80 cursor-pointer" />
-              </div>
             </Swiper>
+            <div
+              className="absolute  right-0 z-50 "
+              onClick={() => handleNextSeries()}
+            >
+              <MdKeyboardArrowRight className="text-white w-14 h-14 opacity-80 cursor-pointer" />
+            </div>
           </div>
         </>
       )}

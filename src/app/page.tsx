@@ -6,10 +6,16 @@ import SeriesTrending from "./components/SeriesTrending";
 
 export default function Home() {
   return (
-    <>
-      <MovieTrending />
-      <SeriesTrending />
-      <PeopleTrending />
-    </>
+    <div className="relative w-full h-auto  flex flex-col ">
+      <div className="h-auto w-full">
+        <MovieTrending />
+      </div>
+
+      <div className="h-auto w-full gap-10 flex flex-col py-5">
+        <SeriesTrending />
+
+        <PeopleTrending />
+      </div>
+    </div>
   );
 }
