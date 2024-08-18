@@ -5,6 +5,7 @@ import fetchDataSlice from "../features/fetchDataSlice"; // Importe o slice que 
 import fetchMovieCreditsSlice from "../features/fetchMovieCredits";
 import fetchPeopleDetailDataSlice from "../features/fetchPeopleDetails";
 import fetchPeopleDataSlice from "../features/fetchPeopleSlice";
+import fetchSerieCreditsSlice from "../features/fetchSeriesCredits";
 import fetchSeriesTrendingSlice from "../features/fetchSeriesTrendingSlice";
 import fetchVideosSlice from "../features/fetchVideosSlice";
 
@@ -13,6 +14,7 @@ export const store = configureStore({
     fetchData: fetchDataSlice, // Adicione seu slice aqui
     fetchVideos: fetchVideosSlice, // Adicione seu slice aqui
     fetchSeriesTrending: fetchSeriesTrendingSlice,
+    fetchSerieCredits: fetchSerieCreditsSlice,
     fetchMovieCredits: fetchMovieCreditsSlice,
     fetchPeopleData: fetchPeopleDataSlice,
     fetchPeopleDetailsData: fetchPeopleDetailDataSlice,

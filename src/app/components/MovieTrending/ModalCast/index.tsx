@@ -14,14 +14,14 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 function ModalCast({ isOpen, onClose, props }: any) {
-  const sliderPeopleRef: any = useRef(null);
+  const sliderRef: any = useRef(null);
   const dispatch: any = useDispatch();
   const data: any = useAppSelector(
     (state: any) => state.fetchMovieCredits.data
   );
   const handleNext = useCallback(() => {
-    if (!sliderPeopleRef.current) return;
-    sliderPeopleRef.current.swiper.slideNext();
+    if (!sliderRef.current) return;
+    sliderRef.current.swiper.slideNext();
   }, []);
 
   useMemo(() => {
@@ -66,7 +66,7 @@ function ModalCast({ isOpen, onClose, props }: any) {
                 spaceBetween: 50,
               },
             }}
-            ref={sliderPeopleRef}
+            ref={sliderRef}
             modules={[Pagination, Navigation]}
           >
             {data?.cast?.map((item: any, key: any) => {

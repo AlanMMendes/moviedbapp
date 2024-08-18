@@ -2,7 +2,7 @@
 import { fetchSeriesTrending } from "@/app/features/fetchSeriesTrendingSlice";
 import { useAppSelector } from "@/app/store";
 import Image from "next/image";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { GoThumbsup } from "react-icons/go";
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -13,10 +13,13 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../globals.css";
+import ModalSeries from "./ModalSeries";
 
 function SeriesTrending() {
   const dispatch: any = useDispatch();
   const sliderSeriesRef: any = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalProps, setModalProps] = useState({});
   const seriesData: any = useAppSelector(
     (state: any) => state.fetchSeriesTrending.data
   );
@@ -25,6 +28,18 @@ function SeriesTrending() {
     if (!sliderSeriesRef.current) return;
     sliderSeriesRef.current.swiper.slideNext();
   }, []);
+
+  const openModal = (props: any) => {
+    setModalProps({
+      ...props,
+    });
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalProps({});
+  };
 
   useEffect(() => {
     dispatch(fetchSeriesTrending());
@@ -70,7 +85,22 @@ function SeriesTrending() {
               {seriesData?.results?.map((item: any, key: any) => {
                 return (
                   <SwiperSlide key={key}>
-                    <div className="relative w-full h-full">
+                    <div
+                      onClick={() =>
+                        openModal({
+                          title: item?.name,
+                          overview: item?.overview,
+                          poster: item?.backdrop_path,
+                          id: item?.id,
+                          genres: item?.genres_ids,
+                          popularity: item?.popularity,
+                          vote: item?.vote_average,
+                          vote_count: item?.vote_count,
+                          date: item?.first_air_date,
+                        })
+                      }
+                      className="relative w-full h-full cursor-pointer hover:scale-95"
+                    >
                       <Image
                         src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
                         alt={item?.backdrop_path}
@@ -105,6 +135,11 @@ function SeriesTrending() {
           </div>
         </>
       )}
+      <ModalSeries
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        props={modalProps}
+      />
     </>
   );
 }
