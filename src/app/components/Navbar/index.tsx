@@ -33,9 +33,9 @@ const Navbar = () => {
               </div>
             ) : (
               <ul className="flex  flex-row overflow-auto max-w-[32rem] max-h-96 flex-wrap bg-zinc-900 justify-center items-center ">
-                {watchList.map((watch: any) => {
+                {watchList.map((watch: any, key: any) => {
                   return (
-                    <div className="min-w-44 flex  ">
+                    <div key={key} className="min-w-44 flex">
                       <ListItem
                         title={watch?.name}
                         // href="/primitives/docs/overview/introduction"
@@ -65,7 +65,7 @@ const Navbar = () => {
   );
 };
 
-const ListItem = React.forwardRef(
+const ListItem: any = React.forwardRef(
   ({ className, children, title, ...props }: any, forwardedRef) => (
     <li>
       <NavigationMenu.Link asChild>
@@ -86,5 +86,7 @@ const ListItem = React.forwardRef(
     </li>
   )
 );
+
+ListItem.displayName = "ListItem";
 
 export default Navbar;

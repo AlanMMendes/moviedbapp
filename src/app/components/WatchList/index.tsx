@@ -24,59 +24,37 @@ function WatchList() {
   return (
     <>
       {watchList?.length === 0 ? (
-        <>
-          <div className="relative w-full h-auto flex flex-col min-h-44  justify-center md:justify-start lg:justify-start">
-            <div className="py-4">
-              <span className="text-2xl ">Your Watchlist</span>
-            </div>
-
-            <div className="w-64 justify-center items-center text-white flex flex-row bg-zinc-900  min-h-44 h-44 rounded-lg shadow-md">
-              <span className="text-white z-50 px-2 ">
-                Ops ... it seems that your watchlist it's empty.
-              </span>
-            </div>
+        <div className="relative w-full h-auto flex flex-col min-h-44  justify-center md:justify-start lg:justify-start">
+          <div className="py-4">
+            <span className="text-2xl">Your Watchlist</span>
           </div>
-        </>
+
+          <div className="w-64 justify-center items-center text-white flex flex-row bg-zinc-900  min-h-44 h-44 rounded-lg shadow-md">
+            <span className="text-white px-2">
+              It seems that your watchlist its empty
+            </span>
+          </div>
+        </div>
       ) : (
         <div className="flex flex-col">
           <div className="py-4">
             <span className="text-2xl ">Your Watchlist</span>
           </div>
-          <div className="relative w-full h-full flex flex-row items-center justify-center">
+          <div className="relative w-full h-full items-center justify-center">
             <Swiper
-              spaceBetween={15}
+              spaceBetween={10}
               loop={true}
-              breakpoints={{
-                "0": {
-                  slidesPerView: 1,
-                  spaceBetween: 10,
-                },
-                "480": {
-                  slidesPerView: 2,
-                  spaceBetween: 20,
-                },
-                // when window width is >= 640px
-                "768": {
-                  slidesPerView: 2,
-                  spaceBetween: 30,
-                },
-                // when window width is >= 768px
-                "1024": {
-                  slidesPerView: 3,
-                  spaceBetween: 40,
-                },
-                "1200": {
-                  slidesPerView: 3,
-                  spaceBetween: 50,
-                },
-              }}
+              slidesPerView={2}
               ref={sliderSeriesRef}
               modules={[Pagination, Navigation]}
             >
               {watchList?.map((item: any, key: any) => {
                 return (
-                  <SwiperSlide key={key}>
-                    <div className="relative w-full h-full cursor-pointer">
+                  <div
+                    key={key}
+                    className="relative w-full h-full cursor-pointer"
+                  >
+                    <SwiperSlide>
                       <Image
                         src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
                         alt={item?.backdrop_path}
@@ -96,13 +74,13 @@ function WatchList() {
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </SwiperSlide>
+                    </SwiperSlide>
+                  </div>
                 );
               })}
             </Swiper>
             <div
-              className="absolute right-0 z-50"
+              className="absolute top-1/3 right-0 z-50"
               onClick={() => handleNextSeries()}
             >
               <MdKeyboardArrowRight className="text-white w-14 h-14 opacity-80 cursor-pointer" />

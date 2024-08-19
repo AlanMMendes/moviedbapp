@@ -2,6 +2,7 @@
 import { fetchSeriesTrending } from "@/app/features/fetchSeriesTrendingSlice";
 import { setData } from "@/app/features/watchListSlice";
 import { useAppSelector } from "@/app/store";
+import { BookmarkIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FaStar } from "react-icons/fa";
@@ -91,28 +92,21 @@ function SeriesTrending() {
               {seriesData?.results?.map((item: any, key: any) => {
                 return (
                   <SwiperSlide key={key}>
-                    <div
-                      onClick={() => {
-                        openModal({
-                          title: item?.name,
-                          overview: item?.overview,
-                          poster: item?.backdrop_path,
-                          id: item?.id,
-                          genres: item?.genres_ids,
-                          popularity: item?.popularity,
-                          vote: item?.vote_average,
-                          vote_count: item?.vote_count,
-                          date: item?.first_air_date,
-                        });
-                        dispatchWatchList(
-                          setData({
-                            ...item,
-                          })
-                        );
-                      }}
-                      className="relative w-full h-full cursor-pointer hover:scale-95"
-                    >
+                    <div className="relative w-full h-full cursor-pointer hover:scale-95">
                       <Image
+                        onClick={() => {
+                          openModal({
+                            title: item?.name,
+                            overview: item?.overview,
+                            poster: item?.backdrop_path,
+                            id: item?.id,
+                            genres: item?.genres_ids,
+                            popularity: item?.popularity,
+                            vote: item?.vote_average,
+                            vote_count: item?.vote_count,
+                            date: item?.first_air_date,
+                          });
+                        }}
                         src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
                         alt={item?.backdrop_path}
                         className="maskSeries rounded-3xl"
@@ -120,7 +114,22 @@ function SeriesTrending() {
                         height={0}
                         sizes="100vw"
                       />
-
+                      <div className="absolute w-full top-0 py-3 px-2">
+                        <div className="">
+                          <div className="flex flex-row gap-2 justify-start items-center">
+                            <BookmarkIcon
+                              onClick={() =>
+                                dispatchWatchList(
+                                  setData({
+                                    ...item,
+                                  })
+                                )
+                              }
+                              className="h-5 w-5 hover:text-yellow-500"
+                            />
+                          </div>
+                        </div>
+                      </div>
                       <div className="absolute w-full bottom-0 py-3 px-2">
                         <div className="">
                           <span>{item?.name}</span>

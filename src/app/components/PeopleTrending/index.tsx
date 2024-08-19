@@ -87,8 +87,11 @@ function PeopleTrending() {
             >
               {peopleData?.results?.map((item: any, key: any) => {
                 return (
-                  <div className="relative w-full h-full cursor-pointer">
-                    <SwiperSlide key={key}>
+                  <div
+                    key={key + "people"}
+                    className="relative w-full h-full cursor-pointer"
+                  >
+                    <SwiperSlide>
                       <div
                         onClick={() =>
                           openModalCast({
