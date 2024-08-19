@@ -85,68 +85,66 @@ function ModalPeople({ isOpen, onClose, props }: any) {
                 >
                   {props?.know?.map((item: any, key: any) => {
                     return (
-                      <SwiperSlide>
-                        <div className="">
-                          <HoverCard.Root>
-                            <HoverCard.Trigger asChild>
-                              <a
-                                className="inline-block fixed z-50 px-1 top-0 right-0 cursor-pointer rounded-full outline-none "
-                                target="_blank"
-                                rel="noreferrer noopener"
-                              >
-                                <IoIosInformationCircle className="text-white h-auto w-6" />
-                              </a>
-                            </HoverCard.Trigger>
-                            <HoverCard.Portal>
-                              <HoverCard.Content
-                                className="z-50 text-white bg-zinc-950 data-[side=bottom]:animate-slideUpAndFade data-[side=right]:animate-slideLeftAndFade data-[side=left]:animate-slideRightAndFade data-[side=top]:animate-slideDownAndFade w-[300px] rounded-md  p-5 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] data-[state=open]:transition-all"
-                                sideOffset={5}
-                              >
-                                <div className="flex flex-col gap-[7px]">
-                                  <div className="flex flex-col gap-[15px]">
-                                    <div>
+                      <SwiperSlide key={`${key}-cast-details`}>
+                        <HoverCard.Root>
+                          <HoverCard.Trigger asChild>
+                            <a
+                              className="inline-block fixed z-50 px-1 top-0 right-0 cursor-pointer rounded-full outline-none "
+                              target="_blank"
+                              rel="noreferrer noopener"
+                            >
+                              <IoIosInformationCircle className="text-white h-auto w-6" />
+                            </a>
+                          </HoverCard.Trigger>
+                          <HoverCard.Portal>
+                            <HoverCard.Content
+                              className="z-50 text-white bg-zinc-950 data-[side=bottom]:animate-slideUpAndFade data-[side=right]:animate-slideLeftAndFade data-[side=left]:animate-slideRightAndFade data-[side=top]:animate-slideDownAndFade w-[300px] rounded-md  p-5 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] data-[state=open]:transition-all"
+                              sideOffset={5}
+                            >
+                              <div className="flex flex-col gap-[7px]">
+                                <div className="flex flex-col gap-[15px]">
+                                  <div>
+                                    <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
+                                      {item?.original_title || item?.name}
+                                    </div>
+                                  </div>
+                                  <div className="text-white m-0 text-[15px] leading-[1.5]">
+                                    {item?.overview}
+                                  </div>
+                                  <div className="flex gap-[15px]">
+                                    <div className="flex gap-[10px]">
                                       <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
-                                        {item?.original_title || item?.name}
+                                        {Math.round(item?.popularity)}
                                       </div>
-                                    </div>
-                                    <div className="text-white m-0 text-[15px] leading-[1.5]">
-                                      {item?.overview}
-                                    </div>
-                                    <div className="flex gap-[15px]">
-                                      <div className="flex gap-[10px]">
-                                        <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
-                                          {Math.round(item?.popularity)}
-                                        </div>
-                                        <div className="text-mauve10 m-0 text-[15px] leading-[1.5]">
-                                          <FaRankingStar className="text-yellow-400 h-5 w-5" />
-                                        </div>
-                                        <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
-                                          Release:{" "}
-                                          {item?.release_date ||
-                                            item?.first_air_date}
-                                        </div>
+                                      <div className="text-mauve10 m-0 text-[15px] leading-[1.5]">
+                                        <FaRankingStar className="text-yellow-400 h-5 w-5" />
+                                      </div>
+                                      <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
+                                        Release:{" "}
+                                        {item?.release_date ||
+                                          item?.first_air_date}
                                       </div>
                                     </div>
                                   </div>
                                 </div>
+                              </div>
 
-                                <HoverCard.Arrow className="fill-white" />
-                              </HoverCard.Content>
-                            </HoverCard.Portal>
-                          </HoverCard.Root>
-                          <Image
-                            src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
-                            alt={item?.profile_path}
-                            className="maskSeries rounded-lg"
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            placeholder="blur"
-                            blurDataURL={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
-                          />
+                              <HoverCard.Arrow className="fill-white" />
+                            </HoverCard.Content>
+                          </HoverCard.Portal>
+                        </HoverCard.Root>
+                        <Image
+                          src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
+                          alt={item?.profile_path}
+                          className="maskSeries rounded-lg"
+                          width={0}
+                          height={0}
+                          sizes="100vw"
+                          placeholder="blur"
+                          blurDataURL={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
+                        />
 
-                          <span>{item?.name}</span>
-                        </div>
+                        <span>{item?.name}</span>
                       </SwiperSlide>
                     );
                   })}
@@ -197,72 +195,70 @@ function ModalPeople({ isOpen, onClose, props }: any) {
                 >
                   {data?.cast?.map((item: any, key: any) => {
                     return (
-                      <SwiperSlide>
-                        <div className="">
-                          <HoverCard.Root>
-                            <HoverCard.Trigger asChild>
-                              <a
-                                className="inline-block fixed z-50 px-1 top-0 right-0 cursor-pointer rounded-full outline-none "
-                                target="_blank"
-                                rel="noreferrer noopener"
-                              >
-                                <IoIosInformationCircle className="text-white h-auto w-6" />
-                              </a>
-                            </HoverCard.Trigger>
-                            <HoverCard.Portal>
-                              <HoverCard.Content
-                                className="z-50 text-white bg-zinc-950 data-[side=bottom]:animate-slideUpAndFade data-[side=right]:animate-slideLeftAndFade data-[side=left]:animate-slideRightAndFade data-[side=top]:animate-slideDownAndFade w-[300px] rounded-md  p-5 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] data-[state=open]:transition-all"
-                                sideOffset={5}
-                              >
-                                <div className="flex flex-col gap-[7px]">
-                                  <div className="flex flex-col gap-[15px]">
-                                    <div>
+                      <SwiperSlide key={`${key}-modal-cast-info`}>
+                        <HoverCard.Root>
+                          <HoverCard.Trigger asChild>
+                            <a
+                              className="inline-block fixed z-50 px-1 top-0 right-0 cursor-pointer rounded-full outline-none "
+                              target="_blank"
+                              rel="noreferrer noopener"
+                            >
+                              <IoIosInformationCircle className="text-white h-auto w-6" />
+                            </a>
+                          </HoverCard.Trigger>
+                          <HoverCard.Portal>
+                            <HoverCard.Content
+                              className="z-50 text-white bg-zinc-950 data-[side=bottom]:animate-slideUpAndFade data-[side=right]:animate-slideLeftAndFade data-[side=left]:animate-slideRightAndFade data-[side=top]:animate-slideDownAndFade w-[300px] rounded-md  p-5 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] data-[state=open]:transition-all"
+                              sideOffset={5}
+                            >
+                              <div className="flex flex-col gap-[7px]">
+                                <div className="flex flex-col gap-[15px]">
+                                  <div>
+                                    <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
+                                      {item?.original_title || item?.name}
+                                    </div>
+                                  </div>
+                                  <div className="text-white m-0 text-[15px] leading-[1.5]">
+                                    {item?.overview}
+                                  </div>
+                                  <div className="flex gap-[15px]">
+                                    <div className="flex gap-[10px]">
                                       <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
-                                        {item?.original_title || item?.name}
+                                        {Math.round(item?.popularity)}
                                       </div>
-                                    </div>
-                                    <div className="text-white m-0 text-[15px] leading-[1.5]">
-                                      {item?.overview}
-                                    </div>
-                                    <div className="flex gap-[15px]">
-                                      <div className="flex gap-[10px]">
-                                        <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
-                                          {Math.round(item?.popularity)}
-                                        </div>
-                                        <div className="text-mauve10 m-0 text-[15px] leading-[1.5]">
-                                          <FaRankingStar className="text-yellow-400 h-5 w-5" />
-                                        </div>
-                                        <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
-                                          Release:{" "}
-                                          {item?.release_date ||
-                                            item?.first_air_date}
-                                        </div>
+                                      <div className="text-mauve10 m-0 text-[15px] leading-[1.5]">
+                                        <FaRankingStar className="text-yellow-400 h-5 w-5" />
+                                      </div>
+                                      <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
+                                        Release:{" "}
+                                        {item?.release_date ||
+                                          item?.first_air_date}
                                       </div>
                                     </div>
                                   </div>
                                 </div>
+                              </div>
 
-                                <HoverCard.Arrow className="fill-white" />
-                              </HoverCard.Content>
-                            </HoverCard.Portal>
-                          </HoverCard.Root>
-                          <Image
-                            src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
-                            alt={item?.profile_path}
-                            className="maskSeries rounded-lg"
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            placeholder="blur"
-                            blurDataURL={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
-                          />
+                              <HoverCard.Arrow className="fill-white" />
+                            </HoverCard.Content>
+                          </HoverCard.Portal>
+                        </HoverCard.Root>
+                        <Image
+                          src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
+                          alt={item?.profile_path}
+                          className="maskSeries rounded-lg"
+                          width={0}
+                          height={0}
+                          sizes="100vw"
+                          placeholder="blur"
+                          blurDataURL={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
+                        />
 
-                          <span>{item?.name}</span>
-                          <div className="flex flex-row gap-2 justify-start items-center">
-                            <span className="font-extralight">
-                              Character: {item?.character}
-                            </span>
-                          </div>
+                        <span>{item?.name}</span>
+                        <div className="flex flex-row gap-2 justify-start items-center">
+                          <span className="font-extralight">
+                            Character: {item?.character}
+                          </span>
                         </div>
                       </SwiperSlide>
                     );

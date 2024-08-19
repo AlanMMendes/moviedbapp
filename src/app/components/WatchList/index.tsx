@@ -50,7 +50,10 @@ export default function WatchList() {
             >
               {watchList?.map((item: any, key: any) => {
                 return (
-                  <div className="relative w-full h-full cursor-pointer">
+                  <div
+                    key={`${key}-watch-list-component`}
+                    className="relative w-full h-full cursor-pointer"
+                  >
                     <SwiperSlide>
                       <Image
                         src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}

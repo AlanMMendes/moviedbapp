@@ -71,7 +71,7 @@ function ModalCast({ isOpen, onClose, props }: any) {
           >
             {data?.cast?.map((item: any, key: any) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide key={`${key}-modal-cast`}>
                   <div className="relative max-w-44 h-auto justify-center items-center flex flex-col hover:scale-95 cursor-pointer">
                     <Image
                       src={`https://image.tmdb.org/t/p/w500/${item?.profile_path}`}

@@ -97,7 +97,10 @@ function ModalSeries({ isOpen, onClose, props }: any) {
             >
               {data?.cast?.map((item: any, key: any) => {
                 return (
-                  <SwiperSlide className="flex min-w-32 min-h-44 flex-col justify-center items-center">
+                  <SwiperSlide
+                    key={`${key}-people-cast-data`}
+                    className="flex min-w-32 min-h-44 flex-col justify-center items-center"
+                  >
                     <Image
                       src={`https://image.tmdb.org/t/p/w500/${item?.profile_path}`}
                       alt={item?.profile_path}

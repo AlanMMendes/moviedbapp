@@ -87,7 +87,10 @@ export default function PeopleTrending() {
             >
               {peopleData?.results?.map((item: any, key: any) => {
                 return (
-                  <div className="relative w-full h-full cursor-pointer">
+                  <div
+                    key={`${key}-modal-trending-people`}
+                    className="relative w-full h-full cursor-pointer"
+                  >
                     <SwiperSlide>
                       <div
                         onClick={() =>

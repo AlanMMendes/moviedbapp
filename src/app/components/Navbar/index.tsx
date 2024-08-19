@@ -31,10 +31,10 @@ export default function Navbar() {
                 <span>No series or movies in your watchlist</span>
               </div>
             ) : (
-              <ul className="flex  flex-row overflow-auto max-w-[32rem] max-h-96 flex-wrap bg-zinc-900 justify-center items-center ">
+              <ul className="flex flex-row overflow-auto max-w-[32rem] max-h-96 flex-wrap bg-zinc-900 justify-center items-center ">
                 {watchList.map((watch: any, key: any) => {
                   return (
-                    <div className="min-w-44 flex">
+                    <div key={`${key}-watch-list`} className="min-w-44 flex">
                       <ListItem
                         title={watch?.name}
                         // href="/primitives/docs/overview/introduction"

@@ -81,7 +81,7 @@ export default function MovieTrending() {
               const genres: any = filteredGenres(item.genre_ids);
 
               return (
-                <SwiperSlide>
+                <SwiperSlide key={`${key}-modal-movies`}>
                   <div className="relative w-full h-auto justify-center items-start flex flex-col">
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
@@ -114,7 +114,10 @@ export default function MovieTrending() {
                         </button>
                         {genres.map((genre: any, key: any) => {
                           return (
-                            <div className="flex flex-row py-2 ">
+                            <div
+                              key={`${key}-genre`}
+                              className="flex flex-row py-2 "
+                            >
                               <button className="border-2 border-white border-opacity-10 w-auto hover:scale-105 hover:bg-zinc-900 px-2 py-5 flex justify-center items-center h-10 rounded-lg bg-transparent bg-opacity-80">
                                 <span className="font-extralight text-inherit">
                                   {genre?.name}

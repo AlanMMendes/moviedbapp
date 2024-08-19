@@ -91,7 +91,7 @@ export default function SeriesTrending() {
             >
               {seriesData?.results?.map((item: any, key: any) => {
                 return (
-                  <SwiperSlide>
+                  <SwiperSlide key={`${key}-modal-series-trending`}>
                     <div className="relative w-full h-full cursor-pointer hover:scale-95">
                       <Image
                         onClick={() => {
