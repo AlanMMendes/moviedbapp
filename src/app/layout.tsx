@@ -9,10 +9,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <Provider store={store}>
+    <Provider store={store}>
+      <html lang="en">
         <body>{children}</body>
-      </Provider>
-    </html>
+      </html>
+    </Provider>
   );
 }

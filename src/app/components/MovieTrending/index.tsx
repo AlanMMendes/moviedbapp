@@ -18,7 +18,7 @@ import ModalCast from "./components/ModalCast";
 import ModalTrailer from "./components/ModalTrailer";
 import SkeletonMovie from "./components/SkeletonMovieTrending";
 
-function MovieTrending() {
+export default function MovieTrending() {
   const dispatch: any = useDispatch();
   const data: any = useAppSelector((state: any) => state.fetchData.data);
   const sliderRef: any = useRef(null);
@@ -81,7 +81,7 @@ function MovieTrending() {
               const genres: any = filteredGenres(item.genre_ids);
 
               return (
-                <SwiperSlide key={key} className="">
+                <SwiperSlide>
                   <div className="relative w-full h-auto justify-center items-start flex flex-col">
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
@@ -114,7 +114,7 @@ function MovieTrending() {
                         </button>
                         {genres.map((genre: any, key: any) => {
                           return (
-                            <div key={key} className="flex flex-row py-2 ">
+                            <div className="flex flex-row py-2 ">
                               <button className="border-2 border-white border-opacity-10 w-auto hover:scale-105 hover:bg-zinc-900 px-2 py-5 flex justify-center items-center h-10 rounded-lg bg-transparent bg-opacity-80">
                                 <span className="font-extralight text-inherit">
                                   {genre?.name}
@@ -177,5 +177,3 @@ function MovieTrending() {
     </>
   );
 }
-
-export default MovieTrending;

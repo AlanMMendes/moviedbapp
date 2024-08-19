@@ -15,7 +15,7 @@ import "../../globals.css";
 import ModalPeople from "./components/ModalPeople";
 import SkeletonPeople from "./components/SkeletonPeople";
 
-function PeopleTrending() {
+export default function PeopleTrending() {
   const dispatch: any = useDispatch();
   const [isModalCastOpen, setIsModalCastOpen] = useState(false);
   const [modalPropsCast, setModalPropsCast] = useState({});
@@ -87,10 +87,7 @@ function PeopleTrending() {
             >
               {peopleData?.results?.map((item: any, key: any) => {
                 return (
-                  <div
-                    key={key + "people"}
-                    className="relative w-full h-full cursor-pointer"
-                  >
+                  <div className="relative w-full h-full cursor-pointer">
                     <SwiperSlide>
                       <div
                         onClick={() =>
@@ -142,5 +139,3 @@ function PeopleTrending() {
     </>
   );
 }
-
-export default PeopleTrending;

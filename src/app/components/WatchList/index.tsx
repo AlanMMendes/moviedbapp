@@ -12,7 +12,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../globals.css";
 
-function WatchList() {
+export default function WatchList() {
   const sliderSeriesRef: any = useRef(null);
   const watchList: any = useAppSelector((state: any) => state.watchList.items);
 
@@ -50,10 +50,7 @@ function WatchList() {
             >
               {watchList?.map((item: any, key: any) => {
                 return (
-                  <div
-                    key={key}
-                    className="relative w-full h-full cursor-pointer"
-                  >
+                  <div className="relative w-full h-full cursor-pointer">
                     <SwiperSlide>
                       <Image
                         src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
@@ -91,5 +88,3 @@ function WatchList() {
     </>
   );
 }
-
-export default WatchList;

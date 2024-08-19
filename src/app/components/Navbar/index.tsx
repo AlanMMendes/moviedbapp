@@ -7,7 +7,7 @@ import Image from "next/image";
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 
-const Navbar = () => {
+export default function Navbar() {
   const watchList: any = useAppSelector((state: any) => state.watchList.items);
 
   return (
@@ -35,7 +35,7 @@ const Navbar = () => {
               <ul className="flex  flex-row overflow-auto max-w-[32rem] max-h-96 flex-wrap bg-zinc-900 justify-center items-center ">
                 {watchList.map((watch: any, key: any) => {
                   return (
-                    <div key={key} className="min-w-44 flex">
+                    <div className="min-w-44 flex">
                       <ListItem
                         title={watch?.name}
                         // href="/primitives/docs/overview/introduction"
@@ -63,7 +63,7 @@ const Navbar = () => {
       </div>
     </NavigationMenu.Root>
   );
-};
+}
 
 const ListItem: any = React.forwardRef(
   ({ className, children, title, ...props }: any, forwardedRef) => (
@@ -88,5 +88,3 @@ const ListItem: any = React.forwardRef(
 );
 
 ListItem.displayName = "ListItem";
-
-export default Navbar;

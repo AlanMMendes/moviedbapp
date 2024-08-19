@@ -85,7 +85,7 @@ function ModalPeople({ isOpen, onClose, props }: any) {
                 >
                   {props?.know?.map((item: any, key: any) => {
                     return (
-                      <SwiperSlide key={key}>
+                      <SwiperSlide>
                         <div className="">
                           <HoverCard.Root>
                             <HoverCard.Trigger asChild>
@@ -197,7 +197,7 @@ function ModalPeople({ isOpen, onClose, props }: any) {
                 >
                   {data?.cast?.map((item: any, key: any) => {
                     return (
-                      <SwiperSlide key={key}>
+                      <SwiperSlide>
                         <div className="">
                           <HoverCard.Root>
                             <HoverCard.Trigger asChild>

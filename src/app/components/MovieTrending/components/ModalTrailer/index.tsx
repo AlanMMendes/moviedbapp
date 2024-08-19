@@ -1,14 +1,14 @@
 "use client";
 import { fetchVideos } from "@/app/features/fetchVideosSlice";
 import { useAppSelector } from "@/app/store";
-import { useMemo } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 function ModalTrailer({ isOpen, onClose, props }: any) {
   const dispatch: any = useDispatch();
   const data: any = useAppSelector((state: any) => state.fetchVideos.data);
 
-  useMemo(() => {
+  useEffect(() => {
     if (!isOpen) return;
     if (!props) return;
     dispatch(fetchVideos(props.movieId));

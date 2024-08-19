@@ -18,7 +18,7 @@ import "../../globals.css";
 import ModalSeries from "./components/ModalSeries";
 import SkeletonSeries from "./components/SkeletonSeriesTrending";
 
-function SeriesTrending() {
+export default function SeriesTrending() {
   const dispatch: any = useDispatch();
   const dispatchWatchList: any = useDispatch();
   const sliderSeriesRef: any = useRef(null);
@@ -91,7 +91,7 @@ function SeriesTrending() {
             >
               {seriesData?.results?.map((item: any, key: any) => {
                 return (
-                  <SwiperSlide key={key}>
+                  <SwiperSlide>
                     <div className="relative w-full h-full cursor-pointer hover:scale-95">
                       <Image
                         onClick={() => {
@@ -163,5 +163,3 @@ function SeriesTrending() {
     </>
   );
 }
-
-export default SeriesTrending;

@@ -3,7 +3,7 @@
 import { fetchMovieCredits } from "@/app/features/fetchMovieCredits";
 import { useAppSelector } from "@/app/store";
 import Image from "next/image";
-import { useCallback, useMemo, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { FaRankingStar } from "react-icons/fa6";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useDispatch } from "react-redux";
@@ -24,7 +24,7 @@ function ModalCast({ isOpen, onClose, props }: any) {
     sliderRef.current.swiper.slideNext();
   }, []);
 
-  useMemo(() => {
+  useEffect(() => {
     if (!props) return;
     dispatch(fetchMovieCredits(props.movieId));
   }, [props, dispatch]);
@@ -71,7 +71,7 @@ function ModalCast({ isOpen, onClose, props }: any) {
           >
             {data?.cast?.map((item: any, key: any) => {
               return (
-                <SwiperSlide key={key}>
+                <SwiperSlide>
                   <div className="relative max-w-44 h-auto justify-center items-center flex flex-col hover:scale-95 cursor-pointer">
                     <Image
                       src={`https://image.tmdb.org/t/p/w500/${item?.profile_path}`}
@@ -84,13 +84,11 @@ function ModalCast({ isOpen, onClose, props }: any) {
                       blurDataURL={`https://image.tmdb.org/t/p/w500/${item?.profile_path}`}
                     />
 
-                    <div className=" w-full bottom-0 py-3 px-2">
-                      <div className="">
-                        <span>{item?.name}</span>
-                        <div className="flex flex-row gap-2 justify-start items-center">
-                          <FaRankingStar className="text-yellow-400 h-5 w-5" />
-                          <span>{Math.floor(item?.popularity)}</span>
-                        </div>
+                    <div className="w-full bottom-0 py-3 px-2">
+                      <span>{item?.name}</span>
+                      <div className="flex flex-row gap-2 justify-start items-center">
+                        <FaRankingStar className="text-yellow-400 h-5 w-5" />
+                        <span>{Math.floor(item?.popularity)}</span>
                       </div>
                     </div>
                   </div>
