@@ -1,6 +1,6 @@
 function SkeletonMovie() {
   return (
-    <div className="w-full px-4 lg:w-2/3 h-full  rounded-lg shadow-md ">
+    <div className="w-full px-4 lg:w-2/3 h-full min-h-96 min-w-full rounded-lg shadow-md ">
       {/* Skeleton Header */}
       <div className="animate-pulse opacity-20 flex flex-col h-96 py-2">
         <div className="bg-gray-200 h-full rounded-md"></div>

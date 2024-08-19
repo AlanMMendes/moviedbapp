@@ -8,6 +8,7 @@ import fetchPeopleDataSlice from "../features/fetchPeopleSlice";
 import fetchSerieCreditsSlice from "../features/fetchSeriesCredits";
 import fetchSeriesTrendingSlice from "../features/fetchSeriesTrendingSlice";
 import fetchVideosSlice from "../features/fetchVideosSlice";
+import watchListReducer from "../features/watchListSlice";
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     fetchMovieCredits: fetchMovieCreditsSlice,
     fetchPeopleData: fetchPeopleDataSlice,
     fetchPeopleDetailsData: fetchPeopleDetailDataSlice,
+    watchList: watchListReducer,
   },
 });
 

@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-process.env.NEXT_PUBLIC_BASE_API_URL;
-
 // Definindo uma thunk assíncrona para a chamada da API
 export const fetchMovieCredits = createAsyncThunk(
   "fetchParticipantsData/fetchData",

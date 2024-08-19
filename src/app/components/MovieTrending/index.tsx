@@ -75,16 +75,13 @@ function MovieTrending() {
             slidesPerView={1}
             loop={true}
             ref={sliderRef}
-            pagination={{
-              clickable: true,
-              type: "progressbar",
-            }}
             modules={[Pagination, Navigation]}
           >
             {data?.results?.slice(0, 6).map((item: any, key: any) => {
               const genres: any = filteredGenres(item.genre_ids);
+
               return (
-                <SwiperSlide key={key} className="py-2">
+                <SwiperSlide key={key} className="">
                   <div className="relative w-full h-auto justify-center items-start flex flex-col">
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
@@ -160,7 +157,7 @@ function MovieTrending() {
             })}
           </Swiper>
           <div
-            className="absolute right-0 z-50 py-10 md:py-56 lg:py-56"
+            className="absolute right-0 z-40 py-10 md:py-56 lg:py-56"
             onClick={() => handleNext()}
           >
             <MdKeyboardArrowRight className="text-white w-14 h-14 opacity-80 cursor-pointer" />

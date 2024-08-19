@@ -12,7 +12,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SkeletonModalPeople from "../ModalSkeleton";
+import SkeletonModalPeople from "../ModalPeopleSkeleton";
 
 function ModalPeople({ isOpen, onClose, props }: any) {
   const dispatch: any = useDispatch();
@@ -42,7 +42,7 @@ function ModalPeople({ isOpen, onClose, props }: any) {
   return (
     <>
       <div className="fixed  text-white inset-0 bg-black px-2 bg-opacity-5 flex items-center justify-center z-50">
-        <div className="bg-black p-8 rounded-lg max-w-screen-lg max-h-screen-lg min-h-96 h-auto w-full relative flex flex-col">
+        <div className="bg-zinc-900 p-8 rounded-lg max-w-screen-lg max-h-screen-lg min-h-96 h-auto w-full relative flex flex-col">
           <button className="absolute top-2 right-2 text-xl" onClick={onClose}>
             &times;
           </button>
@@ -86,16 +86,15 @@ function ModalPeople({ isOpen, onClose, props }: any) {
                   {props?.know?.map((item: any, key: any) => {
                     return (
                       <SwiperSlide key={key}>
-                        <div className="relative h-48 justify-center items-center flex flex-col hover:scale-95 cursor-pointer">
+                        <div className="">
                           <HoverCard.Root>
                             <HoverCard.Trigger asChild>
                               <a
-                                className="inline-block absolute z-50 px-4 left-0 top-0 py-3 cursor-pointer rounded-full outline-none "
-                                href="https://twitter.com/radix_ui"
+                                className="inline-block fixed z-50 px-1 top-0 right-0 cursor-pointer rounded-full outline-none "
                                 target="_blank"
                                 rel="noreferrer noopener"
                               >
-                                <IoIosInformationCircle className="h-auto w-6" />
+                                <IoIosInformationCircle className="text-white h-auto w-6" />
                               </a>
                             </HoverCard.Trigger>
                             <HoverCard.Portal>
@@ -106,22 +105,22 @@ function ModalPeople({ isOpen, onClose, props }: any) {
                                 <div className="flex flex-col gap-[7px]">
                                   <div className="flex flex-col gap-[15px]">
                                     <div>
-                                      <div className="text-mauve12 m-0 text-[15px] font-medium leading-[1.5]">
+                                      <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
                                         {item?.original_title || item?.name}
                                       </div>
                                     </div>
-                                    <div className="text-mauve12 m-0 text-[15px] leading-[1.5]">
+                                    <div className="text-white m-0 text-[15px] leading-[1.5]">
                                       {item?.overview}
                                     </div>
                                     <div className="flex gap-[15px]">
                                       <div className="flex gap-[10px]">
-                                        <div className="text-mauve12 m-0 text-[15px] font-medium leading-[1.5]">
+                                        <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
                                           {Math.round(item?.popularity)}
                                         </div>
                                         <div className="text-mauve10 m-0 text-[15px] leading-[1.5]">
                                           <FaRankingStar className="text-yellow-400 h-5 w-5" />
                                         </div>
-                                        <div className="text-mauve12 m-0 text-[15px] font-medium leading-[1.5]">
+                                        <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
                                           Release:{" "}
                                           {item?.release_date ||
                                             item?.first_air_date}
@@ -138,23 +137,15 @@ function ModalPeople({ isOpen, onClose, props }: any) {
                           <Image
                             src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
                             alt={item?.profile_path}
-                            className="mask rounded-3xl h-56 w-56"
-                            width={44}
-                            height={44}
+                            className="maskSeries rounded-lg"
+                            width={0}
+                            height={0}
                             sizes="100vw"
                             placeholder="blur"
                             blurDataURL={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
                           />
-                          <div className="fixed flex left-0 bottom-1/3 px-2 flex-row gap-2">
-                            <FaRankingStar className="text-yellow-400 h-5 w-5" />
-                            <span>{Math.floor(item?.popularity)}</span>
-                          </div>
-                          <div className="w-full h-auto bottom-0 py-3 px-2 flex flex-col">
-                            <span>{item?.name}</span>
-                            <div className=" gap-2 justify-start items-start flex flex-col">
-                              {item?.original_title}
-                            </div>
-                          </div>
+
+                          <span>{item?.name}</span>
                         </div>
                       </SwiperSlide>
                     );
@@ -207,16 +198,15 @@ function ModalPeople({ isOpen, onClose, props }: any) {
                   {data?.cast?.map((item: any, key: any) => {
                     return (
                       <SwiperSlide key={key}>
-                        <div className="relative h-48 justify-center items-center flex flex-col hover:scale-95 cursor-pointer">
+                        <div className="">
                           <HoverCard.Root>
                             <HoverCard.Trigger asChild>
                               <a
-                                className="inline-block absolute z-50 px-4 left-0 top-0 py-3 cursor-pointer rounded-full outline-none "
-                                href="https://twitter.com/radix_ui"
+                                className="inline-block fixed z-50 px-1 top-0 right-0 cursor-pointer rounded-full outline-none "
                                 target="_blank"
                                 rel="noreferrer noopener"
                               >
-                                <IoIosInformationCircle className="h-auto w-6" />
+                                <IoIosInformationCircle className="text-white h-auto w-6" />
                               </a>
                             </HoverCard.Trigger>
                             <HoverCard.Portal>
@@ -227,22 +217,22 @@ function ModalPeople({ isOpen, onClose, props }: any) {
                                 <div className="flex flex-col gap-[7px]">
                                   <div className="flex flex-col gap-[15px]">
                                     <div>
-                                      <div className="text-mauve12 m-0 text-[15px] font-medium leading-[1.5]">
+                                      <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
                                         {item?.original_title || item?.name}
                                       </div>
                                     </div>
-                                    <div className="text-mauve12 m-0 text-[15px] leading-[1.5]">
+                                    <div className="text-white m-0 text-[15px] leading-[1.5]">
                                       {item?.overview}
                                     </div>
                                     <div className="flex gap-[15px]">
                                       <div className="flex gap-[10px]">
-                                        <div className="text-mauve12 m-0 text-[15px] font-medium leading-[1.5]">
+                                        <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
                                           {Math.round(item?.popularity)}
                                         </div>
                                         <div className="text-mauve10 m-0 text-[15px] leading-[1.5]">
                                           <FaRankingStar className="text-yellow-400 h-5 w-5" />
                                         </div>
-                                        <div className="text-mauve12 m-0 text-[15px] font-medium leading-[1.5]">
+                                        <div className="text-white m-0 text-[15px] font-medium leading-[1.5]">
                                           Release:{" "}
                                           {item?.release_date ||
                                             item?.first_air_date}
@@ -259,24 +249,19 @@ function ModalPeople({ isOpen, onClose, props }: any) {
                           <Image
                             src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
                             alt={item?.profile_path}
-                            className="mask rounded-3xl"
-                            width={44}
-                            height={44}
+                            className="maskSeries rounded-lg"
+                            width={0}
+                            height={0}
                             sizes="100vw"
                             placeholder="blur"
                             blurDataURL={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
                           />
-                          <div className="absolute flex left-0 bottom-1/3 px-2 flex-row gap-2">
-                            <FaRankingStar className="text-yellow-400 h-5 w-5" />
-                            <span>{Math.floor(item?.popularity)}</span>
-                          </div>
-                          <div className="w-full h-auto bottom-0 py-3 px-2">
-                            <span>{item?.name}</span>
-                            <div className="flex flex-row gap-2 justify-start items-center">
-                              <span className="font-extralight">
-                                Character: {item?.character}
-                              </span>
-                            </div>
+
+                          <span>{item?.name}</span>
+                          <div className="flex flex-row gap-2 justify-start items-center">
+                            <span className="font-extralight">
+                              Character: {item?.character}
+                            </span>
                           </div>
                         </div>
                       </SwiperSlide>
