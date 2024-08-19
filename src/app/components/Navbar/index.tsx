@@ -5,7 +5,6 @@ import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import classNames from "classnames";
 import Image from "next/image";
 import React from "react";
-import { FaSearch } from "react-icons/fa";
 
 export default function Navbar() {
   const watchList: any = useAppSelector((state: any) => state.watchList.items);
@@ -14,7 +13,7 @@ export default function Navbar() {
     <NavigationMenu.Root className="relative flex w-full items-center justify-end ">
       <NavigationMenu.List className="gap-2 m-0 flex list-none rounded-full items-center  rounded-b-lg   p-1 ">
         <NavigationMenu.Item>
-          <FaSearch className="text-white relative top-[1px] " aria-hidden />
+          {/* <FaSearch className="text-white relative top-[1px] " aria-hidden /> */}
           <NavigationMenu.Content className="data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight absolute top-0 left-0 w-full sm:w-auto"></NavigationMenu.Content>
         </NavigationMenu.Item>
 
