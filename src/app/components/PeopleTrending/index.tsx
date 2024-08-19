@@ -12,7 +12,8 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../globals.css";
-import ModalPeople from "./ModalPeople";
+import ModalPeople from "./components/ModalPeople";
+import SkeletonPeople from "./components/SkeletonPeople";
 
 function PeopleTrending() {
   const dispatch: any = useDispatch();
@@ -47,9 +48,9 @@ function PeopleTrending() {
   return (
     <>
       {!peopleData ? (
-        <>Loading</>
+        <SkeletonPeople />
       ) : (
-        <div className="px-2">
+        <div>
           <Swiper
             spaceBetween={20}
             loop={true}
@@ -102,7 +103,7 @@ function PeopleTrending() {
                       sizes="100vw"
                     />
 
-                    <div className="absolute w-full bottom-0 py-3 px-2">
+                    <div className="absolute w-full bottom-0 py-3 ">
                       <span>{item?.name}</span>
                       <div className="flex flex-row gap-2 justify-start items-center">
                         <FaRankingStar className="text-yellow-400 h-5 w-5" />

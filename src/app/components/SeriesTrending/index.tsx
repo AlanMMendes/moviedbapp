@@ -13,7 +13,8 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../globals.css";
-import ModalSeries from "./ModalSeries";
+import ModalSeries from "./components/ModalSeries";
+import SkeletonSeries from "./components/SkeletonSeriesTrending";
 
 function SeriesTrending() {
   const dispatch: any = useDispatch();
@@ -48,10 +49,10 @@ function SeriesTrending() {
   return (
     <>
       {!seriesData ? (
-        <>Loading</>
+        <SkeletonSeries />
       ) : (
         <>
-          <div className="relative px-2 w-full h-full flex flex-row justify-center items-center">
+          <div className="relative w-full h-full flex flex-row justify-center items-center">
             <Swiper
               spaceBetween={15}
               loop={true}
