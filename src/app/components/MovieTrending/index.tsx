@@ -4,7 +4,7 @@ import { useAppSelector } from "@/app/store";
 import { genres } from "@/app/utils";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { FaArrowRight, FaPlay, FaStar } from "react-icons/fa";
+import { FaPlay, FaStar } from "react-icons/fa";
 import { GoThumbsup } from "react-icons/go";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useDispatch } from "react-redux";
@@ -14,7 +14,6 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../globals.css";
-import ModalCast from "./components/ModalCast";
 import ModalTrailer from "./components/ModalTrailer";
 import SkeletonMovie from "./components/SkeletonMovieTrending";
 
@@ -22,11 +21,8 @@ export default function MovieTrending() {
   const dispatch: any = useDispatch();
   const data: any = useAppSelector((state: any) => state.fetchData.data);
   const sliderRef: any = useRef(null);
-
   const [isModalTrailerOpen, setIsModalTrailerOpen] = useState(false);
-  const [isModalCastOpen, setIsModalCastOpen] = useState(false);
   const [modalPropsTrailer, setModalPropsTrailer] = useState({});
-  const [modalPropsCast, setModalPropsCast] = useState({});
 
   const openModalTrailer = (props: any) => {
     setModalPropsTrailer({
@@ -38,18 +34,6 @@ export default function MovieTrending() {
   const closeModalTrailer = () => {
     setIsModalTrailerOpen(false);
     setModalPropsTrailer({});
-  };
-
-  const openModalCast = (props: any) => {
-    setModalPropsCast({
-      ...props,
-    });
-    setIsModalCastOpen(true);
-  };
-
-  const closeModalCast = () => {
-    setIsModalCastOpen(false);
-    setModalPropsCast({});
   };
 
   const handleNext = useCallback(() => {
@@ -66,9 +50,9 @@ export default function MovieTrending() {
 
   return (
     <>
-      {!data ? (
-        <SkeletonMovie />
-      ) : (
+      {!data && <SkeletonMovie />}
+
+      {data && (
         <div className="flex justify-center items-start ">
           <Swiper
             spaceBetween={30}
@@ -79,7 +63,6 @@ export default function MovieTrending() {
           >
             {data?.results?.slice(0, 6).map((item: any, key: any) => {
               const genres: any = filteredGenres(item.genre_ids);
-
               return (
                 <SwiperSlide key={`${key}-modal-movies`}>
                   <div className="relative w-full h-auto justify-center items-start flex flex-col">
@@ -140,18 +123,10 @@ export default function MovieTrending() {
                           <FaPlay className="h-12" />
                           <span className="font-extralight">Watch Trailer</span>
                         </button>
-                        <button
-                          onClick={() =>
-                            openModalCast({
-                              title: item?.original_title,
-                              movieId: item?.id,
-                            })
-                          }
-                          className="w-auto min-w-56 hover:scale-105 hover:bg-zinc-900 flex justify-center items-center border-2 border-white border-opacity-10 gap-2 rounded-full"
-                        >
+                        {/* <button className="w-auto min-w-56 hover:scale-105 hover:bg-zinc-900 flex justify-center items-center border-2 border-white border-opacity-10 gap-2 rounded-full">
                           <span className="font-extralight">Cast</span>
                           <FaArrowRight className="h-12" />
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </div>
@@ -169,11 +144,6 @@ export default function MovieTrending() {
             isOpen={isModalTrailerOpen}
             onClose={closeModalTrailer}
             props={modalPropsTrailer}
-          />
-          <ModalCast
-            isOpen={isModalCastOpen}
-            onClose={closeModalCast}
-            props={modalPropsCast}
           />
         </div>
       )}

@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // Definindo uma thunk assíncrona para a chamada da API
-export const fetchPeopleData = createAsyncThunk(
-  "fetchPeopleData/fetchData",
-  async () => {
+export const fetchEpisodes = createAsyncThunk(
+  "fetchEpisodesData/fetchData",
+  async ({ series_id, season_number }: any) => {
+    if (!series_id && !season_number) return;
     const response = await fetch(
-      `https://api.themoviedb.org/3/person/popular?api_key=${process.env.NEXT_PUBLIC_BASE_API_URL}&language=en-US`,
+      `https://api.themoviedb.org/3/tv/${series_id}/season/${season_number}?api_key=${process.env.NEXT_PUBLIC_BASE_API_URL}&language=en-US`,
       {
         method: "GET",
       }
@@ -19,8 +20,8 @@ export const fetchPeopleData = createAsyncThunk(
 );
 
 // Criando o slice
-const fetchPeopleSlice = createSlice({
-  name: "fetchPeopleData",
+const fetchEpisodesSlice = createSlice({
+  name: "fetchEpisodes",
   initialState: {
     data: null,
     status: "idle", // ou 'loading', 'succeeded', 'failed'
@@ -29,18 +30,18 @@ const fetchPeopleSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchPeopleData.pending, (state) => {
+      .addCase(fetchEpisodes.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchPeopleData.fulfilled, (state, action) => {
+      .addCase(fetchEpisodes.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload;
       })
-      .addCase(fetchPeopleData.rejected, (state: any, action) => {
+      .addCase(fetchEpisodes.rejected, (state: any, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
   },
 });
 
-export default fetchPeopleSlice.reducer;
+export default fetchEpisodesSlice.reducer;

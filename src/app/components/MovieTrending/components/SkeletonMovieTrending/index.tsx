@@ -1,19 +1,12 @@
 function SkeletonMovie() {
   return (
-    <div className="w-full px-4 lg:w-2/3 h-full min-h-96 min-w-full rounded-lg shadow-md ">
-      {/* Skeleton Header */}
-      <div className="animate-pulse opacity-20 flex flex-col h-96 py-2">
-        <div className="bg-gray-200 h-full rounded-md"></div>
+    <div className="flex items-center justify-start px-2 h-[52rem] bg-gray-200 opacity-20 animate-pulse">
+      {/* Div interna */}
+      <div className="flex flex-col w-full animate-pulse gap-2">
+        <div className="p-4 bg-gray-400 text-white rounded-md w-2/3"></div>
+        <div className="p-4 bg-gray-400 text-white rounded-md w-1/3"></div>
+        <div className="p-4 bg-gray-400 text-white rounded-md w-80"></div>
       </div>
-
-      {/* Skeleton Content */}
-      <div className="space-y-2 opacity-20 flex flex-col  ">
-        <div className="bg-gray-200 h-6 rounded-md"></div>
-        <div className="bg-gray-200 h-4 w-1/4 rounded-md"></div>
-        <div className="bg-gray-200 h-4 w-1/2 rounded-md"></div>
-      </div>
-
-      {/* Skeleton Footer */}
     </div>
   );
 }
