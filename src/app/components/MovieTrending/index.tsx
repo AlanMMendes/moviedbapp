@@ -3,17 +3,17 @@ import { fetchData } from "@/app/features/fetchDataSlice";
 import { useAppSelector } from "@/app/store";
 import { genres } from "@/app/utils";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaPlay, FaStar } from "react-icons/fa";
 import { GoThumbsup } from "react-icons/go";
-import { MdKeyboardArrowRight } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../globals.css";
+import BookmarkButton from "../Bookmark";
 import ModalTrailer from "./components/ModalTrailer";
 import SkeletonMovie from "./components/SkeletonMovieTrending";
 
@@ -36,11 +36,6 @@ export default function MovieTrending() {
     setModalPropsTrailer({});
   };
 
-  const handleNext = useCallback(() => {
-    if (!sliderRef.current) return;
-    sliderRef.current.swiper.slideNext();
-  }, []);
-
   useEffect(() => {
     dispatch(fetchData());
   }, [dispatch]);
@@ -53,18 +48,24 @@ export default function MovieTrending() {
       {!data && <SkeletonMovie />}
 
       {data && (
-        <div className="flex justify-center items-start ">
+        <div className="flex justify-center items-start lg:items-center">
+          <BookmarkButton />
           <Swiper
+            key={"swiper-movies"}
+            autoplay={{
+              disableOnInteraction: true,
+              pauseOnMouseEnter: true,
+            }}
             spaceBetween={30}
             slidesPerView={1}
             loop={true}
             ref={sliderRef}
-            modules={[Pagination, Navigation]}
+            modules={[Pagination, Navigation, Autoplay]}
           >
             {data?.results?.slice(0, 6).map((item: any, key: any) => {
               const genres: any = filteredGenres(item.genre_ids);
               return (
-                <SwiperSlide key={`${key}-modal-movies`}>
+                <SwiperSlide key={`${key}-modal-movies` || "key-modal-movies"}>
                   <div className="relative w-full h-auto justify-center items-start flex flex-col">
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
@@ -123,10 +124,6 @@ export default function MovieTrending() {
                           <FaPlay className="h-12" />
                           <span className="font-extralight">Watch Trailer</span>
                         </button>
-                        {/* <button className="w-auto min-w-56 hover:scale-105 hover:bg-zinc-900 flex justify-center items-center border-2 border-white border-opacity-10 gap-2 rounded-full">
-                          <span className="font-extralight">Cast</span>
-                          <FaArrowRight className="h-12" />
-                        </button> */}
                       </div>
                     </div>
                   </div>
@@ -134,19 +131,13 @@ export default function MovieTrending() {
               );
             })}
           </Swiper>
-          <div
-            className="absolute right-0 z-40 py-10 md:py-56 lg:py-56"
-            onClick={() => handleNext()}
-          >
-            <MdKeyboardArrowRight className="text-white w-14 h-14 opacity-80 cursor-pointer" />
-          </div>
-          <ModalTrailer
-            isOpen={isModalTrailerOpen}
-            onClose={closeModalTrailer}
-            props={modalPropsTrailer}
-          />
         </div>
       )}
+      <ModalTrailer
+        isOpen={isModalTrailerOpen}
+        onClose={closeModalTrailer}
+        props={modalPropsTrailer}
+      />
     </>
   );
 }

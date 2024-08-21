@@ -1,5 +1,6 @@
 "use client";
 import { fetchSeriesTrending } from "@/app/features/fetchSeriesTrendingSlice";
+import { setData } from "@/app/features/watchListSlice";
 import { useAppSelector } from "@/app/store";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +15,7 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../globals.css";
+import SkeletonSeries from "./components/SkeletonSeriesTrending";
 
 export default function SeriesTrending() {
   const dispatch: any = useDispatch();
@@ -45,12 +47,7 @@ export default function SeriesTrending() {
 
   return (
     <>
-      {!data && (
-        <div
-          role="status"
-          className="flex justify-center rounded-3xl items-center h-[28rem] animate-pulse bg-gray-200 opacity-5"
-        />
-      )}
+      {!data && <SkeletonSeries />}
 
       {data && (
         <>
@@ -106,7 +103,10 @@ export default function SeriesTrending() {
                         <div className="flex flex-row gap-2 justify-start items-center">
                           <button
                             key={key}
-                            onClick={() => handleClick(key)}
+                            onClick={() => {
+                              handleClick(key);
+                              dispatch(setData(item));
+                            }}
                             className={`px-4 py-2 rounded-md transition-colors duration-300`}
                           >
                             {activeButtons.includes(key) ? (

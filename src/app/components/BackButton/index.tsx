@@ -11,8 +11,10 @@ const BackButton = () => {
 
   return (
     <button
-      onClick={handleBack}
-      className="absolute top-0 left-0 z-50 px-4 py-1.5 mt-1 ml-2 bg-zinc-900 hover:bg-zinc-950  text-white rounded-md "
+      onClick={() => {
+        handleBack();
+      }}
+      className="absolute top-0 left-0 ml-2 mt-1 z-50 h-8 w-8 flex items-center justify-center bg-zinc-900 hover:bg-zinc-950  text-white rounded-md "
     >
       <BiLeftArrow className="text-white" />
     </button>

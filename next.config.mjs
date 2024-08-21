@@ -2,7 +2,10 @@
 const nextConfig = {
   env: { NEXT_PUBLIC_BASE_API_URL: process.env.NEXT_PUBLIC_BASE_API_URL },
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "image.tmdb.org" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "image.tmdb.org" },
+      { protocol: "https", hostname: "placehold.co" },
+    ],
   },
 };
 

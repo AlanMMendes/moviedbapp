@@ -25,7 +25,6 @@ function ModalTrailer({ isOpen, onClose, props }: any) {
             &times;
           </button>
         </div>
-
         <iframe
           src={`https://www.youtube.com/embed/${data?.results[0]?.key || ""}`}
           className="w-full px-2 h-64 rounded-3xl"

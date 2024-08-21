@@ -12,6 +12,7 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../globals.css";
+import SkeletonPeople from "./components/SkeletonPeople";
 
 export default function PeopleTrending() {
   const dispatch: any = useDispatch();
@@ -34,17 +35,13 @@ export default function PeopleTrending() {
       <div className="py-2">
         <span className="text-2xl">People Trending</span>
       </div>
-      {!peopleData && (
-        <div
-          role="status"
-          className="flex justify-center rounded-3xl items-center h-[37rem] animate-pulse bg-gray-200 opacity-5"
-        />
-      )}
+      {!peopleData && <SkeletonPeople />}
 
       {peopleData && (
         <div className="flex flex-col">
           <div className="relative w-full h-auto flex flex-row items-center justify-start">
             <Swiper
+              key={"swiper-people-trending"}
               spaceBetween={20}
               loop={true}
               breakpoints={{
@@ -56,12 +53,10 @@ export default function PeopleTrending() {
                   slidesPerView: 2,
                   spaceBetween: 20,
                 },
-                // when window width is >= 640px
                 "768": {
                   slidesPerView: 2,
                   spaceBetween: 30,
                 },
-                // when window width is >= 768px
                 "1024": {
                   slidesPerView: 3,
                   spaceBetween: 40,
@@ -76,31 +71,34 @@ export default function PeopleTrending() {
             >
               {peopleData?.results?.map((item: any, key: any) => {
                 return (
-                  <div
-                    key={`${key}-modal-trending-people`}
+                  <SwiperSlide
+                    key={
+                      `${key}-modal-trending-people` || "key-people-trending"
+                    }
                     className="relative w-full h-full cursor-pointer"
                   >
-                    <SwiperSlide>
-                      <div className="relative w-full h-auto justify-start items-start flex flex-col hover:scale-95 cursor-pointer">
-                        <Image
-                          src={`https://image.tmdb.org/t/p/original/${item?.profile_path}`}
-                          alt={item?.backdrop_path}
-                          className="mask rounded-3xl"
-                          width={0}
-                          height={0}
-                          sizes="100vw"
-                        />
+                    <div className="relative w-full h-auto justify-start items-start flex flex-col hover:scale-95 cursor-pointer">
+                      <Image
+                        src={
+                          `https://image.tmdb.org/t/p/original/${item?.profile_path}` ||
+                          "https://placehold.co/600x400/png"
+                        }
+                        alt={item?.backdrop_path || "pic-trending-people"}
+                        className="mask rounded-3xl"
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                      />
 
-                        <div className="absolute w-full bottom-0 px-2 py-3 ">
-                          <span>{item?.name}</span>
-                          <div className="flex flex-row gap-2 justify-start items-center">
-                            <FaRankingStar className="text-yellow-400 h-5 w-5" />
-                            <span>{Math.floor(item?.popularity)}</span>
-                          </div>
+                      <div className="absolute w-full bottom-0 px-2 py-3 ">
+                        <span>{item?.name}</span>
+                        <div className="flex flex-row gap-2 justify-start items-center">
+                          <FaRankingStar className="text-yellow-400 h-5 w-5" />
+                          <span>{Math.floor(item?.popularity)}</span>
                         </div>
                       </div>
-                    </SwiperSlide>
-                  </div>
+                    </div>
+                  </SwiperSlide>
                 );
               })}
             </Swiper>
