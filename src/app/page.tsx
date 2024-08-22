@@ -1,14 +1,16 @@
 "use client";
 
 import MovieTrending from "./components/MovieTrending";
+import Navbar from "./components/Navbar";
 import PeopleTrending from "./components/PeopleTrending";
 import SeriesTrending from "./components/SeriesTrending";
 
 const App = () => {
   return (
-    <div className="relative w-full h-auto flex flex-col gap-5">
+    <div className="flex flex-col">
+      <Navbar />
       <MovieTrending />
-      <div className="h-auto w-full gap-2 flex flex-col px-4 ">
+      <div className="px-2 py-2 space-y-4 ">
         <SeriesTrending />
         <PeopleTrending />
       </div>

@@ -17,9 +17,7 @@ import SkeletonPeople from "./components/SkeletonPeople";
 export default function PeopleTrending() {
   const dispatch: any = useDispatch();
   const sliderPeopleRef: any = useRef(null);
-  const peopleData: any = useAppSelector(
-    (state: any) => state.fetchPeopleData.data
-  );
+  const peopleData: any = useAppSelector((state: any) => state.fetchPeopleData);
 
   const handleNextSeries = useCallback(() => {
     if (!sliderPeopleRef.current) return;
@@ -32,83 +30,76 @@ export default function PeopleTrending() {
 
   return (
     <>
-      <div className="py-2">
-        <span className="text-2xl">People Trending</span>
-      </div>
-      {!peopleData && <SkeletonPeople />}
+      {peopleData?.status === "loading" ||
+        (peopleData?.status === "idle" && <SkeletonPeople />)}
+      {peopleData.status === "succeeded" && (
+        <div className="flex items-center">
+          <div
+            className="absolute right-0 z-40 mb-24"
+            onClick={() => handleNextSeries()}
+          >
+            <MdKeyboardArrowRight className="text-white w-14 h-14 opacity-80 cursor-pointer" />
+          </div>
+          <Swiper
+            key={"swiper-people-trending"}
+            spaceBetween={20}
+            loop={true}
+            breakpoints={{
+              "0": {
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+              "480": {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              "768": {
+                slidesPerView: 3,
+                spaceBetween: 10,
+              },
+              "1024": {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              "1200": {
+                slidesPerView: 5,
+                spaceBetween: 10,
+              },
+            }}
+            ref={sliderPeopleRef}
+            modules={[Pagination, Navigation]}
+          >
+            {peopleData?.data?.results?.map((item: any, key: any) => {
+              return (
+                <SwiperSlide
+                  key={`${key}-modal-trending-people` || "key-people-trending"}
+                  className="relative w-full h-full cursor-pointer"
+                >
+                  <div className="relative w-full h-auto justify-center items-center flex flex-col hover:scale-95 cursor-pointer">
+                    <Image
+                      src={
+                        `https://image.tmdb.org/t/p/original/${item?.profile_path}` ||
+                        "https://placehold.co/600x400/png"
+                      }
+                      alt={item?.backdrop_path || "pic-trending-people"}
+                      className="h-fit max-h-fit w-full rounded-3xl"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                    />
 
-      {peopleData && (
-        <div className="flex flex-col">
-          <div className="relative w-full h-auto flex flex-row items-center justify-start">
-            <Swiper
-              key={"swiper-people-trending"}
-              spaceBetween={20}
-              loop={true}
-              breakpoints={{
-                "0": {
-                  slidesPerView: 1,
-                  spaceBetween: 10,
-                },
-                "480": {
-                  slidesPerView: 2,
-                  spaceBetween: 20,
-                },
-                "768": {
-                  slidesPerView: 2,
-                  spaceBetween: 30,
-                },
-                "1024": {
-                  slidesPerView: 3,
-                  spaceBetween: 40,
-                },
-                "1200": {
-                  slidesPerView: 4,
-                  spaceBetween: 50,
-                },
-              }}
-              ref={sliderPeopleRef}
-              modules={[Pagination, Navigation]}
-            >
-              {peopleData?.results?.map((item: any, key: any) => {
-                return (
-                  <SwiperSlide
-                    key={
-                      `${key}-modal-trending-people` || "key-people-trending"
-                    }
-                    className="relative w-full h-full cursor-pointer"
-                  >
-                    <div className="relative w-full h-auto justify-start items-start flex flex-col hover:scale-95 cursor-pointer">
-                      <Image
-                        src={
-                          `https://image.tmdb.org/t/p/original/${item?.profile_path}` ||
-                          "https://placehold.co/600x400/png"
-                        }
-                        alt={item?.backdrop_path || "pic-trending-people"}
-                        className="mask rounded-3xl"
-                        width={0}
-                        height={0}
-                        sizes="100vw"
-                      />
-
-                      <div className="absolute w-full bottom-0 px-2 py-3 ">
-                        <span>{item?.name}</span>
-                        <div className="flex flex-row gap-2 justify-start items-center">
-                          <FaRankingStar className="text-yellow-400 h-5 w-5" />
-                          <span>{Math.floor(item?.popularity)}</span>
-                        </div>
+                    <div className="w-full bottom-0 px-2 py-3 flex flex-col justify-center items-center ">
+                      <span>{item?.name}</span>
+                      <div className="flex flex-row gap-2 justify-start items-center">
+                        <FaRankingStar className="text-yellow-400 h-5 w-5" />
+                        <span>{Math.floor(item?.popularity)}</span>
                       </div>
                     </div>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-            <div
-              className="absolute right-0 z-40"
-              onClick={() => handleNextSeries()}
-            >
-              <MdKeyboardArrowRight className="text-white w-14 h-14 opacity-80 cursor-pointer" />
-            </div>
-          </div>
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
       )}
     </>

@@ -17,7 +17,7 @@ import "../../globals.css";
 function PostPage() {
   const params = useParams<{ show: string; id: string }>();
   const dispatch: any = useDispatch();
-  const data: any = useAppSelector((state: any) => state?.fetchShow);
+  const dataShow: any = useAppSelector((state: any) => state?.fetchShow);
   const dataEpisodes: any = useAppSelector(
     (state: any) => state?.fetchEpisodes
   );
@@ -47,51 +47,50 @@ function PostPage() {
 
   return (
     <>
-      <div className="flex flex-col justify-center">
-        <BackButton />
-        <Image
-          src={`https://image.tmdb.org/t/p/original/${data?.data?.backdrop_path}`}
-          alt={data?.data?.backdrop_path || "post-backdrop_path"}
-          className="mask"
-          width={0}
-          height={0}
-          sizes="200vw"
-        />
-        <div className="relative w-full lg:absolute md:absolute lg:w-3/4 md:w-3/4 px-5 md:py-5 gap-4">
-          <div className="flex flex-col gap-5 w-4/4 mt-10 ">
-            <span className="lg:text-4xl text-2xl md:text-2xl font-semibold">
-              {data?.data?.name}
-            </span>
-            <div className="flex flex-row gap-2 justify-start items-center">
-              <FaStar className="text-yellow-400 h-5 w-5" />
-              <span>{Math.floor(data?.data?.vote_average)}</span>
-              <GoThumbsup className="h-5 w-5" />
-              <span>{data?.data?.vote_count}</span>
+      {dataShow?.status === "succeeded" && (
+        <div className="flex flex-col justify-center">
+          <BackButton />
+          <Image
+            src={`https://image.tmdb.org/t/p/original/${dataShow?.data?.backdrop_path}`}
+            alt={dataShow?.data?.backdrop_path || "post-backdrop_path"}
+            className="mask"
+            width={0}
+            height={0}
+            sizes="200vw"
+          />
+          <div className="relative w-full lg:absolute md:absolute lg:w-3/4 md:w-3/4 px-5 md:py-5 gap-4">
+            <div className="flex flex-col gap-5 w-4/4 mt-10 ">
+              <span className="lg:text-4xl text-2xl md:text-2xl font-semibold">
+                {dataShow?.data?.name}
+              </span>
+              <div className="flex flex-row gap-2 justify-start items-center">
+                <FaStar className="text-yellow-400 h-5 w-5" />
+                <span>{Math.floor(dataShow?.data?.vote_average)}</span>
+                <GoThumbsup className="h-5 w-5" />
+                <span>{dataShow?.data?.vote_count}</span>
+              </div>
+
+              <p className="w-full lg:w-2/4 text-left max-h-44 overflow-x-auto lg:text-lg md:text-md font-extralight">
+                {dataShow?.data?.overview}
+              </p>
             </div>
-
-            <p className="w-full lg:w-2/4 text-left max-h-44 overflow-x-auto lg:text-lg md:text-md font-extralight">
-              {data?.data?.overview}
-            </p>
           </div>
-        </div>
-      </div>
-
-      <div className="flex flex-col">
-        <div className="flex flex-row flex-wrap lg:justify-start justify-start items-center py-2 px-2">
-          <select
-            value={selectedValue}
-            onChange={handleChange}
-            className="block cursor-pointer w-auto px-4 py-2 text-white bg-zinc-900 bg-opacity-25 border border-opacity-10 border-white h-10 rounded-md shadow-sm focus:outline-none font-extralight"
-          >
-            <>
-              <option
-                className="block gap-4 h-10 w-full bg-zinc-900 cursor-pointer  "
-                value=""
-              >
-                Select a season
-              </option>
-              {Array.from({ length: data?.data?.number_of_seasons }).map(
-                (_, index) => {
+          <div className="flex flex-row flex-wrap lg:justify-start justify-start items-center py-2 px-2">
+            <select
+              value={selectedValue}
+              onChange={handleChange}
+              className="block cursor-pointer w-auto px-4 py-2 text-white bg-zinc-900 bg-opacity-25 border border-opacity-10 border-white h-10 rounded-md shadow-sm focus:outline-none font-extralight"
+            >
+              <>
+                <option
+                  className="block gap-4 h-10 w-full bg-zinc-900 cursor-pointer  "
+                  value=""
+                >
+                  Select a season
+                </option>
+                {Array.from({
+                  length: dataShow?.data?.number_of_seasons,
+                }).map((_, index) => {
                   const displayIndex = index + 1;
                   return (
                     <option
@@ -102,40 +101,44 @@ function PostPage() {
                       {`Season ${displayIndex || "1"}`}
                     </option>
                   );
-                }
-              )}
-            </>
-          </select>
+                })}
+              </>
+            </select>
+          </div>
         </div>
-        <div className="grid grid-cols-2 gap-4 px-2 max-h-[44rem] overflow-x-auto">
-          {dataEpisodes?.data?.episodes?.map((item: any, key: any) => {
-            return (
-              <div className="flex flex-col" key={key}>
-                <div>
-                  <Image
-                    src={`https://image.tmdb.org/t/p/original/${item?.still_path}`}
-                    alt={item?.still_path || "episodes"}
-                    className="mask rounded-lg"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                  />
-                  <div className=" w-full bottom-0 py-3 px-2 flex flex-row">
-                    <div className="w-full">
-                      <span>
-                        Episode {item?.episode_number} - {item?.name}
-                      </span>
-                      <div className="flex flex-row gap-2 justify-start items-center">
-                        Released: {item?.air_date}
+      )}
+      {dataEpisodes?.status === "succeeded" && (
+        <div className="flex flex-col">
+          <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 px-2 max-h-[44rem]  overflow-x-auto">
+            {dataEpisodes?.data?.episodes?.map((item: any, key: any) => {
+              return (
+                <div className="flex flex-col" key={key}>
+                  <div>
+                    <Image
+                      src={`https://image.tmdb.org/t/p/original/${item?.still_path}`}
+                      alt={item?.still_path || "episodes"}
+                      className="mask rounded-lg min-h-64"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                    />
+                    <div className=" w-full bottom-0 py-3 px-2 flex flex-row">
+                      <div className="w-full">
+                        <span>
+                          Episode {item?.episode_number} - {item?.name}
+                        </span>
+                        <div className="flex flex-row gap-2 justify-start items-center">
+                          Released: {item?.air_date}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

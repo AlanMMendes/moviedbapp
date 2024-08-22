@@ -11,8 +11,8 @@ import watchListReducer from "../features/watchListSlice";
 
 export const store = configureStore({
   reducer: {
-    fetchData: fetchDataSlice, // Adicione seu slice aqui
-    fetchVideos: fetchVideosSlice, // Adicione seu slice aqui
+    fetchData: fetchDataSlice,
+    fetchVideos: fetchVideosSlice,
     fetchSeriesTrending: fetchSeriesTrendingSlice,
     fetchPeopleData: fetchPeopleDataSlice,
     watchList: watchListReducer,
