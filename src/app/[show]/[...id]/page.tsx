@@ -76,18 +76,20 @@ function PostPage() {
               <p className="w-full lg:w-3/4 text-left max-h-44 custom-scrollbar overflow-y-scroll lg:text-lg md:text-md font-extralight">
                 {dataShow?.data?.overview}
               </p>
-              {dataShow.data.networks.map((item: any, key: any) => (
-                <Link href={`${dataShow?.data?.homepage}`} key={key}>
-                  <Image
-                    src={`https://image.tmdb.org/t/p/original/${item?.logo_path}`}
-                    alt={item?.logo_path || "show-logo-networks"}
-                    className="w-auto max-w-32 min-w-32 min-h-12 rounded-lg px-2 py-2 hover:scale-95 bg-yellow-500  cursor-pointer"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                  />
-                </Link>
-              ))}
+              <div className="flex flex-row gap-2">
+                {dataShow.data.networks.map((item: any, key: any) => (
+                  <Link href={`${dataShow?.data?.homepage}`} key={key}>
+                    <Image
+                      src={`https://image.tmdb.org/t/p/original/${item?.logo_path}`}
+                      alt={item?.logo_path || "show-logo-networks"}
+                      className="w-auto max-w-32 min-w-32 min-h-12 rounded-lg px-2 py-2 hover:scale-95 bg-white  hover:border cursor-pointer"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                    />
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
           <div className="flex flex-row flex-wrap lg:justify-start justify-start items-center py-4 px-2">
