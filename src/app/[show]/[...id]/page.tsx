@@ -76,8 +76,8 @@ function PostPage() {
               <p className="w-full lg:w-3/4 text-left max-h-44 custom-scrollbar overflow-y-scroll lg:text-lg md:text-md font-extralight">
                 {dataShow?.data?.overview}
               </p>
-              {dataShow.data.networks.map((item: any) => (
-                <Link href={`${dataShow?.data?.homepage}`}>
+              {dataShow.data.networks.map((item: any, key: any) => (
+                <Link href={`${dataShow?.data?.homepage}`} key={key}>
                   <Image
                     src={`https://image.tmdb.org/t/p/original/${item?.logo_path}`}
                     alt={item?.logo_path || "show-logo-networks"}
