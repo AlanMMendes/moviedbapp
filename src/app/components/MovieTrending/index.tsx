@@ -45,9 +45,8 @@ export default function MovieTrending() {
 
   return (
     <>
-      {dataMovies?.status === "loading" ||
-        (dataMovies?.status === "idle" && <SkeletonMovie />)}
-
+      {dataMovies?.status === "loading" && <SkeletonMovie />}
+      {dataMovies?.status === "idle" && <SkeletonMovie />}
       {dataMovies?.status === "succeeded" && (
         <div className="flex justify-center items-start lg:items-center">
           <Swiper
@@ -103,7 +102,7 @@ export default function MovieTrending() {
                           </p>
                         </div>
                         <div className="flex flex-row  flex-wrap lg:justify-start justify-start items-center gap-1 py-2">
-                          <button className="border-2 border-white  border-opacity-10 w-auto hover:scale-105 hover:bg-zinc-900 px-2 py-5 flex justify-center items-center h-10 rounded-lg bg-transparent bg-opacity-80">
+                          <button className="border-2 border-white  border-opacity-10 w-auto hover:scale-105 hover:bg-yellow-500 px-2 py-5 flex justify-center items-center h-10 rounded-lg bg-transparent bg-opacity-80">
                             <span className="font-extralight">Trending</span>
                           </button>
                           {genres.map((genre: any, key: any) => {
@@ -112,7 +111,7 @@ export default function MovieTrending() {
                                 key={`${key}-genre`}
                                 className="flex flex-row py-2 "
                               >
-                                <button className="border-2 border-white border-opacity-10 w-auto hover:scale-105 hover:bg-zinc-900 px-2 py-5 flex justify-center items-center h-10 rounded-lg bg-transparent bg-opacity-80">
+                                <button className="border-2 border-white border-opacity-10 w-auto hover:scale-105 hover:bg-yellow-500 px-2 py-5 flex justify-center items-center h-10 rounded-lg bg-transparent bg-opacity-80">
                                   <span className="font-extralight text-inherit">
                                     {genre?.name}
                                   </span>
@@ -129,7 +128,7 @@ export default function MovieTrending() {
                                 movieId: item?.id,
                               })
                             }
-                            className="w-auto min-w-56 border-none hover:scale-105 h-12 text-black bg-white px-10 flex justify-start items-center gap-2 flex-row text-md hover:text-white hover:bg-zinc-900 border rounded-full"
+                            className="w-auto min-w-56 border-none hover:scale-105 h-12 text-black bg-white px-10 flex justify-start items-center gap-2 flex-row text-md hover:text-white hover:bg-yellow-500 border rounded-full"
                           >
                             <FaPlay className="h-12" />
                             <span className="font-extralight">

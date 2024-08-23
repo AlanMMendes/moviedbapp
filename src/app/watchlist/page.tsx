@@ -5,7 +5,7 @@ function WatchlistPage() {
   return (
     <div className="px-2">
       <BackButton />
-      <div className="flex flex-col py-10">
+      <div className="flex flex-col ">
         <WatchList />
       </div>
     </div>

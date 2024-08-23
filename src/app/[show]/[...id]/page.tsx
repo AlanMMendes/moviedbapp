@@ -4,6 +4,7 @@ import { fetchEpisodes } from "@/app/features/fetchEpisodesSlice";
 import { fetchShow } from "@/app/features/fetchShow";
 import { useAppSelector } from "@/app/store";
 import Image from "next/image";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
@@ -48,18 +49,18 @@ function PostPage() {
   return (
     <>
       {dataShow?.status === "succeeded" && (
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center gap-5">
           <BackButton />
           <Image
             src={`https://image.tmdb.org/t/p/original/${dataShow?.data?.backdrop_path}`}
             alt={dataShow?.data?.backdrop_path || "post-backdrop_path"}
-            className="mask"
+            className="mask min-h-44"
             width={0}
             height={0}
             sizes="200vw"
           />
-          <div className="relative w-full lg:absolute md:absolute lg:w-3/4 md:w-3/4 px-5 md:py-5 gap-4">
-            <div className="flex flex-col gap-5 w-4/4 mt-10 ">
+          <div className="lg:absolute relative flex flex-col w-full h-full justify-center mx-auto px-2">
+            <div className="flex flex-col gap-5 justify-center items-start">
               <span className="lg:text-4xl text-2xl md:text-2xl font-semibold">
                 {dataShow?.data?.name}
               </span>
@@ -70,12 +71,26 @@ function PostPage() {
                 <span>{dataShow?.data?.vote_count}</span>
               </div>
 
-              <p className="w-full lg:w-2/4 text-left max-h-44 overflow-x-auto lg:text-lg md:text-md font-extralight">
+              <h1>{dataShow?.data?.status}</h1>
+
+              <p className="w-full lg:w-3/4 text-left max-h-44 custom-scrollbar overflow-y-scroll lg:text-lg md:text-md font-extralight">
                 {dataShow?.data?.overview}
               </p>
+              {dataShow.data.networks.map((item: any) => (
+                <Link href={`${dataShow?.data?.homepage}`}>
+                  <Image
+                    src={`https://image.tmdb.org/t/p/original/${item?.logo_path}`}
+                    alt={item?.logo_path || "show-logo-networks"}
+                    className="w-auto max-w-32 min-w-32 min-h-12 rounded-lg px-2 py-2 hover:scale-95 bg-yellow-500  cursor-pointer"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                  />
+                </Link>
+              ))}
             </div>
           </div>
-          <div className="flex flex-row flex-wrap lg:justify-start justify-start items-center py-2 px-2">
+          <div className="flex flex-row flex-wrap lg:justify-start justify-start items-center py-4 px-2">
             <select
               value={selectedValue}
               onChange={handleChange}
@@ -109,28 +124,25 @@ function PostPage() {
       )}
       {dataEpisodes?.status === "succeeded" && (
         <div className="flex flex-col">
-          <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 px-2 max-h-[44rem]  overflow-x-auto">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 px-2 max-h-[44rem] custom-scrollbar overflow-y-scroll">
             {dataEpisodes?.data?.episodes?.map((item: any, key: any) => {
               return (
                 <div className="flex flex-col" key={key}>
-                  <div>
-                    <Image
-                      src={`https://image.tmdb.org/t/p/original/${item?.still_path}`}
-                      alt={item?.still_path || "episodes"}
-                      className="mask rounded-lg min-h-64"
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                    />
-                    <div className=" w-full bottom-0 py-3 px-2 flex flex-row">
-                      <div className="w-full">
-                        <span>
-                          Episode {item?.episode_number} - {item?.name}
-                        </span>
-                        <div className="flex flex-row gap-2 justify-start items-center">
-                          Released: {item?.air_date}
-                        </div>
-                      </div>
+                  <Image
+                    src={`https://image.tmdb.org/t/p/original/${item?.still_path}`}
+                    alt={item?.still_path || "episodes-pictures"}
+                    className="mask min-h-44 rounded-lg"
+                    overrideSrc="https://placehold.co/600x400/png"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                  />
+                  <div className=" w-full bottom-0 py-3 px-2 flex flex-row">
+                    <div className="w-full">
+                      <span>
+                        Episode {item?.episode_number} - {item?.name} -{" "}
+                        {item?.air_date}
+                      </span>
                     </div>
                   </div>
                 </div>

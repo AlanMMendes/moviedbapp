@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-// Definindo uma thunk assíncrona para a chamada da API
 export const fetchSeriesTrending = createAsyncThunk(
   "fetchSeriesTrendingData/fetchData",
   async () => {
@@ -9,7 +8,7 @@ export const fetchSeriesTrending = createAsyncThunk(
       {
         method: "GET",
       }
-    ); // Substitua pela sua URL
+    );
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -18,12 +17,11 @@ export const fetchSeriesTrending = createAsyncThunk(
   }
 );
 
-// Criando o slice
 const fetchSeriesTrendingSlice = createSlice({
   name: "fetchParticipants",
   initialState: {
     data: null,
-    status: "idle", // ou 'loading', 'succeeded', 'failed'
+    status: "idle",
     error: null,
   },
   reducers: {},

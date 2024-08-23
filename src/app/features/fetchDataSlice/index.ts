@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-// Definindo uma thunk assíncrona para a chamada da API
 export const fetchData = createAsyncThunk(
   "fetchDataSlice/fetchData",
   async () => {
@@ -9,7 +8,7 @@ export const fetchData = createAsyncThunk(
       {
         method: "GET",
       }
-    ); // Substitua pela sua URL
+    );
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -23,7 +22,7 @@ const fetchDataSlice = createSlice({
   name: "fetchData",
   initialState: {
     data: null,
-    status: "idle", // ou 'loading', 'succeeded', 'failed'
+    status: "idle",
     error: null,
   },
   reducers: {},
