@@ -81,7 +81,8 @@ function PostPage() {
                 {dataShow?.data?.overview}
               </p>
 
-              {dataShow?.data?.networks?.length === 0 ? (
+              {dataShow?.data?.networks?.length === 0 ||
+              dataShow?.data?.networks?.length === undefined ? (
                 <></>
               ) : (
                 <h1> Networks: </h1>

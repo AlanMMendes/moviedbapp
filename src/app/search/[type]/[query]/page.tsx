@@ -54,24 +54,6 @@ function Search() {
     );
   }, [params, selectedValue, page, dispatch]);
 
-  const pagesObj = [
-    {
-      value: 1,
-    },
-    {
-      value: 2,
-    },
-    {
-      value: 3,
-    },
-    {
-      value: 4,
-    },
-    {
-      value: 5,
-    },
-  ];
-
   return (
     <div className="w-full h-auto flex gap-2 flex-col">
       {params.type === "movie" || params.type === "tv" ? (

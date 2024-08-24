@@ -2,7 +2,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-const Dropdown = ({ children, icon }: any) => {
+const Dropdown = ({ component, icon }: any) => {
   const modalRef = useRef() as any;
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
@@ -40,7 +40,7 @@ const Dropdown = ({ children, icon }: any) => {
       </button>
       {isOpen && (
         <div className="absolute flex top-10  lg:right-0 justify-center items-center w-auto  z-50 bg-transparent border-gray-200 rounded ">
-          {children}
+          {component}
         </div>
       )}
     </div>

@@ -25,7 +25,7 @@ const Navbar = () => {
         >
           <div className="flex justify-center items-center ">
             <Dropdown
-              children={<SearchInput />}
+              component={<SearchInput />}
               icon={<CiSearch className="h-auto w-6 hover:text-yellow-500" />}
             />
           </div>
