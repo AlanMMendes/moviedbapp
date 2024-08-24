@@ -10,7 +10,7 @@ const Tooltip = ({ title, overview }: any) => (
         target="_blank"
         rel="noreferrer noopener"
       >
-        <FaCircleExclamation className="h-auto w-5" />
+        <FaCircleExclamation className="h-auto w-5 hover:text-yellow-500" />
       </a>
     </HoverCard.Trigger>
     <HoverCard.Portal>

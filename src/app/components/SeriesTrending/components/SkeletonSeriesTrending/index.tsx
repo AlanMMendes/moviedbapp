@@ -260,8 +260,7 @@ function SkeletonSeries() {
   const [showAlert, setShowAlert] = useState(false);
 
   return (
-    <div className="w-full h-auto flex items-start flex-col">
-      <h1 className="px-4 py-2 font-bold text-2xl">Series Trending</h1>
+    <div className="w-full h-auto flex items-start flex-col py-2">
       <div className="grid lg:grid-cols-3 min-w-full md:grid-cols-2 w-full grid-cols-1 gap-4 min-h-[32rem] px-2 max-h-[44rem] custom-scrollbar overflow-y-scroll">
         {mockSeries?.map((item: any, key: any) => {
           return (

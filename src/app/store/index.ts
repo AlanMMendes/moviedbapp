@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import fetchDataSlice from "../features/fetchDataSlice"; // Importe o slice que você criará mais tarde
 import fetchEpisodesSlice from "../features/fetchEpisodesSlice";
 import fetchPeopleDataSlice from "../features/fetchPeopleSlice";
+import fetchSearchSlice from "../features/fetchSearch";
 import fetchSeriesTrendingSlice from "../features/fetchSeriesTrendingSlice";
 import fetchShowSlice from "../features/fetchShow";
 import fetchVideosSlice from "../features/fetchVideosSlice";
@@ -18,6 +19,7 @@ export const store = configureStore({
     watchList: watchListReducer,
     fetchShow: fetchShowSlice,
     fetchEpisodes: fetchEpisodesSlice,
+    fetchSearch: fetchSearchSlice,
   },
 });
 

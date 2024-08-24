@@ -124,7 +124,6 @@ function SkeletonPeople() {
   ];
   return (
     <div className="w-full h-auto flex items-start flex-col ">
-      <h1 className="px-4 py-2 font-bold text-2xl">People Trending</h1>
       <div className="grid lg:grid-cols-4 min-w-full md:grid-cols-2 grid-cols-1 gap-4 min-h-[32rem] px-2 max-h-[44rem] custom-scrollbar overflow-y-scroll">
         {mockPeople?.map((item: any, key: any) => {
           return (

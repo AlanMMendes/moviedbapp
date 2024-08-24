@@ -2,7 +2,6 @@
 import { fetchSeriesTrending } from "@/app/features/fetchSeriesTrendingSlice";
 import { setData } from "@/app/features/watchListSlice";
 import { useAppSelector } from "@/app/store";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaBookmark, FaPlay, FaRegBookmark, FaStar } from "react-icons/fa";
@@ -13,6 +12,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../../globals.css";
 import Alert from "../Alert";
+import ImageWithFallback from "../ImageFallback";
 import Tooltip from "../Tooltip";
 import SkeletonSeries from "./components/SkeletonSeriesTrending";
 
@@ -49,8 +49,8 @@ export default function SeriesTrending() {
 
   return (
     <div className="w-full h-auto">
-      {dataSeries.status === "loading" ||
-        (dataSeries.status === "idle" && <SkeletonSeries />)}
+      {dataSeries.status === "idle" && <SkeletonSeries />}
+      {dataSeries.status === "loading" && <SkeletonSeries />}
       {dataSeries.status === "succeeded" && (
         <div className="w-full h-auto flex items-start flex-col ">
           <h1 className="px-4 py-2 font-bold text-2xl">Series Trending</h1>
@@ -61,16 +61,13 @@ export default function SeriesTrending() {
                   className="relative h-auto justify-start flex "
                   key={`${key}-series-trending`}
                 >
-                  <Image
-                    src={
-                      `https://image.tmdb.org/t/p/original/${item?.backdrop_path}` ||
-                      "https://placehold.co/600x400/png"
-                    }
-                    alt={item?.backdrop_path}
-                    className="mask h-auto min-h-44 w-full rounded-3xl"
+                  <ImageWithFallback
+                    src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
+                    fallbackSrc="https://placehold.co/600x400/png"
+                    alt={item?.backdrop_path || "post-backdrop_path"}
                     width={0}
                     height={0}
-                    sizes="100vw"
+                    sizes="200vw"
                   />
                   <div className="absolute w-full top-0 px-2 ">
                     <div className="flex flex-row gap-2 justify-start items-center">

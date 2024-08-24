@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchSearch = createAsyncThunk(
   "fetchSearch/fetchData",
-  async ({ query, page, type }: any) => {
+  async ({ type, query, page }: any) => {
     if (!query && !page && !type) return;
     const response = await fetch(
-      `https://api.themoviedb.org/3/search/${type}?include_adult=false&language=en-US&page=${page}&api_key=${process.env.NEXT_PUBLIC_BASE_API_URL}`,
+      `https://api.themoviedb.org/3/search/${type}?query=${query}&include_adult=false&language=en-US&page=${page}&api_key=${process.env.NEXT_PUBLIC_BASE_API_URL}`,
       {
         method: "GET",
       }
