@@ -65,7 +65,7 @@ function Search() {
               <h1 className="px-4 py-2 font-bold text-2xl">
                 Searching for: {params?.type.toUpperCase()} - {params?.query}
               </h1>
-              <div className="grid lg:grid-cols-3 min-w-full md:grid-cols-2 grid-cols-1 gap-4 min-h-[32rem] h-screen px-2 max-h-[44rem] custom-scrollbar overflow-y-scroll">
+              <div className="grid lg:grid-cols-2 min-w-full md:grid-cols-2 grid-cols-1 gap-4 overflow-visible px-2">
                 {dataSearch?.data?.results?.map((item: any, key: any) => {
                   return (
                     <div

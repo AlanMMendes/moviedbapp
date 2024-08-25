@@ -1,59 +1,56 @@
 "use client";
 import ImageWithFallback from "@/app/components/ImageFallback";
 import SkeletonMovie from "@/app/components/MovieTrending/components/SkeletonMovieTrending";
-import SkeletonSeries from "@/app/components/SeriesTrending/components/SkeletonSeriesTrending";
-import { fetchEpisodes } from "@/app/features/fetchEpisodesSlice";
 import { fetchShow } from "@/app/features/fetchShow";
 import { useAppSelector } from "@/app/store";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa";
+import { FaPlay, FaStar } from "react-icons/fa";
 import { GoThumbsup } from "react-icons/go";
 import { useDispatch } from "react-redux";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../../globals.css";
+import Episodes from "./components/Episodes";
+import ModalSeasonTrailer from "./components/ModalSeasonTrailer";
 
 function PostPage() {
+  const [isModalTrailerOpen, setIsModalTrailerOpen] = useState(false);
+  const [modalPropsTrailer, setModalPropsTrailer] = useState({});
   const params = useParams<{ show: string; id: string }>();
-  const dispatch: any = useDispatch();
-  const dataShow: any = useAppSelector((state: any) => state?.fetchShow);
-  const dataEpisodes: any = useAppSelector(
-    (state: any) => state?.fetchEpisodes
-  );
-  const [selectedValue, setSelectedValue] = useState(1);
+  const dispatch = useDispatch() as any;
+  const dataShow = useAppSelector((state: any) => state?.fetchShow) as any;
 
-  const handleChange = (event: any) => {
-    setSelectedValue(event.target.value);
+  const openModalTrailer = (props: any) => {
+    setModalPropsTrailer({
+      ...props,
+    });
+    setIsModalTrailerOpen(true);
+  };
+
+  const closeModalTrailer = () => {
+    setIsModalTrailerOpen(false);
+    setModalPropsTrailer({});
   };
 
   useEffect(() => {
     dispatch(
       fetchShow({
-        type: params.show,
         id: params.id,
+        type: params.show,
       })
     );
-  }, [dispatch, params]);
-
-  useEffect(() => {
-    dispatch(
-      fetchEpisodes({
-        series_id: params.id,
-        season_number: selectedValue,
-      })
-    );
-  }, [selectedValue, dispatch, params]);
+  }, [dispatch, params.id, params.show]);
 
   return (
     <div className="w-full h-auto">
       {dataShow?.status === "idle" && <SkeletonMovie />}
       {dataShow?.status === "loading" && <SkeletonMovie />}
       {dataShow?.status === "succeeded" && (
-        <div className="relative flex flex-col w-full h-full justify-center mx-auto ">
+        <div className="relative flex flex-col w-full h-full justify-center ">
           <ImageWithFallback
             src={`https://image.tmdb.org/t/p/original/${dataShow?.data?.backdrop_path}`}
             fallbackSrc="https://placehold.co/600x400/png"
@@ -75,11 +72,30 @@ function PostPage() {
                 <span>{dataShow?.data?.vote_count}</span>
               </div>
 
-              <h1>{dataShow?.data?.status}</h1>
+              <h1>
+                {dataShow?.data?.status} -{" "}
+                {dataShow?.data?.last_air_date || dataShow?.data?.release_date}
+              </h1>
 
               <p className="w-full lg:w-3/4 text-left max-h-44 custom-scrollbar overflow-y-scroll lg:text-lg md:text-md font-extralight">
                 {dataShow?.data?.overview}
               </p>
+              {params.show === "tv" && (
+                <div className="flex gap-2 items-center lg:justify-start justify-center md:justify-start  w-full flex-wrap">
+                  <button
+                    onClick={() =>
+                      openModalTrailer({
+                        title: dataShow?.data?.name,
+                        id: dataShow?.data?.id,
+                      })
+                    }
+                    className="w-auto min-w-56 border-none hover:scale-105 h-12 text-black bg-white px-10 flex justify-start items-center gap-2 flex-row text-md hover:text-white hover:bg-yellow-500 border rounded-full"
+                  >
+                    <FaPlay className="h-12" />
+                    <span className="font-extralight">Watch Trailer</span>
+                  </button>
+                </div>
+              )}
 
               {dataShow?.data?.networks?.length === 0 ||
               dataShow?.data?.networks?.length === undefined ? (
@@ -94,7 +110,7 @@ function PostPage() {
                       <Image
                         src={`https://image.tmdb.org/t/p/original/${item?.logo_path}`}
                         alt={item?.logo_path || "show-logo-networks"}
-                        className="h-auto w-fit min-w-24 max-w-24 max-h-12 border px-2 py-2 rounded-2xl bg-gray-400 bg-opacity-25 min-h-12"
+                        className="h-auto hover:bg-yellow-500 w-fit min-w-24 max-w-24 max-h-12 border px-2 py-2 rounded-2xl bg-gray-400 bg-opacity-25 min-h-12"
                         width={0}
                         height={0}
                         sizes="200vw"
@@ -105,71 +121,14 @@ function PostPage() {
               )}
             </div>
           </div>
-          {params.show === "tv" && (
-            <div className="relative flex flex-row flex-wrap lg:justify-start justify-start items-center py-4 px-2">
-              <select
-                value={selectedValue}
-                onChange={handleChange}
-                className="block cursor-pointer w-auto px-4 py-2 text-white bg-zinc-900 bg-opacity-25 border border-opacity-10 border-white h-10 rounded-md shadow-sm focus:outline-none font-extralight"
-              >
-                <>
-                  <option
-                    className="block gap-4 h-10 w-full bg-zinc-900 cursor-pointer  "
-                    value=""
-                  >
-                    Select a season
-                  </option>
-                  {Array.from({
-                    length: dataShow?.data?.number_of_seasons,
-                  }).map((_, index) => {
-                    const displayIndex = index + 1;
-                    return (
-                      <option
-                        key={displayIndex}
-                        className="gap-4 h-10 w-full bg-zinc-900 cursor-pointer  "
-                        value={displayIndex}
-                      >
-                        {`Season ${displayIndex || "1"}`}
-                      </option>
-                    );
-                  })}
-                </>
-              </select>
-            </div>
-          )}
         </div>
       )}
-      {dataEpisodes?.status === "idle" && <SkeletonSeries />}
-      {dataEpisodes?.status === "loading" && <SkeletonSeries />}
-      {dataEpisodes?.status === "succeeded" && (
-        <div className="flex flex-col">
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 px-2 max-h-[44rem] custom-scrollbar overflow-y-scroll">
-            {dataEpisodes?.data?.episodes?.map((item: any, key: any) => {
-              return (
-                <div className="flex flex-col" key={key}>
-                  <ImageWithFallback
-                    src={`https://image.tmdb.org/t/p/original/${item?.still_path}`}
-                    fallbackSrc="https://placehold.co/600x400/png"
-                    alt={item?.still_path || "search-still-path"}
-                    width={0}
-                    height={0}
-                    sizes="200vw"
-                  />
-
-                  <div className=" w-full bottom-0 py-3 px-2 flex flex-row">
-                    <div className="w-full">
-                      <span>
-                        Episode {item?.episode_number} - {item?.name} -{" "}
-                        {item?.air_date}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
+      <Episodes dataShow={dataShow} />
+      <ModalSeasonTrailer
+        isOpen={isModalTrailerOpen}
+        onClose={closeModalTrailer}
+        props={modalPropsTrailer}
+      />
     </div>
   );
 }

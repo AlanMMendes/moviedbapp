@@ -10,14 +10,13 @@ const ImageWithFallback = ({ src, alt, fallbackSrc, ...props }: any) => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative min-h-64">
       <Image
         src={hasError ? fallbackSrc : src}
         alt={alt}
         onError={handleError}
         {...props}
-        layout="responsive"
-        className="mask h-auto min-h-60 w-full"
+        className="mask rounded-lg"
         width={0}
         height={0}
         sizes="1000vw"

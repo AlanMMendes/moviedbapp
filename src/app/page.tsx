@@ -10,7 +10,6 @@ const App = () => {
       <div>
         <MovieTrending />
       </div>
-
       <div className="px-2 py-2 space-y-4 ">
         <SeriesTrending />
         <PeopleTrending />

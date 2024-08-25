@@ -131,7 +131,7 @@ function SkeletonPeople() {
               key={`${key}-modal-trending-people`}
               className="relative w-full h-auto justify-center items-center flex flex-col hover:scale-95 cursor-pointer"
             >
-              <div className="mask min-h-96 bg-gray-300 w-full rounded-3xl animate-pulse" />
+              <div className="mask min-h-72 bg-gray-300 w-full rounded-lg animate-pulse" />
               <div className="w-full bottom-0 px-2 py-3 flex flex-col justify-center items-center ">
                 <span>{item?.name}</span>
                 <div className="flex flex-row gap-2 justify-start items-center">

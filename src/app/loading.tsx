@@ -1,9 +1,7 @@
 "use client";
 
+import Loading from "./components/Loading";
+
 export default function LoadingMain() {
-  return (
-    <main className="text-center flex justify-center items-center h-screen w-full">
-      <h2 className="text-yellow-500">Loading...</h2>
-    </main>
-  );
+  return <Loading />;
 }

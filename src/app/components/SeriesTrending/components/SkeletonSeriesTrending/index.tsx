@@ -261,14 +261,14 @@ function SkeletonSeries() {
 
   return (
     <div className="w-full h-auto flex items-start flex-col py-2">
-      <div className="grid lg:grid-cols-3 min-w-full md:grid-cols-2 w-full grid-cols-1 gap-4 min-h-[32rem] px-2 max-h-[44rem] custom-scrollbar overflow-y-scroll">
+      <div className="grid lg:grid-cols-2 min-w-full md:grid-cols-2 w-full grid-cols-1 gap-4 min-h-[32rem] px-2 max-h-[44rem] custom-scrollbar overflow-y-scroll">
         {mockSeries?.map((item: any, key: any) => {
           return (
             <div
               className="relative h-auto justify-start flex"
               key={`${key}-series-trending`}
             >
-              <div className="mask min-h-44 bg-gray-300 w-full rounded-3xl animate-pulse" />
+              <div className="mask min-h-72 max-h-72 rounded-lg bg-gray-300 w-full animate-pulse" />
               <div className="absolute w-full top-0 px-2 ">
                 <div className="flex flex-row gap-2 justify-start items-center">
                   <button

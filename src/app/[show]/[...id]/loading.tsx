@@ -1,9 +1,7 @@
 "use client";
 
+import Loading from "@/app/loading";
+
 export default function LoadingEpisodes() {
-  return (
-    <div role="status">
-      <span className="sr-only">Loading...</span>
-    </div>
-  );
+  return <Loading />;
 }
