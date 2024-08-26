@@ -1,40 +1,23 @@
-import * as HoverCard from "@radix-ui/react-hover-card";
-import { FaCircleExclamation } from "react-icons/fa6";
+// components/Tooltip.js
+import { useState } from "react";
 
-const Tooltip = ({ title, overview }: any) => (
-  <HoverCard.Root>
-    <HoverCard.Trigger asChild>
-      <a
-        className="absolute top-0 right-0 px-2 py-2 inline-block cursor-pointer rounded-full"
-        href="https://twitter.com/radix_ui"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        <FaCircleExclamation className="h-auto w-5 hover:text-yellow-500" />
-      </a>
-    </HoverCard.Trigger>
-    <HoverCard.Portal>
-      <HoverCard.Content
-        className="z-50 data-[side=bottom]:animate-slideUpAndFade data-[side=right]:animate-slideLeftAndFade data-[side=left]:animate-slideRightAndFade data-[side=top]:animate-slideDownAndFade w-[300px] rounded-md bg-zinc-950 p-5 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] data-[state=open]:transition-all"
-        sideOffset={5}
-      >
-        <div className="flex flex-col gap-[7px]">
-          <div className="flex flex-col gap-[15px]">
-            <div>
-              <div className="text-white m-0 text-[15px] font-semibold leading-[1.5]">
-                {title}
-              </div>
-            </div>
-            <div className="text-white m-0 text-[15px] leading-[1.5]">
-              {overview}
-            </div>
-          </div>
+const Tooltip = ({ children, tooltipText }: any) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className="relative inline-block"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {children}
+      {isHovered && (
+        <div className="absolute bottom-full left-1/2 transform -translate-x-3/4 mb-2 p-2 bg-gray-700 text-white text-sm rounded shadow-lg whitespace-nowrap">
+          {tooltipText}
         </div>
-
-        <HoverCard.Arrow className="fill-white" />
-      </HoverCard.Content>
-    </HoverCard.Portal>
-  </HoverCard.Root>
-);
+      )}
+    </div>
+  );
+};
 
 export default Tooltip;

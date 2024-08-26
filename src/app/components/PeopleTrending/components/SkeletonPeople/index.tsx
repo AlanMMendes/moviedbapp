@@ -1,4 +1,3 @@
-import { FaRankingStar } from "react-icons/fa6";
 function SkeletonPeople() {
   const mockPeople = [
     {
@@ -124,22 +123,13 @@ function SkeletonPeople() {
   ];
   return (
     <div className="w-full h-auto flex items-start flex-col ">
-      <div className="grid lg:grid-cols-4 min-w-full md:grid-cols-2 grid-cols-1 gap-4 min-h-[32rem] px-2 max-h-[44rem] custom-scrollbar overflow-y-scroll">
+      <div className="grid lg:grid-cols-8 min-w-full md:grid-cols-5 grid-cols-2 gap-4 min-h-[32rem] overflow-x-hidden max-h-[44rem] custom-scrollbar overflow-y-scroll">
         {mockPeople?.map((item: any, key: any) => {
           return (
             <div
-              key={`${key}-modal-trending-people`}
-              className="relative w-full h-auto justify-center items-center flex flex-col hover:scale-95 cursor-pointer"
-            >
-              <div className="mask min-h-72 bg-gray-300 w-full rounded-lg animate-pulse" />
-              <div className="w-full bottom-0 px-2 py-3 flex flex-col justify-center items-center ">
-                <span>{item?.name}</span>
-                <div className="flex flex-row gap-2 justify-start items-center">
-                  <FaRankingStar className="text-yellow-400 h-5 w-5" />
-                  <span>{Math.floor(item?.popularity)}</span>
-                </div>
-              </div>
-            </div>
+              key={`${key}-skeleton-people`}
+              className="mask min-h-72 h-auto rounded-lg bg-zinc-900 w-auto min-w-32  animate-pulse"
+            />
           );
         })}
       </div>

@@ -1,24 +1,25 @@
 "use client";
 import { useAppSelector } from "@/app/store";
-import Image from "next/image";
-import { FaStar } from "react-icons/fa";
-import { GoThumbsup } from "react-icons/go";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../../globals.css";
+import ImageWithTooltip from "../ImageWithTooltip";
 
 export default function WatchList() {
   const watchList: any = useAppSelector((state: any) => state.watchList.items);
+  const episodes = watchList.filter((item: any) => item.type === "episodes");
+  const series = watchList.filter((item: any) => item.type === "tv");
+  const movies = watchList.filter((item: any) => item.type === "movie");
 
   return (
-    <>
+    <div className="min-h-screen px-2">
       {watchList?.length === 0 ? (
-        <div className="relative w-full h-auto flex flex-col min-h-44  justify-center md:justify-start lg:justify-start">
+        <div className="relative w-full h-auto flex flex-col min-h-44 justify-center items-center">
           <div className="py-4">
-            <span className="text-2xl">Your Watchlist</span>
+            <h1 className="text-2xl">Your Watchlist</h1>
           </div>
-          <div className="w-64 justify-center items-center text-white flex flex-row bg-zinc-900  min-h-44 h-44 rounded-lg shadow-md">
+          <div className="w-3/4 border border-dotted justify-center items-center text-white flex flex-row min-h-64 rounded-lg shadow-md">
             <span className="text-white px-2">
               It seems that your watchlist its empty
             </span>
@@ -26,44 +27,113 @@ export default function WatchList() {
         </div>
       ) : (
         <div className="flex flex-col">
-          <div className="py-4">
-            <span className="text-2xl ">Your Watchlist</span>
+          <div className="py-4 px-2 justify-center items-center flex">
+            <h1 className="text-2xl">Your Watchlist</h1>
           </div>
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 px-2 max-h-[44rem]  overflow-x-auto">
-            {watchList?.map((item: any, key: any) => {
-              return (
-                <div
-                  key={`${key}-watch-list-component`}
-                  className="flex flex-col"
-                >
-                  <Image
-                    src={
-                      `https://image.tmdb.org/t/p/original/${item?.backdrop_path}` ||
-                      "https://placehold.co/600x400"
-                    }
-                    alt={item?.backdrop_path}
-                    className="mask rounded-xl"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                  />
-                  <div className=" w-full bottom-0 py-3 px-2">
-                    <div className="">
-                      <span>{item?.name}</span>
-                      <div className="flex flex-row gap-2 justify-start items-center">
-                        <FaStar className="text-yellow-400 h-5 w-5" />
-                        <span>{Math.floor(item?.vote_average)}</span>
-                        <GoThumbsup className="h-5 w-5" />
-                        <span>{item?.vote_count}</span>
-                      </div>
+
+          {series.length > 0 && (
+            <>
+              <h1 className="px-2 py-2 text-2xl">Series:</h1>
+              <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-4 px-2 max-h-[44rem]  overflow-x-auto">
+                {series?.map((item: any, key: any) => {
+                  return (
+                    <div key={item?.id} className="flex flex-col">
+                      <>
+                        <ImageWithTooltip
+                          src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
+                          alt={
+                            item?.backdrop_path || "item-backdrop_path-series"
+                          }
+                          props={{
+                            type: item.type,
+                            id: item?.id,
+                            name: item?.name,
+                            vote_count: item?.vote_count,
+                            vote_average: item?.vote_average,
+                            backdrop_path: item?.backdrop_path,
+                            overview: item?.overview,
+                          }}
+                        />
+                        <h1 className="text-lg font-extralight">
+                          {item?.name}
+                        </h1>
+                      </>
                     </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
+
+          {episodes.length > 0 && (
+            <>
+              <h1 className="px-2 py-2 text-2xl">Episodes:</h1>
+              <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-4 px-2 max-h-[44rem]  overflow-x-auto">
+                {episodes?.map((item: any, key: any) => {
+                  return (
+                    <div key={item?.id} className="flex flex-col">
+                      <>
+                        <ImageWithTooltip
+                          src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
+                          alt={
+                            item?.backdrop_path || "item-backdrop_path-series"
+                          }
+                          props={{
+                            type: item.type,
+                            id: item?.id,
+                            name: item?.name,
+                            vote_count: item?.vote_count,
+                            vote_average: item?.vote_average,
+                            backdrop_path: item?.backdrop_path,
+                            overview: item?.overview,
+                          }}
+                        />
+                        <h1 className="text-lg font-extralight">
+                          {item?.name}
+                        </h1>
+                      </>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
+
+          {movies.length > 0 && (
+            <>
+              <h1 className="px-2 py-2 text-2xl">Movies:</h1>
+              <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-4 px-2 max-h-[44rem]  overflow-x-auto">
+                {movies?.map((item: any, key: any) => {
+                  return (
+                    <div key={item?.id} className="flex flex-col">
+                      <>
+                        <ImageWithTooltip
+                          src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
+                          alt={
+                            item?.backdrop_path || "item-backdrop_path-series"
+                          }
+                          props={{
+                            type: item.type,
+                            id: item?.id,
+                            name: item?.name,
+                            vote_count: item?.vote_count,
+                            vote_average: item?.vote_average,
+                            backdrop_path: item?.backdrop_path,
+                            overview: item?.overview,
+                          }}
+                        />
+                        <h1 className="text-lg font-extralight">
+                          {item?.name}
+                        </h1>
+                      </>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
         </div>
       )}
-    </>
+    </div>
   );
 }

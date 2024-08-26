@@ -46,11 +46,9 @@ function PostPage() {
   }, [dispatch, params.id, params.show]);
 
   return (
-    <div className="w-full h-auto">
-      {dataShow?.status === "idle" && <SkeletonMovie />}
-      {dataShow?.status === "loading" && <SkeletonMovie />}
-      {dataShow?.status === "succeeded" && (
-        <div className="relative flex flex-col w-full h-full justify-center ">
+    <div className="min-h-screen">
+      {dataShow?.status === "succeeded" ? (
+        <div className="relative flex flex-col w-full h-full justify-center">
           <ImageWithFallback
             src={`https://image.tmdb.org/t/p/original/${dataShow?.data?.backdrop_path}`}
             fallbackSrc="https://placehold.co/600x400/png"
@@ -61,7 +59,7 @@ function PostPage() {
           />
 
           <div className="lg:absolute relative flex flex-col w-full h-full justify-center mx-auto px-2">
-            <div className="flex flex-col gap-5 justify-center items-start">
+            <div className="flex flex-col gap-2 justify-center items-start">
               <span className="lg:text-4xl text-2xl md:text-2xl font-semibold">
                 {dataShow?.data?.name || dataShow?.data?.title}
               </span>
@@ -73,29 +71,43 @@ function PostPage() {
               </div>
 
               <h1>
-                {dataShow?.data?.status} -{" "}
+                {dataShow?.data?.status} -
                 {dataShow?.data?.last_air_date || dataShow?.data?.release_date}
               </h1>
 
               <p className="w-full lg:w-3/4 text-left max-h-44 custom-scrollbar overflow-y-scroll lg:text-lg md:text-md font-extralight">
                 {dataShow?.data?.overview}
               </p>
-              {params.show === "tv" && (
-                <div className="flex gap-2 items-center lg:justify-start justify-center md:justify-start  w-full flex-wrap">
-                  <button
-                    onClick={() =>
-                      openModalTrailer({
-                        title: dataShow?.data?.name,
-                        id: dataShow?.data?.id,
-                      })
-                    }
-                    className="w-auto min-w-56 border-none hover:scale-105 h-12 text-black bg-white px-10 flex justify-start items-center gap-2 flex-row text-md hover:text-white hover:bg-yellow-500 border rounded-full"
-                  >
-                    <FaPlay className="h-12" />
-                    <span className="font-extralight">Watch Trailer</span>
-                  </button>
-                </div>
-              )}
+              <div className="flex flex-row  flex-wrap lg:justify-start justify-start items-center gap-1 py-2">
+                <button className="border-2 border-white  border-opacity-10 w-auto hover:bg-yellow-500 px-2 py-5 flex justify-center items-center h-10 rounded-lg bg-transparent bg-opacity-80">
+                  <span className="font-extralight">Trending</span>
+                </button>
+                {dataShow?.data?.genres?.map((genre: any, key: any) => {
+                  return (
+                    <div key={`${key}-genre`} className="flex flex-row py-2 ">
+                      <button className="border-2 border-white border-opacity-10 w-auto hover:bg-yellow-500 px-2 py-5 flex justify-center items-center h-10 rounded-lg bg-transparent bg-opacity-80">
+                        <span className="font-extralight text-inherit">
+                          {genre?.name}
+                        </span>
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="flex gap-2 items-center justify-start w-full flex-wrap">
+                <button
+                  onClick={() =>
+                    openModalTrailer({
+                      title: dataShow?.data?.name,
+                      id: dataShow?.data?.id,
+                    })
+                  }
+                  className="w-auto min-w-32 border-none h-12 text-black bg-white px-10 flex justify-start items-center gap-2 flex-row text-md hover:text-white hover:bg-yellow-500 border rounded-full"
+                >
+                  <FaPlay className="h-12" />
+                  <h1 className="font-extralight">Watch Trailer</h1>
+                </button>
+              </div>
 
               {dataShow?.data?.networks?.length === 0 ||
               dataShow?.data?.networks?.length === undefined ? (
@@ -110,7 +122,7 @@ function PostPage() {
                       <Image
                         src={`https://image.tmdb.org/t/p/original/${item?.logo_path}`}
                         alt={item?.logo_path || "show-logo-networks"}
-                        className="h-auto hover:bg-yellow-500 w-fit min-w-24 max-w-24 max-h-12 border px-2 py-2 rounded-2xl bg-gray-400 bg-opacity-25 min-h-12"
+                        className="h-auto hover:bg-yellow-500 w-fit min-w-24 max-w-24 max-h-12 border px-2 py-2 rounded-2xl bg-white bg-opacity-90 min-h-12"
                         width={0}
                         height={0}
                         sizes="200vw"
@@ -122,8 +134,10 @@ function PostPage() {
             </div>
           </div>
         </div>
+      ) : (
+        <SkeletonMovie />
       )}
-      <Episodes dataShow={dataShow} />
+      {params.show === "tv" && <Episodes dataShow={dataShow} />}
       <ModalSeasonTrailer
         isOpen={isModalTrailerOpen}
         onClose={closeModalTrailer}

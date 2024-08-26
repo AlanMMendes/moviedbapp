@@ -31,7 +31,7 @@ function SkeletonMovie() {
         return (
           <div
             key={`${key}-skeleton-movie`}
-            className="relative maskSkeletonMovie w-full h-auto justify-center gap-5 items-start flex flex-col bg-gray-200 animate-pulse opacity-20"
+            className="relative maskSkeletonMovie min-h-[32rem] w-full h-auto max-h-[44rem] justify-center gap-5 items-start flex flex-col bg-gray-200 animate-pulse opacity-20"
           >
             <div className="h-dvh min-h-dvh w-full bg-gray-800 animate-pulse opacity-20" />
             <div className="relative py-2 w-full lg:absolute md:absolute lg:w-3/4 md:w-3/4 px-5 md:py-5 gap-4">

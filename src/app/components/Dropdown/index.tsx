@@ -39,7 +39,7 @@ const Dropdown = ({ component, icon }: any) => {
         {icon}
       </button>
       {isOpen && (
-        <div className="absolute flex top-10  lg:right-0 justify-center items-center w-auto  z-50 bg-transparent border-gray-200 rounded ">
+        <div className="absolute flex top-9  lg:right-0 justify-center items-center w-auto  z-50 bg-transparent border-gray-200 rounded ">
           {component}
         </div>
       )}

@@ -1,19 +1,10 @@
 "use client";
-import Alert from "@/app/components/Alert";
-import Tooltip from "@/app/components/Tooltip";
-import { setData } from "@/app/features/watchListSlice";
-import { useState } from "react";
-import { FaBookmark, FaRegBookmark, FaStar } from "react-icons/fa";
-import { GoThumbsup } from "react-icons/go";
-import { useDispatch } from "react-redux";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../../../../globals.css";
 
 function SkeletonSeries() {
-  const dispatch: any = useDispatch();
-
   const mockSeries = [
     {
       id: 1,
@@ -237,79 +228,18 @@ function SkeletonSeries() {
     },
   ];
 
-  const handleAddItem = (item: any) => {
-    dispatch(setData(item));
-    setShowAlert(true);
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 1000);
-  };
-
-  const handleClick = (index: any) => {
-    setActiveButtons((prevActiveButtons: any) => {
-      const isActive = prevActiveButtons.includes(index);
-      if (isActive) {
-        return prevActiveButtons.filter((i: any) => i !== index);
-      } else {
-        return [...prevActiveButtons, index];
-      }
-    });
-  };
-
-  const [activeButtons, setActiveButtons] = useState<any>([]);
-  const [showAlert, setShowAlert] = useState(false);
-
   return (
-    <div className="w-full h-auto flex items-start flex-col py-2">
-      <div className="grid lg:grid-cols-2 min-w-full md:grid-cols-2 w-full grid-cols-1 gap-4 min-h-[32rem] px-2 max-h-[44rem] custom-scrollbar overflow-y-scroll">
-        {mockSeries?.map((item: any, key: any) => {
+    <div className="w-full h-auto flex items-start flex-col py-2 opacity-50">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 w-full grid-cols-1 gap-4 min-h-[32rem] px-2 max-h-[44rem] custom-scrollbar overflow-y-scroll">
+        {mockSeries?.map((item: any) => {
           return (
             <div
-              className="relative h-auto justify-start flex"
-              key={`${key}-series-trending`}
-            >
-              <div className="mask min-h-72 max-h-72 rounded-lg bg-gray-300 w-full animate-pulse" />
-              <div className="absolute w-full top-0 px-2 ">
-                <div className="flex flex-row gap-2 justify-start items-center">
-                  <button
-                    key={key}
-                    onClick={() => {
-                      handleClick(key);
-                      handleAddItem(item);
-                    }}
-                    className={`px-4 py-2 rounded-md transition-colors duration-300`}
-                  >
-                    {activeButtons.includes(key) ? (
-                      <FaBookmark className="text-yellow-400 h-10 hover:scale-125" />
-                    ) : (
-                      <FaRegBookmark className="text-yellow-400 h-10 hover:scale-125" />
-                    )}
-                  </button>
-                </div>
-
-                <Tooltip title={item?.name} overview={item?.overview} />
-              </div>
-              <div className="absolute w-full bottom-0 py-3 px-2 flex flex-row">
-                <div className="w-full">
-                  <span>{item?.name}</span>
-                  <div className="flex flex-row gap-2 justify-start items-center">
-                    <FaStar className="text-yellow-400 h-5 w-5" />
-                    <span>{Math.floor(item?.vote_average)}</span>
-                    <GoThumbsup className="h-5 w-5" />
-                    <span>{item?.vote_count}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+              key={item?.id}
+              className="min-h-72 h-auto w-auto max-w-full min-w-full rounded-lg bg-zinc-900 animate-pulse"
+            />
           );
         })}
       </div>
-      {showAlert && (
-        <Alert
-          message="Added to the watchlist!"
-          onClose={() => setShowAlert(false)}
-        />
-      )}
     </div>
   );
 }

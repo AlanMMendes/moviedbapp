@@ -10,9 +10,13 @@ const watchListSlice: any = createSlice({
     setData: (state: any, action) => {
       state.items.push(action.payload);
     },
+    removeItem: (state, action) => {
+      const idToRemove = action.payload;
+      state.items = state.items.filter((item: any) => item.id !== idToRemove);
+    },
   },
 });
 
-export const { setData } = watchListSlice.actions;
+export const { setData, removeItem } = watchListSlice.actions;
 
 export default watchListSlice.reducer;
