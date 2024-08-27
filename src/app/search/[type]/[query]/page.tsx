@@ -3,7 +3,7 @@
 import ImageWithFallback from "@/app/components/ImageFallback";
 import ImageWithTooltip from "@/app/components/ImageWithTooltip";
 import SkeletonSeries from "@/app/components/SeriesTrending/components/SkeletonSeriesTrending";
-import { fetchSearch } from "@/app/features/fetchSearch";
+import { fetchSearch } from "@/app/features/fetchSearchSlice";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaRankingStar } from "react-icons/fa6";

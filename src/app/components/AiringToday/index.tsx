@@ -5,20 +5,20 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../../globals.css";
 import ImageWithTooltip from "../ImageWithTooltip";
-import SkeletonSeries from "./components/SkeletonSeriesTrending";
+import SkeletonSeries from "./components/SkeletonAiringToday";
 
-export default function SeriesTrending() {
-  const dataSeries: any = useAppSelector(
-    (state: any) => state.fetchSeriesTrending
+export default function AiringToday() {
+  const dataAiringToday: any = useAppSelector(
+    (state: any) => state.fetchAiringToday
   );
 
   return (
     <>
-      {dataSeries.status === "succeeded" ? (
+      {dataAiringToday.status === "succeeded" ? (
         <>
-          <h1 className="px-2 font-bold text-2xl">Series Trending</h1>
+          <h1 className="px-2 font-bold text-2xl">Airing Today</h1>
           <div className="px-2 grid lg:grid-cols-4 min-w-full md:grid-cols-3 grid-cols-1 gap-4 min-h-[32rem] max-h-[44rem] custom-scrollbar overflow-y-scroll">
-            {dataSeries?.data?.results?.map((item: any) => {
+            {dataAiringToday?.data?.results?.map((item: any) => {
               return (
                 <div key={item?.id} className="flex flex-col">
                   <ImageWithTooltip

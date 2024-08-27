@@ -1,14 +1,14 @@
-// store.js
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
-import fetchDataSlice from "../features/fetchDataSlice"; // Importe o slice que você criará mais tarde
+import fetchAiringTodaySlice from "../features/fetchAiringTodaySlice";
+import fetchDataSlice from "../features/fetchDataSlice";
 import fetchEpisodesProvider from "../features/fetchEpisodesProvider";
 import fetchEpisodesSlice from "../features/fetchEpisodesSlice";
 import fetchPeopleDataSlice from "../features/fetchPeopleSlice";
-import fetchSearchSlice from "../features/fetchSearch";
+import fetchSearchSlice from "../features/fetchSearchSlice";
 import fetchSeriesTrendingSlice from "../features/fetchSeriesTrendingSlice";
-import fetchShowSlice from "../features/fetchShow";
-import fetchTrailerSeason from "../features/fetchTrailerSeason";
+import fetchShowSlice from "../features/fetchShowSlice";
+import fetchTrailerSeason from "../features/fetchTrailerSeasonSlice";
 import fetchVideosSlice from "../features/fetchVideosSlice";
 import watchListReducer from "../features/watchListSlice";
 
@@ -24,9 +24,9 @@ export const store = configureStore({
     fetchSearch: fetchSearchSlice,
     fetchTrailerSeason: fetchTrailerSeason,
     fetchEpisodesProvider: fetchEpisodesProvider,
+    fetchAiringToday: fetchAiringTodaySlice,
   },
 });
 
-// Exportando o hook para usar o store no React
 export const useAppDispatch = () => useDispatch();
 export const useAppSelector = (selector: any) => useSelector(selector);

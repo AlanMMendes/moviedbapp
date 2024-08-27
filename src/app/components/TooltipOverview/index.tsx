@@ -1,4 +1,3 @@
-// components/Tooltip.js
 import * as Tooltip from "@radix-ui/react-tooltip";
 
 const TooltipComponent = ({ children, tooltipText }: any) => {

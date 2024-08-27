@@ -1,5 +1,5 @@
 "use client";
-import { fetchTrailerSeason } from "@/app/features/fetchTrailerSeason";
+import { fetchTrailerSeason } from "@/app/features/fetchTrailerSeasonSlice";
 import { useAppSelector } from "@/app/store";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";

@@ -1,7 +1,7 @@
 "use client";
 import ImageWithFallback from "@/app/components/ImageFallback";
 import SkeletonMovie from "@/app/components/MovieTrending/components/SkeletonMovieTrending";
-import { fetchShow } from "@/app/features/fetchShow";
+import { fetchShow } from "@/app/features/fetchShowSlice";
 import { useAppSelector } from "@/app/store";
 import Image from "next/image";
 import Link from "next/link";
