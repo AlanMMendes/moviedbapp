@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "../../../../globals.css";
+import "../../../../../globals.css";
 
 function Episodes({ dataShow }: any) {
   const params = useParams<{ show: string; id: string }>();
@@ -35,11 +35,11 @@ function Episodes({ dataShow }: any) {
   return (
     <>
       {dataShow?.data?.number_of_seasons && (
-        <div className="flex justify-start px-2 py-2">
+        <div className="px-2 py-4">
           <select
             value={selectedValue}
             onChange={handleChange}
-            className="block cursor-pointer w-auto px-4 py-2 text-white bg-zinc-900 bg-opacity-25 border border-opacity-10 border-white h-10 rounded-md shadow-sm focus:outline-none font-extralight"
+            className="block cursor-pointer w-auto px-4 text-white bg-zinc-900 bg-opacity-25 border border-opacity-10 border-white h-10 rounded-md shadow-sm focus:outline-none font-extralight"
           >
             <>
               {Array.from({
@@ -58,7 +58,7 @@ function Episodes({ dataShow }: any) {
       )}
       {dataEpisodes?.status === "succeeded" ? (
         <>
-          <div className="grid lg:grid-cols-4 min-w-full md:grid-cols-3 grid-cols-1 gap-4 min-h-[32rem] max-h-[44rem] custom-scrollbar overflow-y-scroll px-2 py-1">
+          <div className="grid lg:grid-cols-4 min-w-full md:grid-cols-3 grid-cols-1 gap-4 min-h-[32rem] max-h-[44rem] custom-scrollbar overflow-y-scroll px-2 mb-14">
             {dataEpisodes?.data?.episodes?.map((item: any, key: any) => {
               return (
                 <div

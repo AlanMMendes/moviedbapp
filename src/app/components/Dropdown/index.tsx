@@ -28,18 +28,10 @@ const Dropdown = ({ component, icon }: any) => {
   };
 
   return (
-    <div
-      ref={modalRef}
-      className="relative flex justify-center items-center text-left w-auto px-2"
-    >
-      <button
-        onClick={toggleDropdown}
-        className="bg-transparent w-10 flex justify-center text-white rounded"
-      >
-        {icon}
-      </button>
+    <div ref={modalRef} className="flex justify-center items-center">
+      <button onClick={toggleDropdown}>{icon}</button>
       {isOpen && (
-        <div className="absolute flex top-9  lg:right-0 justify-center items-center w-auto  z-50 bg-transparent border-gray-200 rounded ">
+        <div className="absolute flex top-9 lg:right-2 right-2 justify-center items-center w-auto z-50 bg-transparent border-gray-200 rounded ">
           {component}
         </div>
       )}

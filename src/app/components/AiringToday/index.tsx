@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../../globals.css";
 import ImageWithTooltip from "../ImageWithTooltip";
-import SkeletonSeries from "./components/SkeletonAiringToday";
+import SkeletonAiringToday from "./components/SkeletonAiringToday";
 
 export default function AiringToday() {
   const dataAiringToday: any = useAppSelector(
@@ -41,7 +41,7 @@ export default function AiringToday() {
           </div>
         </>
       ) : (
-        <SkeletonSeries />
+        <SkeletonAiringToday />
       )}
     </>
   );

@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchTrailerSeason = createAsyncThunk(
-  "fetchTrailerSeason/fetchData",
-  async (id: any) => {
-    if (!id) return;
+export const fetchTrailer = createAsyncThunk(
+  "fetchTrailer/fetchData",
+  async ({ id, type }: any) => {
+    if (!id && !type) return;
     const response = await fetch(
-      `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.NEXT_PUBLIC_BASE_API_URL}&language=en-US`,
+      `https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${process.env.NEXT_PUBLIC_BASE_API_URL}&language=en-US`,
       {
         method: "GET",
       }
@@ -19,7 +19,7 @@ export const fetchTrailerSeason = createAsyncThunk(
 );
 
 const fetchTrailerSlice = createSlice({
-  name: "fetchTrailerSeason",
+  name: "fetchTrailer",
   initialState: {
     data: null,
     status: "idle",
@@ -28,14 +28,14 @@ const fetchTrailerSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchTrailerSeason.pending, (state) => {
+      .addCase(fetchTrailer.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchTrailerSeason.fulfilled, (state, action) => {
+      .addCase(fetchTrailer.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload;
       })
-      .addCase(fetchTrailerSeason.rejected, (state: any, action) => {
+      .addCase(fetchTrailer.rejected, (state: any, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

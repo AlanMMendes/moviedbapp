@@ -1,20 +1,22 @@
 "use client";
-import { fetchTrailerSeason } from "@/app/features/fetchTrailerSeasonSlice";
+import { fetchTrailer } from "@/app/features/fetchTrailerSlice";
 import { useAppSelector } from "@/app/store";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-function ModalSeasonTrailer({ isOpen, onClose, props }: any) {
+function ModalTrailer({ isOpen, onClose, props }: any) {
   const dispatch: any = useDispatch();
-  const data: any = useAppSelector(
-    (state: any) => state.fetchTrailerSeason.data
-  );
+  const data: any = useAppSelector((state: any) => state.fetchTrailer.data);
 
   useEffect(() => {
     if (!isOpen) return;
     if (!props) return;
-
-    dispatch(fetchTrailerSeason(props.id));
+    dispatch(
+      fetchTrailer({
+        id: props.id,
+        type: props.type,
+      })
+    );
   }, [props, dispatch, isOpen]);
 
   if (!isOpen) return null;
@@ -31,7 +33,6 @@ function ModalSeasonTrailer({ isOpen, onClose, props }: any) {
         <iframe
           src={`https://www.youtube.com/embed/${data?.results[0]?.key || ""}`}
           className="w-full px-2 h-64 rounded-3xl"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           title="Trailer"
         />
@@ -40,4 +41,4 @@ function ModalSeasonTrailer({ isOpen, onClose, props }: any) {
   );
 }
 
-export default ModalSeasonTrailer;
+export default ModalTrailer;

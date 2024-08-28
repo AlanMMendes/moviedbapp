@@ -1,52 +1,50 @@
 "use client";
-import SearchInput from "@/app/components/SearchInput";
 import Link from "next/link";
 import { CiSearch } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
 import { IoMdHome } from "react-icons/io";
 import { SiThemoviedatabase } from "react-icons/si";
 import Dropdown from "../Dropdown";
+import SearchInput from "../SearchInput";
+import TooltipComponent from "../TooltipOverview";
 
 const Navbar = () => {
   return (
-    <nav className=" top-0 z-50 w-full bg-black text-white border border-t-0 border-l-0 border-r-0 border-b-zinc-800">
+    <nav className="top-0 z-50 w-full bg-black text-white border border-t-0 border-l-0 border-r-0 border-b-zinc-800">
       <div className="p-2 flex items-center justify-between ">
         <div className="text-md font-extralight">
           <Link
             href={`https://www.linkedin.com/in/alan-mazeto-mendes-282751208/`}
-            className="rounded justify-center flex items-center w-auto  border-zinc-900"
-          >
-            <SiThemoviedatabase className="h-8 w-8 hover:text-yellow-500" />
-          </Link>
-        </div>
-        <div
-          className={`items-center justify-center flex flex-wrap gap-2
-          `}
-        >
-          <div className="flex justify-center items-center ">
-            <Dropdown
-              component={<SearchInput />}
-              icon={<CiSearch className="h-auto w-6 hover:text-yellow-500" />}
-            />
-          </div>
-
-          <Link
-            href={`/watchlist`}
             className="rounded justify-center flex items-center w-auto border-zinc-900"
           >
-            <div className="flex justify-center items-center hover:text-yellow-500 ">
-              <FaBookmark className="z-50 py-2 mr-2 cursor-pointer h-10 w-8" />
-            </div>
-          </Link>
-          <Link
-            href={`/`}
-            className="rounded justify-center flex items-center w-auto  border-zinc-900"
-          >
-            <div className="flex justify-center items-center hover:text-yellow-500 ">
-              <IoMdHome className="z-50  mr-2 cursor-pointer h-10 w-8" />
-            </div>
+            <SiThemoviedatabase className="h-auto w-6 hover:text-yellow-500" />
           </Link>
         </div>
+        <ul
+          className={`items-center w-auto justify-center flex flex-wrap gap-5
+          `}
+        >
+          <li className="w-auto flex justify-center items-center">
+            <Dropdown
+              component={<SearchInput />}
+              icon={<CiSearch className="hover:text-yellow-500 h-6 w-6" />}
+            />
+          </li>
+          <li className="w-auto flex justify-center items-center">
+            <TooltipComponent tooltipText={"Your Watchlist"}>
+              <Link href={`/watchlist`}>
+                <FaBookmark className="hover:text-yellow-500 h-5 w-5" />
+              </Link>
+            </TooltipComponent>
+          </li>
+          <li className="w-auto flex justify-center items-center">
+            <TooltipComponent tooltipText={"Home"}>
+              <Link href={`/`}>
+                <IoMdHome className="hover:text-yellow-500 h-6 w-6" />
+              </Link>
+            </TooltipComponent>
+          </li>
+        </ul>
       </div>
     </nav>
   );

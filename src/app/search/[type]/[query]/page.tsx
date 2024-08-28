@@ -39,15 +39,15 @@ function Search() {
   }, [params, selectedValue, dispatch]);
 
   return (
-    <div className="flex flex-col min-h-screen px-2">
+    <div className="flex flex-col min-h-screen px-2 mb-14 gap-4">
       {params.type === "movie" || params.type === "tv" ? (
         <>
           {dataSearch?.status === "succeeded" ? (
-            <div className="w-full h-full flex items-center flex-col gap-2 ">
-              <h1 className="px-4 py-2 font-bold text-2xl">
+            <div className="w-full h-full flex flex-col">
+              <h1 className="py-2 font-bold text-2xl">
                 Searching for: {params?.type.toUpperCase()} - {params?.query}
               </h1>
-              <div className="grid lg:grid-cols-4 min-w-full md:grid-cols-3 grid-cols-1 gap-4 min-h-full max-h-auto custom-scrollbar overflow-y-scroll">
+              <div className="grid lg:grid-cols-4 min-w-full md:grid-cols-3 grid-cols-1 gap-2 min-h-full max-h-auto">
                 {dataSearch?.data?.results?.map((item: any) => {
                   return (
                     <div key={item?.id} className="flex flex-col">
@@ -77,11 +77,11 @@ function Search() {
           )}
         </>
       ) : (
-        <div className="flex items-center justify-center flex-col h-full">
-          <h1 className="px-4 py-2 font-bold text-2xl">
+        <div className="flex items-start justify-start flex-col h-full">
+          <h1 className="py-2 font-bold text-2xl">
             Searching for: {params?.type.toUpperCase()} - {params?.query}
           </h1>
-          <div className="grid lg:grid-cols-4 min-w-full md:grid-cols-2 grid-cols-1 gap-4 min-h-[32rem] px-2 max-h-[44rem] custom-scrollbar overflow-y-scroll">
+          <div className="grid lg:grid-cols-4 min-w-full md:grid-cols-2 grid-cols-1 gap-4 min-h-[32rem max-h-[44rem] custom-scrollbar overflow-y-scroll">
             {dataSearch?.data?.results?.map((item: any, key: any) => {
               return (
                 <div
@@ -110,62 +110,36 @@ function Search() {
           </div>
         </div>
       )}
-      <div className="flex lg:flex-row flex-col justify-center items-center gap-2">
-        {dataSearch?.status === "succeeded" && (
+
+      <div className="flex justify-center items-center">
+        <select
+          value={selectedValue}
+          onChange={handleChange}
+          className="block cursor-pointer w-auto px-4 py-2 text-white bg-zinc-900 bg-opacity-25 border border-opacity-10 border-white h-10 rounded-md shadow-sm focus:outline-none font-extralight"
+        >
           <>
-            <div className="flex gap-2">
-              {Array.from({
-                length: dataSearch?.data?.total_pages,
-              })
-                .slice(0, 5)
-                .map((_, index) => {
-                  const displayIndex = index + 1;
-                  return (
-                    <button
-                      onClick={() => setSelectedValue(displayIndex)}
-                      key={displayIndex}
-                      className={`h-12 ${
-                        selectedValue === displayIndex ? "bg-yellow-500" : ""
-                      } hover:bg-yellow-500 rounded-full border w-auto min-w-12`}
-                      value={displayIndex}
-                    >
-                      {displayIndex}
-                    </button>
-                  );
-                })}
-            </div>
+            <option
+              className="block gap-4 h-10 w-14 bg-zinc-900 cursor-pointer  "
+              value="1"
+            >
+              Select a page
+            </option>
+            {Array.from({
+              length: dataSearch?.data?.total_pages,
+            }).map((_, index) => {
+              const displayIndex = index + 1;
+              return (
+                <option
+                  key={displayIndex}
+                  className="gap-4 h-10 w-full bg-zinc-900 cursor-pointer  "
+                  value={displayIndex}
+                >
+                  {`Page ${displayIndex || "1"}`}
+                </option>
+              );
+            })}
           </>
-        )}
-        <div className="relative flex flex-row  justify-center items-center py-4 px-2">
-          <select
-            value={selectedValue}
-            onChange={handleChange}
-            className="block cursor-pointer w-auto px-4 py-2 text-white bg-zinc-900 bg-opacity-25 border border-opacity-10 border-white h-10 rounded-md shadow-sm focus:outline-none font-extralight"
-          >
-            <>
-              <option
-                className="block gap-4 h-10 w-14 bg-zinc-900 cursor-pointer  "
-                value=""
-              >
-                Select a page
-              </option>
-              {Array.from({
-                length: dataSearch?.data?.total_pages,
-              }).map((_, index) => {
-                const displayIndex = index + 1;
-                return (
-                  <option
-                    key={displayIndex}
-                    className="gap-4 h-10 w-full bg-zinc-900 cursor-pointer  "
-                    value={displayIndex}
-                  >
-                    {`Page ${displayIndex || "1"}`}
-                  </option>
-                );
-              })}
-            </>
-          </select>
-        </div>
+        </select>
       </div>
     </div>
   );

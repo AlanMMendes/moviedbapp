@@ -12,8 +12,6 @@ import { fetchPeopleData } from "./features/fetchPeopleSlice";
 import { fetchSeriesTrending } from "./features/fetchSeriesTrendingSlice";
 import { useAppSelector } from "./store";
 
-import * as Separator from "@radix-ui/react-separator";
-
 const App = () => {
   const dispatch: any = useDispatch();
   const dataSeries: any = useAppSelector(
@@ -33,12 +31,9 @@ const App = () => {
       {dataMovies.status === "succeeded" ? (
         <div className="flex flex-col">
           <MovieTrending />
-          <Separator.Root className="bg-white bg-opacity-10 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px my-[15px]" />
-          <div className="flex flex-col  gap-2">
+          <div className="flex flex-col w-full gap-2">
             <AiringToday />
-            <Separator.Root className="bg-white bg-opacity-10 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px my-[15px]" />
             <SeriesTrending />
-            <Separator.Root className="bg-white bg-opacity-10 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px my-[15px]" />
             <PeopleTrending />
           </div>
         </div>

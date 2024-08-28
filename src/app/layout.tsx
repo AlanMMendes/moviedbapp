@@ -17,11 +17,12 @@ export default function RootLayout({
       <body>
         <Suspense fallback={<Loading />}>
           <Provider store={store}>
-            <div className="flex flex-col min-h-screen">
+            <div className="relative flex flex-col min-h-screen">
               <Navbar />
-
               {children}
-              <Footer />
+              <div className="absolute bottom-0 w-full">
+                <Footer />
+              </div>
             </div>
           </Provider>
         </Suspense>

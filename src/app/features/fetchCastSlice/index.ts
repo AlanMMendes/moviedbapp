@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchVideos = createAsyncThunk(
-  "fetchParticipantsData/fetchData",
-  async (id: any) => {
-    if (!id) return;
+export const fetchCast = createAsyncThunk(
+  "fetchCast/fetchData",
+  async ({ type, id }: any) => {
+    if (!type && !id) return;
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.NEXT_PUBLIC_BASE_API_URL}&language=en-US`,
+      `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${process.env.NEXT_PUBLIC_BASE_API_URL}&language=en-US`,
       {
         method: "GET",
       }
@@ -18,8 +18,8 @@ export const fetchVideos = createAsyncThunk(
   }
 );
 
-const fetchVideosSlice = createSlice({
-  name: "fetchParticipants",
+const fetchCastSlice = createSlice({
+  name: "fetchCast",
   initialState: {
     data: null,
     status: "idle",
@@ -28,18 +28,18 @@ const fetchVideosSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchVideos.pending, (state) => {
+      .addCase(fetchCast.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchVideos.fulfilled, (state, action) => {
+      .addCase(fetchCast.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload;
       })
-      .addCase(fetchVideos.rejected, (state: any, action) => {
+      .addCase(fetchCast.rejected, (state: any, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
   },
 });
 
-export default fetchVideosSlice.reducer;
+export default fetchCastSlice.reducer;

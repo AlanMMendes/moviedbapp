@@ -54,22 +54,26 @@ body {
   mask-image: linear-gradient(black, transparent 160%);
 }
 
-/* src/custom-scrollbar.css */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 0.5rem; /* Largura da barra de rolagem */
+  width: 0.5rem;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: black; /* Cor do fundo da trilha da barra de rolagem */
+  background: black;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: rgb(234 179 8);
-  border-radius: 8px; /* Bordas arredondadas para a parte deslizante */
+  border-radius: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Cor da parte deslizante ao passar o mouse */
+  background: #555;
+}
+
+.scroll-left {
+  scroll-snap-type: x mandatory;
+  scroll-snap-align: start;
 }
 
 @layer utilities {
