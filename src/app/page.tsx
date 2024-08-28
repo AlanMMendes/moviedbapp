@@ -32,9 +32,15 @@ const App = () => {
         <div className="flex flex-col">
           <MovieTrending />
           <div className="flex flex-col w-full gap-2">
-            <AiringToday />
-            <SeriesTrending />
-            <PeopleTrending />
+            <div className="">
+              <AiringToday />
+            </div>
+            <div className="lg:py-5">
+              <SeriesTrending />
+            </div>
+            <div>
+              <PeopleTrending />
+            </div>
           </div>
         </div>
       ) : (
