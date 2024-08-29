@@ -31,16 +31,10 @@ const App = () => {
       {dataMovies.status === "succeeded" ? (
         <div className="flex flex-col">
           <MovieTrending />
-          <div className="flex flex-col w-full gap-2">
-            <div className="">
-              <AiringToday />
-            </div>
-            <div className="lg:py-5">
-              <SeriesTrending />
-            </div>
-            <div>
-              <PeopleTrending />
-            </div>
+          <div className="flex flex-col w-full gap-5 border-gray-500 px-2">
+            <AiringToday />
+            <SeriesTrending />
+            <PeopleTrending />
           </div>
         </div>
       ) : (

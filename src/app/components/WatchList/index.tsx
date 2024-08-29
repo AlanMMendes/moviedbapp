@@ -13,7 +13,7 @@ export default function WatchList() {
   const movies = watchList.filter((item: any) => item.type === "movie");
 
   return (
-    <div className="min-h-screen px-2">
+    <div className="min-h-screen px-2 mt-10">
       {watchList?.length === 0 ? (
         <div className="relative w-full h-auto flex flex-col min-h-44 justify-center items-center">
           <div className="py-4">
@@ -52,6 +52,7 @@ export default function WatchList() {
                             vote_average: item?.vote_average,
                             backdrop_path: item?.backdrop_path,
                             overview: item?.overview,
+                            genre_ids: item?.genre_ids,
                           }}
                         />
                         <h1 className="text-lg font-extralight">
@@ -82,6 +83,7 @@ export default function WatchList() {
                             type: item.type,
                             id: item?.id,
                             name: item?.name,
+                            title: item?.title,
                             vote_count: item?.vote_count,
                             vote_average: item?.vote_average,
                             backdrop_path: item?.backdrop_path,
@@ -115,7 +117,7 @@ export default function WatchList() {
                           props={{
                             type: item.type,
                             id: item?.id,
-                            name: item?.name,
+                            name: item?.original_title,
                             vote_count: item?.vote_count,
                             vote_average: item?.vote_average,
                             backdrop_path: item?.backdrop_path,

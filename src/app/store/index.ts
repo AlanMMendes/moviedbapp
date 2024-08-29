@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
+import alertReducer from "../features/alertSlice";
 import fetchAiringTodaySlice from "../features/fetchAiringTodaySlice";
 import fetchCastSlice from "../features/fetchCastSlice";
 import fetchDataSlice from "../features/fetchDataSlice";
@@ -25,6 +26,7 @@ export const store = configureStore({
     fetchEpisodesProvider: fetchEpisodesProvider,
     fetchAiringToday: fetchAiringTodaySlice,
     fetchCast: fetchCastSlice,
+    alert: alertReducer,
   },
 });
 

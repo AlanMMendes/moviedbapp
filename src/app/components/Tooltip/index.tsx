@@ -11,7 +11,7 @@ const Tooltip = ({ children, tooltipText }: any) => {
     >
       {children}
       {isHovered && (
-        <div className="absolute bottom-full left-1/2 transform -translate-x-3/4 mb-2 p-2 bg-gray-700 text-white text-sm rounded shadow-lg whitespace-nowrap">
+        <div className="absolute bottom-full left-0 transform -translate-x-3/4 mb-2 p-2 bg-gray-700 text-white text-sm rounded shadow-lg whitespace-nowrap">
           {tooltipText}
         </div>
       )}

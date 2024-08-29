@@ -3,6 +3,7 @@ import ImageWithFallback from "@/app/components/ImageFallback";
 import Loading from "@/app/components/Loading";
 import ModalTrailer from "@/app/components/ModalTrailer";
 import TooltipComponent from "@/app/components/TooltipOverview";
+import WatchlistChecked from "@/app/components/WatchlistChecked";
 import * as Tabs from "@radix-ui/react-tabs";
 import Image from "next/image";
 import Link from "next/link";
@@ -47,11 +48,19 @@ function ShowSeries({ dataShow }: any) {
                 <span>{Math.floor(dataShow?.data?.vote_average)}</span>
                 <GoThumbsup className="h-5 w-5" />
                 <span>{dataShow?.data?.vote_count}</span>
+                <WatchlistChecked
+                  props={{
+                    type: "tv",
+                    id: dataShow?.data.id,
+                    name: dataShow?.data?.name,
+                    vote_count: dataShow?.data?.vote_count,
+                    vote_average: dataShow?.data?.vote_average,
+                    overview: dataShow?.data?.overview,
+                    backdrop_path: dataShow?.data?.backdrop_path,
+                  }}
+                />
               </div>
-              <h1>
-                {dataShow?.data?.status} -{" "}
-                {dataShow?.data?.last_air_date || dataShow?.data?.release_date}
-              </h1>
+              <h1>{dataShow?.data?.status}</h1>
               <p className="w-full rounded-lg bg-opacity-30 text-left max-h-44 custom-scrollbar overflow-y-scroll lg:text-lg md:text-md font-extralight">
                 {dataShow?.data?.overview}
               </p>

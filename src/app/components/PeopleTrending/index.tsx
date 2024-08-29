@@ -12,9 +12,9 @@ export default function PeopleTrending() {
   return (
     <>
       {peopleData.status === "succeeded" && (
-        <div className="mb-14 w-full h-auto flex items-start flex-col ">
-          <h1 className="px-2 py-2 font-bold text-2xl">People Trending</h1>
-          <div className="px-2 grid lg:grid-cols-8 min-w-full md:grid-cols-5 grid-cols-2 gap-4 min-h-[32rem] max-h-[44rem] custom-scrollbar overflow-y-scroll overflow-x-hidden">
+        <>
+          <h1 className="font-bold text-2xl">People Trending</h1>
+          <div className="mb-10 grid lg:grid-cols-8 min-w-full md:grid-cols-5 grid-cols-2 gap-4 min-h-[32rem] max-h-[44rem] custom-scrollbar overflow-y-scroll overflow-x-hidden">
             {peopleData?.data?.results?.map((item: any, key: any) => {
               return (
                 <div
@@ -43,7 +43,7 @@ export default function PeopleTrending() {
               );
             })}
           </div>
-        </div>
+        </>
       )}
     </>
   );

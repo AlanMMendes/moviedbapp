@@ -1,6 +1,7 @@
 "use client";
 import { Suspense } from "react";
 import { Provider } from "react-redux";
+import Alert from "./components/Alert";
 import Footer from "./components/Footer";
 import Loading from "./components/Loading";
 import Navbar from "./components/Navbar";
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body>
         <Suspense fallback={<Loading />}>
           <Provider store={store}>
+            <Alert />
             <div className="relative flex flex-col min-h-screen">
               <Navbar />
               {children}

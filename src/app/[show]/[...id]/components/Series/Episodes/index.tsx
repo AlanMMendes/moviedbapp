@@ -58,7 +58,7 @@ function Episodes({ dataShow }: any) {
       )}
       {dataEpisodes?.status === "succeeded" ? (
         <>
-          <div className="grid lg:grid-cols-4 min-w-full md:grid-cols-3 grid-cols-1 gap-4 min-h-[32rem] max-h-[44rem] custom-scrollbar overflow-y-scroll px-2 mb-14">
+          <div className="grid lg:grid-cols-4 min-w-full md:grid-cols-3 grid-cols-1 gap-4 min-h-[10rem] max-h-[44rem] custom-scrollbar overflow-y-scroll px-2 mb-14">
             {dataEpisodes?.data?.episodes?.map((item: any, key: any) => {
               return (
                 <div

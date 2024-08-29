@@ -28,7 +28,7 @@ function PostPage() {
   return (
     <>
       {params.show === "tv" && <ShowSeries dataShow={dataShow} />}
-      {params.show === "movie" && <ShowMovies dataShow={dataShow} />}
+      {params.show === "movie" && <ShowMovies />}
     </>
   );
 }

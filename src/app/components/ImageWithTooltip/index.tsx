@@ -1,49 +1,19 @@
 // components/ImageWithTooltip.js
 
-import { removeItem, setData } from "@/app/features/watchListSlice";
 import Link from "next/link";
 import { useState } from "react";
-import { FaBookmark, FaPlay, FaRegBookmark, FaStar } from "react-icons/fa";
+import { FaPlay, FaStar } from "react-icons/fa";
 import { FaCircleExclamation } from "react-icons/fa6";
 import { GoThumbsup } from "react-icons/go";
-import { useDispatch, useSelector } from "react-redux";
-import Alert from "../Alert";
 import ImageWithFallback from "../ImageFallback";
 import Tooltip from "../Tooltip";
 import TooltipComponent from "../TooltipOverview";
+import WatchlistChecked from "../WatchlistChecked";
 
 const ImageWithTooltip = ({ src, props }: any) => {
-  const dispatch: any = useDispatch();
-  const items = useSelector((state: any) => state?.watchList?.items);
-  const idToCheck = props?.id;
-  const exists = items?.some((item: any) => item.id === idToCheck);
   const [isHovered, setIsHovered] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [showAlertMessage, setShowAlertMessage] = useState("");
-  const [activeButton, setActiveButton] = useState<any>(false);
-
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
-
-  const handleAddItem = (item: any) => {
-    setActiveButton(true);
-    dispatch(setData(item));
-    setShowAlert(true);
-    setShowAlertMessage(`Added ${props?.name} to the watchlist`);
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 1000);
-  };
-
-  const handleRemoveItem = (id: any) => {
-    setActiveButton(false);
-    dispatch(removeItem(id));
-    setShowAlert(true);
-    setShowAlertMessage(`Removed ${props?.name} from the watchlist`);
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 1000);
-  };
 
   return (
     <div
@@ -66,25 +36,7 @@ const ImageWithTooltip = ({ src, props }: any) => {
         >
           <h1 className="text-lg w-48">{props?.name}</h1>
           <div className="absolute bottom-0 right-0 py-2 px-2 gap-2 flex ">
-            <button className={`rounded-md transition-colors duration-300`}>
-              {exists ? (
-                <Tooltip tooltipText={"Remove from Watchlist"}>
-                  <FaBookmark
-                    onClick={() => handleRemoveItem(props?.id)}
-                    className="text-yellow-400 h-6 w-6"
-                  />
-                </Tooltip>
-              ) : (
-                <Tooltip tooltipText={"Add to Watchlist"}>
-                  <FaRegBookmark
-                    onClick={() => {
-                      handleAddItem(props);
-                    }}
-                    className="hover:text-yellow-400 h-6 w-6"
-                  />
-                </Tooltip>
-              )}
-            </button>
+            <WatchlistChecked props={props} />
             {props.type === "episodes" ? (
               <></>
             ) : (
@@ -110,13 +62,6 @@ const ImageWithTooltip = ({ src, props }: any) => {
             <h1>{props?.vote_count}</h1>
           </div>
         </div>
-      )}
-      {showAlert && (
-        <Alert
-          message={showAlertMessage}
-          onClose={() => setShowAlert(false)}
-          priority={activeButton}
-        />
       )}
     </div>
   );

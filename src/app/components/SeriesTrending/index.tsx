@@ -13,8 +13,8 @@ export default function SeriesTrending() {
     <>
       {data.status === "succeeded" && (
         <>
-          <h1 className="px-2 font-bold text-2xl">Series Trending</h1>
-          <div className="px-2 grid lg:grid-cols-4 min-w-full md:grid-cols-3 grid-cols-1 gap-4 min-h-[32rem] max-h-[44rem] custom-scrollbar overflow-y-scroll">
+          <h1 className="font-bold text-2xl">Series Trending</h1>
+          <div className="grid lg:grid-cols-4 min-w-full md:grid-cols-3 grid-cols-1 gap-4 min-h-[32rem] max-h-[44rem] custom-scrollbar overflow-y-scroll">
             {data?.data?.results?.map((item: any) => {
               return (
                 <div key={item?.id} className="flex flex-col">

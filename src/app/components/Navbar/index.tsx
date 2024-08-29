@@ -6,11 +6,10 @@ import { IoMdHome } from "react-icons/io";
 import { SiThemoviedatabase } from "react-icons/si";
 import Dropdown from "../Dropdown";
 import SearchInput from "../SearchInput";
-import TooltipComponent from "../TooltipOverview";
 
 const Navbar = () => {
   return (
-    <nav className="top-0 z-50 w-full bg-black text-white border border-t-0 border-l-0 border-r-0 border-b-zinc-800">
+    <nav className="fixed top-0 z-50 w-full bg-black text-white border border-t-0 border-l-0 border-r-0 border-b-zinc-800">
       <div className="p-2 flex items-center justify-between ">
         <div className="text-md font-extralight">
           <Link
@@ -31,18 +30,14 @@ const Navbar = () => {
             />
           </li>
           <li className="w-auto flex justify-center items-center">
-            <TooltipComponent tooltipText={"Your Watchlist"}>
-              <Link href={`/watchlist`}>
-                <FaBookmark className="hover:text-yellow-500 h-5 w-5" />
-              </Link>
-            </TooltipComponent>
+            <Link href={`/watchlist`}>
+              <FaBookmark className="hover:text-yellow-500 h-5 w-5" />
+            </Link>
           </li>
           <li className="w-auto flex justify-center items-center">
-            <TooltipComponent tooltipText={"Home"}>
-              <Link href={`/`}>
-                <IoMdHome className="hover:text-yellow-500 h-6 w-6" />
-              </Link>
-            </TooltipComponent>
+            <Link href={`/`}>
+              <IoMdHome className="hover:text-yellow-500 h-6 w-6" />
+            </Link>
           </li>
         </ul>
       </div>
