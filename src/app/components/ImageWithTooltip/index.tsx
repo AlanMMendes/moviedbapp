@@ -26,7 +26,7 @@ const ImageWithTooltip = ({ src, props }: any) => {
         src={src}
         alt={props.id}
         fallbackSrc={"https://placehold.co/1920x1080/png"}
-        className="mask rounded-lg w-full min-h-32 h-auto min-w-full"
+        className="mask"
       />
       {isHovered && (
         <div

@@ -1,4 +1,3 @@
-// src/components/ImageWithFallback.js
 import { useState } from "react";
 
 const ImageWithFallback = ({ src, alt, fallbackSrc, ...props }: any) => {
@@ -14,7 +13,7 @@ const ImageWithFallback = ({ src, alt, fallbackSrc, ...props }: any) => {
       alt={alt}
       onError={handleError}
       {...props}
-      className="mask rounded-lg w-full min-h-32 h-auto min-w-full"
+      className="mask rounded-lg"
       width={0}
       height={0}
       sizes="1000vw"

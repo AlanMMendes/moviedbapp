@@ -23,11 +23,11 @@ const ImageWithTooltipPerson = ({ src, props }: any) => {
           src={src}
           alt={props.id}
           fallbackSrc={"https://placehold.co/1920x1080/png"}
-          className="mask rounded-lg w-full min-h-32 h-auto min-w-full"
+          className="mask w-full min-h-32 h-auto min-w-full"
         />
         {isHovered && (
           <div
-            className={`absolute h-full justify-center cursor-pointer items-center top-0 w-full p-2 bg-black text-white text-left rounded-lg opacity-90 transition-opacity duration-300 ${
+            className={`absolute h-full justify-center cursor-pointer items-center top-0 w-full p-2 bg-black text-white text-left opacity-90 transition-opacity duration-300 ${
               isHovered ? "opacity-100" : "opacity-0"
             }`}
           >

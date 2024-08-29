@@ -28,7 +28,6 @@ const ImageMovies = ({ src, props }: any) => {
         src={src}
         alt={props.id}
         fallbackSrc={"https://placehold.co/1920x1080/png"}
-        className="mask rounded-lg w-full min-h-32 h-auto min-w-full"
       />
 
       <div className="lg:absolute justify-center items-start flex px-2 flex-col gap-2">

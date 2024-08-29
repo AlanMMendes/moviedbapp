@@ -43,7 +43,7 @@ export default function MovieTrending() {
                   <SwiperSlide
                     key={`${key}-modal-movies` || "key-modal-movies"}
                   >
-                    <div className="relative w-full h-auto justify-center items-start flex flex-col">
+                    <div>
                       <ImageMovies
                         src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
                         alt={item?.backdrop_path}
