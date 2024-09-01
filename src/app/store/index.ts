@@ -7,6 +7,7 @@ import fetchDataSlice from "../features/fetchDataSlice";
 import fetchEpisodesProvider from "../features/fetchEpisodesProvider";
 import fetchEpisodesSlice from "../features/fetchEpisodesSlice";
 import fetchPeopleDataSlice from "../features/fetchPeopleSlice";
+import fetchPersonCredits from "../features/fetchPersonCredits";
 import fetchSearchSlice from "../features/fetchSearchSlice";
 import fetchSeriesTrendingSlice from "../features/fetchSeriesTrendingSlice";
 import fetchShowSlice from "../features/fetchShowSlice";
@@ -26,6 +27,7 @@ export const store = configureStore({
     fetchEpisodesProvider: fetchEpisodesProvider,
     fetchAiringToday: fetchAiringTodaySlice,
     fetchCast: fetchCastSlice,
+    fetchPersonCredits: fetchPersonCredits,
     alert: alertReducer,
   },
 });

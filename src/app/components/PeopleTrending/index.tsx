@@ -1,21 +1,22 @@
 "use client";
-import { useAppSelector } from "@/app/store";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../../globals.css";
 import ImageWithTooltipPerson from "../ImageWithTooltipPerson";
 
-export default function PeopleTrending() {
-  const peopleData: any = useAppSelector((state: any) => state.fetchPeopleData);
-
+export default function PeopleTrending({ data }: any) {
   return (
     <>
-      {peopleData.status === "succeeded" && (
+      {data.status === "succeeded" && (
         <>
-          <h1 className="font-bold text-2xl">People Trending</h1>
-          <div className="mb-10 grid lg:grid-cols-8 min-w-full md:grid-cols-5 grid-cols-2 gap-4 min-h-[32rem] max-h-[44rem] custom-scrollbar overflow-y-scroll overflow-x-hidden">
-            {peopleData?.data?.results?.map((item: any, key: any) => {
+          <div className="flex justify-between py-2">
+            <div className="order-first">
+              <h1 className="text-2xl font-extralight">People Trending</h1>
+            </div>
+          </div>
+          <div className="grid lg:grid-cols-8 min-w-full md:grid-cols-5 grid-cols-2 gap-4">
+            {data?.data?.results?.map((item: any, key: any) => {
               return (
                 <div
                   key={`${key}-modal-trending-people`}
@@ -26,6 +27,7 @@ export default function PeopleTrending() {
                     alt={item?.profile_path || "post-profile_path"}
                     props={{
                       type: "person",
+                      active: true,
                       id: item?.id,
                       name: item?.name,
                       popularity: item?.popularity,
@@ -33,12 +35,6 @@ export default function PeopleTrending() {
                       known_for: item?.known_for,
                     }}
                   />
-
-                  <div className="w-full bottom-0  py-3 flex flex-col justify-start items-start ">
-                    <h1 className="max-w-32 max-h-5 overflow-x-hidden overflow-y-auto text-sm">
-                      {item?.name}
-                    </h1>
-                  </div>
                 </div>
               );
             })}

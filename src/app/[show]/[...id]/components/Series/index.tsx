@@ -4,6 +4,7 @@ import Loading from "@/app/components/Loading";
 import ModalTrailer from "@/app/components/ModalTrailer";
 import TooltipComponent from "@/app/components/TooltipOverview";
 import WatchlistChecked from "@/app/components/WatchlistChecked";
+import { useAppSelector } from "@/app/store";
 import * as Tabs from "@radix-ui/react-tabs";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,9 +12,11 @@ import { useState } from "react";
 import { FaPlay, FaStar } from "react-icons/fa";
 import { GoThumbsup } from "react-icons/go";
 import Episodes from "./Episodes";
-function ShowSeries({ dataShow }: any) {
+
+function ShowSeries() {
   const [isModalTrailerOpen, setIsModalTrailerOpen] = useState(false);
   const [modalPropsTrailer, setModalPropsTrailer] = useState({});
+  const dataShow = useAppSelector((state: any) => state?.fetchShow) as any;
 
   const openModalTrailer = (props: any) => {
     setModalPropsTrailer({

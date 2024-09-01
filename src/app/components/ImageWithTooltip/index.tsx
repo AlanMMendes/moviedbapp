@@ -17,7 +17,7 @@ const ImageWithTooltip = ({ src, props }: any) => {
 
   return (
     <div
-      className="relative inline-block"
+      className="relative inline-block min-h-[10rem]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={() => setIsHovered(!isHovered)}
@@ -36,15 +36,21 @@ const ImageWithTooltip = ({ src, props }: any) => {
         >
           <h1 className="text-lg w-48">{props?.name}</h1>
           <div className="absolute bottom-0 right-0 py-2 px-2 gap-2 flex ">
-            <WatchlistChecked props={props} />
-            {props.type === "episodes" ? (
+            {!props?.active ? (
               <></>
             ) : (
-              <Link href={`/${props.type}/${props?.id}`}>
-                <Tooltip tooltipText={"Play"}>
-                  <FaPlay className="hover:text-yellow-500 h-6 w-6" />
-                </Tooltip>
-              </Link>
+              <>
+                <WatchlistChecked props={props} />
+                {props?.type === "episodes" ? (
+                  <> </>
+                ) : (
+                  <Link href={`/${props.type}/${props?.id}`}>
+                    <Tooltip tooltipText={"Play"}>
+                      <FaPlay className="hover:text-yellow-500 h-6 w-6" />
+                    </Tooltip>
+                  </Link>
+                )}
+              </>
             )}
           </div>
           {props?.overview && (
@@ -63,6 +69,7 @@ const ImageWithTooltip = ({ src, props }: any) => {
           </div>
         </div>
       )}
+      <h1 className="text-md w-full">{props?.name}</h1>
     </div>
   );
 };

@@ -38,6 +38,7 @@ function Cast() {
                         alt={item?.profile_path || "post-profile_path"}
                         props={{
                           type: "person",
+                          active: true,
                           id: item?.id,
                           name: item?.name,
                           popularity: item?.popularity,
@@ -45,12 +46,6 @@ function Cast() {
                           known_for: item?.known_for,
                         }}
                       />
-
-                      <div className="w-full bottom-0  py-3 flex flex-col justify-start items-start ">
-                        <h1 className="max-w-32 max-h-5 overflow-x-hidden overflow-y-auto text-sm">
-                          {item?.name}
-                        </h1>
-                      </div>
                     </div>
                   );
                 })}

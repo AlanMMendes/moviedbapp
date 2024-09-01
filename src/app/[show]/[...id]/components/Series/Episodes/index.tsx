@@ -1,6 +1,6 @@
 "use client";
 import ImageWithTooltip from "@/app/components/ImageWithTooltip";
-import SkeletonSeries from "@/app/components/SeriesTrending/components/SkeletonSeriesTrending";
+import Loading from "@/app/components/Loading";
 import { fetchEpisodes } from "@/app/features/fetchEpisodesSlice";
 import { useAppSelector } from "@/app/store";
 import { useParams } from "next/navigation";
@@ -35,7 +35,7 @@ function Episodes({ dataShow }: any) {
   return (
     <>
       {dataShow?.data?.number_of_seasons && (
-        <div className="px-2 py-4">
+        <div className=" py-4">
           <select
             value={selectedValue}
             onChange={handleChange}
@@ -58,7 +58,7 @@ function Episodes({ dataShow }: any) {
       )}
       {dataEpisodes?.status === "succeeded" ? (
         <>
-          <div className="grid lg:grid-cols-4 min-w-full md:grid-cols-3 grid-cols-1 gap-4 min-h-[10rem] max-h-[44rem] custom-scrollbar overflow-y-scroll px-2 mb-14">
+          <div className="grid lg:grid-cols-4 min-w-full md:grid-cols-3 grid-cols-1 gap-4 min-h-[8rem] max-h-[44rem] custom-scrollbar overflow-y-scroll  mb-14">
             {dataEpisodes?.data?.episodes?.map((item: any, key: any) => {
               return (
                 <div
@@ -71,6 +71,7 @@ function Episodes({ dataShow }: any) {
                     props={{
                       type: "episodes",
                       id: item?.id,
+                      active: true,
                       name: item?.name,
                       vote_count: item?.vote_count,
                       vote_average: item?.vote_average,
@@ -85,7 +86,7 @@ function Episodes({ dataShow }: any) {
           </div>
         </>
       ) : (
-        <SkeletonSeries />
+        <Loading />
       )}
     </>
   );

@@ -1,11 +1,9 @@
 "use client";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import AiringToday from "./components/AiringToday";
-import Loading from "./components/Loading";
 import MovieTrending from "./components/MovieTrending";
 import PeopleTrending from "./components/PeopleTrending";
-import SeriesTrending from "./components/SeriesTrending";
+import Series from "./components/Series";
 import { fetchAiringToday } from "./features/fetchAiringTodaySlice";
 import { fetchData } from "./features/fetchDataSlice";
 import { fetchPeopleData } from "./features/fetchPeopleSlice";
@@ -14,10 +12,16 @@ import { useAppSelector } from "./store";
 
 const App = () => {
   const dispatch: any = useDispatch();
-  const dataSeries: any = useAppSelector(
-    (state: any) => state?.fetchSeriesTrending
-  );
   const dataMovies: any = useAppSelector((state: any) => state?.fetchData);
+  const dataAiringToday: any = useAppSelector(
+    (state: any) => state.fetchAiringToday
+  );
+  const dataSeriesTrending: any = useAppSelector(
+    (state: any) => state.fetchSeriesTrending
+  );
+  const dataPeopleTrending: any = useAppSelector(
+    (state: any) => state.fetchPeopleData
+  );
 
   useEffect(() => {
     dispatch(fetchSeriesTrending());
@@ -27,20 +31,28 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <>
-      {dataMovies.status === "succeeded" ? (
-        <div className="flex flex-col">
-          <MovieTrending />
-          <div className="flex flex-col w-full gap-5 border-gray-500 px-2">
-            <AiringToday />
-            <SeriesTrending />
-            <PeopleTrending />
-          </div>
+    <div>
+      <MovieTrending data={dataMovies} />
+      <div className="flex flex-col gap-4 px-4">
+        <div>
+          <Series
+            data={dataAiringToday}
+            title={"Airing Today"}
+            query={"airing_today"}
+          />
         </div>
-      ) : (
-        <Loading />
-      )}
-    </>
+        <div>
+          <Series
+            data={dataSeriesTrending}
+            title={"Series Trending"}
+            query={"popular"}
+          />
+        </div>
+        <div>
+          <PeopleTrending data={dataPeopleTrending} />
+        </div>
+      </div>
+    </div>
   );
 };
 

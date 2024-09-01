@@ -13,32 +13,53 @@ const ImageWithTooltipPerson = ({ src, props }: any) => {
 
   return (
     <div
-      className="relative inline-block min-h-44  "
+      className="relative inline-block min-h-full min-w-full"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={() => setIsHovered(!isHovered)}
     >
-      <Link href={`/${props.type}/${props?.id}`}>
-        <ImageWithFallback
-          src={src}
-          alt={props.id}
-          fallbackSrc={"https://placehold.co/1920x1080/png"}
-          className="mask w-full min-h-32 h-auto min-w-full"
-        />
-        {isHovered && (
-          <div
-            className={`absolute h-full justify-center cursor-pointer items-center top-0 w-full p-2 bg-black text-white text-left opacity-90 transition-opacity duration-300 ${
-              isHovered ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <h1 className="text-sm w-24 overflow-x-auto">{props?.name}</h1>
-            <div className="absolute bottom-0 left-0 py-2 px-2 flex flex-row gap-2 ">
-              <FaStar className="text-yellow-400 h-5 w-5" />
-              <h1>{Math.floor(props?.popularity)}</h1>
+      {props?.active ? (
+        <Link
+          href={`/${props.type}/${props?.id}`}
+          className="flex justify-center items-center flex-col"
+        >
+          <ImageWithFallback
+            src={src}
+            alt={props.id}
+            fallbackSrc={
+              "https://placehold.co/400x600?text=Profile+Pic+Not+Found"
+            }
+          />
+          <h1 className="text-md font-extralight w-auto overflow-x-auto py-2">
+            {props?.name}
+          </h1>
+          {isHovered && (
+            <div
+              className={`absolute h-full justify-center cursor-pointer items-center top-0 w-full p-2 bg-black text-white text-left opacity-90 transition-opacity duration-300 ${
+                isHovered ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <h1 className="text-md font-extralight w-auto overflow-x-auto py-2">
+                {props?.name}
+              </h1>
+              <div className="absolute bottom-0 left-0 py-2 px-2 flex flex-row gap-2">
+                <FaStar className="text-yellow-400 h-5 w-5" />
+                <h1>{Math.floor(props?.popularity)}</h1>
+              </div>
             </div>
-          </div>
-        )}
-      </Link>
+          )}
+        </Link>
+      ) : (
+        <div className="flex justify-center items-center flex-col">
+          <ImageWithFallback
+            src={src}
+            alt={props.id}
+            fallbackSrc={
+              "https://placehold.co/400x600?text=Profile+Pic+Not+Found"
+            }
+          />
+        </div>
+      )}
     </div>
   );
 };

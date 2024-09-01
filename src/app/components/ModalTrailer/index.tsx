@@ -23,7 +23,7 @@ function ModalTrailer({ isOpen, onClose, props }: any) {
 
   return (
     <div className="fixed text-white inset-0 z-50 px-2 flex justify-center w-screen h-screen items-center">
-      <div className="bg-black border border-opacity-25 h-96 border-gray-300 max-w-3xl w-full  rounded-lg shadow-lg text-center">
+      <div className="bg-black border border-opacity-25 h-96 border-gray-300 max-w-3xl w-full min-h-[32rem]  rounded-lg shadow-lg text-center">
         <div className="relative flex flex-row justify-start items-center p-4 gap-2">
           <h2 className="text-3xl font-bold py-2">{props?.title} - Trailer</h2>
           <button className=" absolute top-2 right-2 text-xl" onClick={onClose}>

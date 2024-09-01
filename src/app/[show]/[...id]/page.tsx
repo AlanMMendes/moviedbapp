@@ -1,6 +1,5 @@
 "use client";
 import { fetchShow } from "@/app/features/fetchShowSlice";
-import { useAppSelector } from "@/app/store";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -9,12 +8,12 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "../../globals.css";
 import ShowMovies from "./components/Movies";
+import ShowPerson from "./components/Person";
 import ShowSeries from "./components/Series";
 
 function PostPage() {
   const params = useParams<{ show: string; id: string }>();
   const dispatch = useDispatch() as any;
-  const dataShow = useAppSelector((state: any) => state?.fetchShow) as any;
 
   useEffect(() => {
     dispatch(
@@ -27,8 +26,9 @@ function PostPage() {
 
   return (
     <>
-      {params.show === "tv" && <ShowSeries dataShow={dataShow} />}
+      {params.show === "tv" && <ShowSeries />}
       {params.show === "movie" && <ShowMovies />}
+      {params.show === "person" && <ShowPerson />}
     </>
   );
 }

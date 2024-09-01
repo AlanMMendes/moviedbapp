@@ -48,6 +48,7 @@ export default function WatchList() {
                             type: item.type,
                             id: item?.id,
                             name: item?.name,
+                            active: true,
                             vote_count: item?.vote_count,
                             vote_average: item?.vote_average,
                             backdrop_path: item?.backdrop_path,
@@ -82,6 +83,7 @@ export default function WatchList() {
                           props={{
                             type: item.type,
                             id: item?.id,
+                            active: true,
                             name: item?.name,
                             title: item?.title,
                             vote_count: item?.vote_count,
@@ -117,6 +119,7 @@ export default function WatchList() {
                           props={{
                             type: item.type,
                             id: item?.id,
+                            active: true,
                             name: item?.original_title,
                             vote_count: item?.vote_count,
                             vote_average: item?.vote_average,

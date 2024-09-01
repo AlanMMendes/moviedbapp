@@ -1,12 +1,11 @@
 "use client";
 
-import ImageWithFallback from "@/app/components/ImageFallback";
 import ImageWithTooltip from "@/app/components/ImageWithTooltip";
-import SkeletonSeries from "@/app/components/SeriesTrending/components/SkeletonSeriesTrending";
+import ImageWithTooltipPerson from "@/app/components/ImageWithTooltipPerson";
+import Loading from "@/app/components/Loading";
 import { fetchSearch } from "@/app/features/fetchSearchSlice";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaRankingStar } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../../store";
 
@@ -39,7 +38,7 @@ function Search() {
   }, [params, selectedValue, dispatch]);
 
   return (
-    <div className="flex flex-col gap-0 px-4">
+    <div className="flex flex-col gap-0 px-4 h-full w-full">
       <div className="mt-12 px-2 flex justify-end items-center bottom-14">
         <select
           value={selectedValue}
@@ -65,7 +64,7 @@ function Search() {
         </select>
       </div>
       {params.type === "movie" || params.type === "tv" ? (
-        <>
+        <div className="min-h-dvh">
           {dataSearch?.status === "succeeded" ? (
             <div className="w-full h-full flex flex-col mb-16">
               <h1 className="py-2 font-bold text-2xl">
@@ -81,6 +80,7 @@ function Search() {
                         props={{
                           type: checkType(),
                           id: item?.id,
+                          active: true,
                           name: item?.name || item?.title,
                           vote_count: item?.vote_count,
                           vote_average: item?.vote_average,
@@ -97,9 +97,9 @@ function Search() {
               </div>
             </div>
           ) : (
-            <SkeletonSeries />
+            <Loading />
           )}
-        </>
+        </div>
       ) : (
         <div className="mb-16">
           <h1 className="py-2 font-bold text-2xl">
@@ -112,22 +112,19 @@ function Search() {
                   key={`${key}-modal-trending-people`}
                   className="relative w-full min-w-full h-auto justify-center items-center flex flex-col cursor-pointer"
                 >
-                  <ImageWithFallback
+                  <ImageWithTooltipPerson
                     src={`https://image.tmdb.org/t/p/original/${item?.profile_path}`}
-                    fallbackSrc="https://placehold.co/600x400/png"
-                    alt={item?.backdrop_path || "search-backdrop-path"}
-                    width={0}
-                    height={0}
-                    sizes="200vw"
+                    alt={item?.profile_path || "post-profile_path"}
+                    props={{
+                      type: "person",
+                      active: true,
+                      id: item?.id,
+                      name: item?.name,
+                      popularity: item?.popularity,
+                      profile_path: item?.profile_path,
+                      known_for: item?.known_for,
+                    }}
                   />
-
-                  <div className="w-full bottom-0 px-2 py-3 flex flex-col justify-center items-center ">
-                    <h1>{item?.name}</h1>
-                    <div className="flex flex-row gap-2 justify-start items-center">
-                      <FaRankingStar className="text-yellow-400 h-5 w-5" />
-                      <span>{Math.floor(item?.popularity)}</span>
-                    </div>
-                  </div>
                 </div>
               );
             })}
