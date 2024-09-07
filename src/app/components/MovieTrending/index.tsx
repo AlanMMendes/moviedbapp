@@ -5,7 +5,7 @@ import { useRef } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../globals.css";
 import ImageMovies from "../ImageMovies";
@@ -34,8 +34,16 @@ export default function MovieTrending({ data }: any) {
             }}
             slidesPerView={1}
             loop={true}
+            speed={1500}
+            autoplay={{
+              delay: 2000,
+            }}
             ref={sliderRef}
-            modules={[Pagination, Navigation]}
+            navigation={{
+              prevEl: ".swiper-button-prev",
+              nextEl: ".swiper-button-next",
+            }}
+            modules={[Pagination, Navigation, Autoplay]}
           >
             {data?.data?.results?.slice(0, 6).map((item: any, key: any) => {
               const genres: any = filteredGenres(item.genre_ids);
@@ -62,6 +70,8 @@ export default function MovieTrending({ data }: any) {
                 </SwiperSlide>
               );
             })}
+            <div className="hidden swiper-button-prev absolute top-1/2 left-4 transform -translate-y-1/2 text-white hover:text-yellow-500 transition-colors" />
+            <div className="swiper-button-next absolute top-1/2 right-4 transform -translate-y-1/2 text-white hover:text-yellow-500 transition-colors" />
           </Swiper>
         </div>
       )}

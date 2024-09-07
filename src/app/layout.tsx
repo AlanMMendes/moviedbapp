@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-black">
         <Suspense fallback={<Loading />}>
           <Provider store={store}>
             <Alert />
