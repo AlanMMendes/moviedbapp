@@ -1,7 +1,9 @@
 "use client";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import Loading from "./components/Loading";
 import MovieTrending from "./components/MovieTrending";
+import Navbar from "./components/Navbar";
 import PeopleTrending from "./components/PeopleTrending";
 import Series from "./components/Series";
 import { fetchAiringToday } from "./features/fetchAiringTodaySlice";
@@ -30,27 +32,26 @@ const App = () => {
     dispatch(fetchAiringToday());
   }, [dispatch]);
 
+  if (dataMovies?.status === "idle") return <Loading />;
+  if (dataMovies?.status === "loading") return <Loading />;
+  if (dataMovies?.status === "error") return <div>Error</div>;
+
   return (
-    <div>
+    <div className="flex flex-col relative">
+      <Navbar />
       <MovieTrending data={dataMovies} />
-      <div className="flex flex-col gap-4 px-4">
-        <div>
-          <Series
-            data={dataAiringToday}
-            title={"Airing Today"}
-            query={"airing_today"}
-          />
-        </div>
-        <div>
-          <Series
-            data={dataSeriesTrending}
-            title={"Series Trending"}
-            query={"popular"}
-          />
-        </div>
-        <div>
-          <PeopleTrending data={dataPeopleTrending} />
-        </div>
+      <div className="px-2 gap-4 flex flex-col">
+        <Series
+          data={dataAiringToday}
+          title={"Airing Today"}
+          query={"airing_today"}
+        />
+        <Series
+          data={dataSeriesTrending}
+          title={"Series Trending"}
+          query={"popular"}
+        />
+        <PeopleTrending data={dataPeopleTrending} />
       </div>
     </div>
   );

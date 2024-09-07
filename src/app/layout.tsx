@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import Alert from "./components/Alert";
 import Footer from "./components/Footer";
 import Loading from "./components/Loading";
-import Navbar from "./components/Navbar";
 import "./globals.css";
 import { store } from "./store";
 
@@ -16,11 +15,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-black">
+        <div className="h-10 w-full" />
         <Suspense fallback={<Loading />}>
           <Provider store={store}>
             <Alert />
 
-            <Navbar />
             {children}
             <div className="h-full w-full bottom-0">
               <Footer />

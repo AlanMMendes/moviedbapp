@@ -17,7 +17,7 @@ const ImageWithTooltip = ({ src, props }: any) => {
 
   return (
     <div
-      className="relative inline-block min-h-[10rem]"
+      className="relative inline-block min-h-[10rem] text-left"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={() => setIsHovered(!isHovered)}

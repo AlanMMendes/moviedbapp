@@ -17,11 +17,9 @@ export default function Series({ data, title, query }: any) {
   if (data?.status === "error") return <div>Error</div>;
 
   return (
-    <>
-      <div className="flex justify-between py-2">
-        <div className="order-first">
-          <h1 className="text-2xl font-extralight">{title}</h1>
-        </div>
+    <div className="w-full h-auto">
+      <div className="order-first py-2">
+        <h1 className="text-2xl font-extralight">{title}</h1>
       </div>
       <Swiper
         spaceBetween={20}
@@ -67,8 +65,27 @@ export default function Series({ data, title, query }: any) {
             </SwiperSlide>
           );
         })}
+
         <div className="swiper-button-next absolute top-1/2 right-4 transform -translate-y-1/2 text-white hover:text-yellow-500 transition-colors" />
       </Swiper>
-    </>
+    </div>
   );
 }
+
+// <SwiperSlide>
+// <div className="grid grid-cols-2 gap-4 p-4">
+//     <div className="bg-gray-200 p-4 rounded-lg shadow-md">Item 1</div>
+//     <div className="bg-gray-200 p-4 rounded-lg shadow-md">Item 2</div>
+//     <div className="bg-gray-200 p-4 rounded-lg shadow-md">Item 3</div>
+//     <div className="bg-gray-200 p-4 rounded-lg shadow-md">Item 4</div>
+// </div>
+// </SwiperSlide>
+// <SwiperSlide>
+// <div className="grid grid-cols-3 gap-4 p-4">
+//     <div className="bg-blue-200 p-4 rounded-lg shadow-md">Item A</div>
+//     <div className="bg-blue-200 p-4 rounded-lg shadow-md">Item B</div>
+//     <div className="bg-blue-200 p-4 rounded-lg shadow-md">Item C</div>
+//     <div className="bg-blue-200 p-4 rounded-lg shadow-md">Item D</div>
+//     <div className="bg-blue-200 p-4 rounded-lg shadow-md">Item E</div>
+// </div>
+// </SwiperSlide>

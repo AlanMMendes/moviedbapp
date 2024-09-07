@@ -20,11 +20,27 @@ body {
   color: rgb(var(--foreground-rgb));
   border-radius: 25px;
   color: white;
+  background-color: black;
+}
+
+@keyframes dropIn {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.drop-in {
+  animation: dropIn 1s ease-out;
 }
 
 .mask {
   height: auto;
-  width: 150%;
+  width: 100%;
   -webkit-mask-image: linear-gradient(black, transparent);
   mask-image: linear-gradient(black, transparent);
 }
@@ -45,21 +61,6 @@ body {
 .maskSkeletonMovie {
   -webkit-mask-image: linear-gradient(black, transparent 100%);
   mask-image: linear-gradient(black, transparent 160%);
-}
-
-@keyframes dropIn {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.drop-in {
-  animation: dropIn 0.5s ease-out;
 }
 
 .custom-scrollbar::-webkit-scrollbar {

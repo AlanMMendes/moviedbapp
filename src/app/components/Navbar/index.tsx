@@ -10,15 +10,17 @@ import SearchInput from "../SearchInput";
 const Navbar = () => {
   return (
     <nav className="fixed top-0 z-50 w-full bg-black text-white border border-t-0 border-l-0 border-r-0 border-b-zinc-800">
-      <div className="p-2 flex items-center justify-between ">
-        <div className="text-md font-extralight">
-          <Link
-            href={`https://www.linkedin.com/in/alan-mazeto-mendes-282751208/`}
-            className="rounded justify-center flex items-center w-auto border-zinc-900"
-          >
-            <SiThemoviedatabase className="h-auto w-6 hover:text-yellow-500" />
-          </Link>
-        </div>
+      <div className="p-2 flex items-center justify-between">
+        <Link
+          href={`https://www.linkedin.com/in/alan-mazeto-mendes-282751208/`}
+          className="rounded justify-center flex items-center w-auto border-zinc-900 gap-2"
+        >
+          <SiThemoviedatabase className="h-auto w-6 hover:text-yellow-500" />
+          <h1 className="text-sm font-extralight hover:text-yellow-500">
+            Made by Alan Mazeto Mendes
+          </h1>
+        </Link>
+
         <ul
           className={`items-center w-auto justify-center flex flex-wrap gap-5
           `}

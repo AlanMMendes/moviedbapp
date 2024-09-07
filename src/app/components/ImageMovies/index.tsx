@@ -30,9 +30,11 @@ const ImageMovies = ({ src, props }: any) => {
         fallbackSrc={"https://placehold.co/1920x1080/png"}
       />
 
-      <div className="lg:absolute justify-center items-start flex px-2 flex-col gap-2">
+      <div
+        className={`lg:absolute justify-center items-start flex flex-col gap-2 px-10 drop-in`}
+      >
         <h1 className="text-3xl font-semibold">{props.original_title}</h1>
-        <h1 className="text-lg font-extralight drop-in max-w-[37rem] max-h-[10rem] custom-scrollbar overflow-x-auto">
+        <h1 className="text-lg font-extralight text-left max-w-[37rem] max-h-[10rem] custom-scrollbar overflow-x-auto">
           {props.overview}
         </h1>
         <div className="bottom-0 left-0 py-2 flex flex-row gap-2">

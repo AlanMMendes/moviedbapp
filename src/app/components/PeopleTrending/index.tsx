@@ -7,15 +7,14 @@ import ImageWithTooltipPerson from "../ImageWithTooltipPerson";
 
 export default function PeopleTrending({ data }: any) {
   return (
-    <>
+    <div className="w-full h-auto">
       {data.status === "succeeded" && (
         <>
-          <div className="flex justify-between py-2">
-            <div className="order-first">
-              <h1 className="text-2xl font-extralight">People Trending</h1>
-            </div>
+          <div className="order-first py-2">
+            <h1 className="text-2xl font-extralight">People Trending</h1>
           </div>
-          <div className="grid lg:grid-cols-8 min-w-full md:grid-cols-5 grid-cols-2 gap-4">
+
+          <div className="grid lg:grid-cols-8 min-w-full min-h-[45rem] md:grid-cols-5 grid-cols-2 gap-4">
             {data?.data?.results?.map((item: any, key: any) => {
               return (
                 <div
@@ -41,6 +40,6 @@ export default function PeopleTrending({ data }: any) {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }

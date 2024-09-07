@@ -16,7 +16,7 @@ const ImageWithFallback = ({ src, alt, fallbackSrc, ...props }: any) => {
       className="mask rounded-lg"
       width={0}
       height={0}
-      sizes="100vw"
+      sizes="300vw"
     />
   );
 };

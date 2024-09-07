@@ -1,12 +1,14 @@
+import Navbar from "../components/Navbar";
 import WatchList from "../components/WatchList";
 
 function WatchlistPage() {
   return (
-    <div className="px-2">
-      <div className="flex flex-col ">
+    <>
+      <Navbar />
+      <div className="flex flex-col px-2 ">
         <WatchList />
       </div>
-    </div>
+    </>
   );
 }
 

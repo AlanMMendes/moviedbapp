@@ -1,4 +1,5 @@
 "use client";
+import Navbar from "@/app/components/Navbar";
 import { fetchShow } from "@/app/features/fetchShowSlice";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
@@ -26,6 +27,7 @@ function PostPage() {
 
   return (
     <>
+      <Navbar />
       {params.show === "tv" && <ShowSeries />}
       {params.show === "movie" && <ShowMovies />}
       {params.show === "person" && <ShowPerson />}
