@@ -36,7 +36,9 @@ export default function MovieTrending({ data }: any) {
             loop={true}
             speed={1500}
             autoplay={{
-              delay: 2000,
+              delay: 1500,
+              pauseOnMouseEnter: true,
+              disableOnInteraction: true,
             }}
             ref={sliderRef}
             navigation={{
@@ -70,7 +72,6 @@ export default function MovieTrending({ data }: any) {
                 </SwiperSlide>
               );
             })}
-            <div className="hidden swiper-button-prev absolute top-1/2 left-4 transform -translate-y-1/2 text-white hover:text-yellow-500 transition-colors" />
             <div className="swiper-button-next absolute top-1/2 right-4 transform -translate-y-1/2 text-white hover:text-yellow-500 transition-colors" />
           </Swiper>
         </div>

@@ -22,13 +22,6 @@ export default function Series({ data, title, query }: any) {
         <div className="order-first">
           <h1 className="text-2xl font-extralight">{title}</h1>
         </div>
-        {/* <div className="order-last">
-          <Link href={`view/${query}`}>
-            <button className="border-2 px-2 border-white border-opacity-10 w-auto min-w-24 min-h-10 hover:bg-yellow-500 flex justify-center items-center rounded-lg bg-transparent bg-opacity-80">
-              View All
-            </button>
-          </Link>
-        </div> */}
       </div>
       <Swiper
         spaceBetween={20}
@@ -74,7 +67,6 @@ export default function Series({ data, title, query }: any) {
             </SwiperSlide>
           );
         })}
-        <div className="hidden swiper-button-prev absolute top-1/2 left-4 transform -translate-y-1/2 text-white hover:text-yellow-500 transition-colors" />
         <div className="swiper-button-next absolute top-1/2 right-4 transform -translate-y-1/2 text-white hover:text-yellow-500 transition-colors" />
       </Swiper>
     </>
