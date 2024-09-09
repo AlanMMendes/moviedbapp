@@ -51,7 +51,7 @@ function ModalTrailer({ isOpen, onClose, props }: any) {
         </div>
         <iframe
           src={`https://www.youtube.com/embed/${data?.results[0]?.key || ""}`}
-          className="w-full h-96 rounded-3xl justify-center items-center flex"
+          className="w-full h-96 rounded-3xl justify-center items-center flex px-2 py-2"
           allowFullScreen
           title="Trailer"
         />

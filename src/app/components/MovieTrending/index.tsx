@@ -19,7 +19,7 @@ export default function MovieTrending({ data }: any) {
   if (data?.status === "error") return <div>Error</div>;
 
   return (
-    <div className="w-full h-auto min-h-[42rem]">
+    <div className="w-full h-auto min-h-[32rem]">
       {data?.status === "succeeded" && (
         <Swiper
           key={"swiper-movies"}

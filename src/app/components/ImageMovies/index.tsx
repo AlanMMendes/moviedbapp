@@ -31,7 +31,7 @@ const ImageMovies = ({ src, props }: any) => {
       />
 
       <div
-        className={`lg:absolute justify-center items-start flex flex-col gap-2 px-10 drop-in`}
+        className={`lg:absolute justify-center items-start flex flex-col gap-2 px-2 drop-in`}
       >
         <h1 className="text-3xl font-semibold">{props.original_title}</h1>
         <h1 className="text-lg font-extralight text-left max-w-[37rem] max-h-[10rem] custom-scrollbar overflow-x-auto">

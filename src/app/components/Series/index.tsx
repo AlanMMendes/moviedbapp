@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useRef } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -9,7 +10,7 @@ import "../../globals.css";
 import ImageWithTooltip from "../ImageWithTooltip";
 import Loading from "../Loading";
 
-export default function Series({ data, title, query }: any) {
+export default function Series({ data, title, type }: any) {
   const sliderRef: any = useRef(null);
 
   if (data?.status === "idle") return <Loading />;
@@ -18,9 +19,20 @@ export default function Series({ data, title, query }: any) {
 
   return (
     <div className="w-full h-auto">
-      <div className="order-first py-2">
-        <h1 className="text-2xl font-extralight">{title}</h1>
+      <div className="flex justify-between items-center">
+        <div className="order-first py-2">
+          <h1 className="text-2xl font-extralight">{title}</h1>
+        </div>
+        <div className="order-last py-2">
+          <Link
+            href={`/view/${type}`}
+            className="text-base font-semibold border border-white rounded-md px-4 py-2 hover:bg-yellow-400  transition-colors"
+          >
+            View All
+          </Link>
+        </div>
       </div>
+
       <Swiper
         spaceBetween={20}
         loop={true}
@@ -71,21 +83,3 @@ export default function Series({ data, title, query }: any) {
     </div>
   );
 }
-
-// <SwiperSlide>
-// <div className="grid grid-cols-2 gap-4 p-4">
-//     <div className="bg-gray-200 p-4 rounded-lg shadow-md">Item 1</div>
-//     <div className="bg-gray-200 p-4 rounded-lg shadow-md">Item 2</div>
-//     <div className="bg-gray-200 p-4 rounded-lg shadow-md">Item 3</div>
-//     <div className="bg-gray-200 p-4 rounded-lg shadow-md">Item 4</div>
-// </div>
-// </SwiperSlide>
-// <SwiperSlide>
-// <div className="grid grid-cols-3 gap-4 p-4">
-//     <div className="bg-blue-200 p-4 rounded-lg shadow-md">Item A</div>
-//     <div className="bg-blue-200 p-4 rounded-lg shadow-md">Item B</div>
-//     <div className="bg-blue-200 p-4 rounded-lg shadow-md">Item C</div>
-//     <div className="bg-blue-200 p-4 rounded-lg shadow-md">Item D</div>
-//     <div className="bg-blue-200 p-4 rounded-lg shadow-md">Item E</div>
-// </div>
-// </SwiperSlide>

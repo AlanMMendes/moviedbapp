@@ -56,9 +56,6 @@ export default function WatchList() {
                             genre_ids: item?.genre_ids,
                           }}
                         />
-                        <h1 className="text-lg font-extralight">
-                          {item?.name}
-                        </h1>
                       </>
                     </div>
                   );
@@ -92,9 +89,6 @@ export default function WatchList() {
                             overview: item?.overview,
                           }}
                         />
-                        <h1 className="text-lg font-extralight">
-                          {item?.name}
-                        </h1>
                       </>
                     </div>
                   );
@@ -127,9 +121,6 @@ export default function WatchList() {
                             overview: item?.overview,
                           }}
                         />
-                        <h1 className="text-lg font-extralight">
-                          {item?.name}
-                        </h1>
                       </>
                     </div>
                   );

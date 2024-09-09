@@ -61,10 +61,7 @@ function Episodes({ dataShow }: any) {
           <div className="grid lg:grid-cols-4 min-w-full md:grid-cols-3 grid-cols-1 gap-4 min-h-[8rem] max-h-[44rem] custom-scrollbar overflow-y-scroll  mb-14">
             {dataEpisodes?.data?.episodes?.map((item: any, key: any) => {
               return (
-                <div
-                  className="flex flex-col"
-                  key={`${item?.id}-series-trending`}
-                >
+                <div key={`${item?.id}-series-trending`}>
                   <ImageWithTooltip
                     src={`https://image.tmdb.org/t/p/original/${item?.still_path}`}
                     alt={"teste"}

@@ -9,9 +9,11 @@ import fetchEpisodesSlice from "../features/fetchEpisodesSlice";
 import fetchPeopleDataSlice from "../features/fetchPeopleSlice";
 import fetchPersonCredits from "../features/fetchPersonCredits";
 import fetchSearchSlice from "../features/fetchSearchSlice";
+import fetchSeriesTrendingAllSlice from "../features/fetchSeriesTrendingAllSlice";
 import fetchSeriesTrendingSlice from "../features/fetchSeriesTrendingSlice";
 import fetchShowSlice from "../features/fetchShowSlice";
 import fetchTrailer from "../features/fetchTrailerSlice";
+import fetchViewAllAiringSlice from "../features/fetchViewAllAiring";
 import watchListReducer from "../features/watchListSlice";
 
 export const store = configureStore({
@@ -28,6 +30,8 @@ export const store = configureStore({
     fetchAiringToday: fetchAiringTodaySlice,
     fetchCast: fetchCastSlice,
     fetchPersonCredits: fetchPersonCredits,
+    fetchViewAllAiring: fetchViewAllAiringSlice,
+    fetchSeriesTrendingAll: fetchSeriesTrendingAllSlice,
     alert: alertReducer,
   },
 });

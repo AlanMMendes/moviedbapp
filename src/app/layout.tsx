@@ -2,7 +2,6 @@
 import { Suspense } from "react";
 import { Provider } from "react-redux";
 import Alert from "./components/Alert";
-import Footer from "./components/Footer";
 import Loading from "./components/Loading";
 import "./globals.css";
 import { store } from "./store";
@@ -19,11 +18,7 @@ export default function RootLayout({
         <Suspense fallback={<Loading />}>
           <Provider store={store}>
             <Alert />
-
             {children}
-            <div className="h-full w-full bottom-0">
-              <Footer />
-            </div>
           </Provider>
         </Suspense>
       </body>

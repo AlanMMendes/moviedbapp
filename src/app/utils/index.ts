@@ -25,3 +25,7 @@ export function capitalizeFirstLetter(str: any) {
 
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+export const replaceDashWithSpace = (input: any) => {
+  return input.replace(/-/g, ' ');
+};

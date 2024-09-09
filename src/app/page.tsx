@@ -44,12 +44,12 @@ const App = () => {
         <Series
           data={dataAiringToday}
           title={"Airing Today"}
-          query={"airing_today"}
+          type={"airing-today"}
         />
         <Series
           data={dataSeriesTrending}
           title={"Series Trending"}
-          query={"popular"}
+          type={"series-trending"}
         />
         <PeopleTrending data={dataPeopleTrending} />
       </div>
