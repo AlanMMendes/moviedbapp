@@ -25,7 +25,6 @@ function Cast() {
         <div className="w-full h-auto flex items-start flex-col gap-2">
           {data?.data.cast?.length !== 0 && (
             <>
-              <h1 className="text-2xl font-extralight">Cast of the movie:</h1>
               <div className="grid lg:grid-cols-8 min-w-full md:grid-cols-5 grid-cols-2 gap-4 min-h-[5rem] max-h-[44rem] custom-scrollbar overflow-y-scroll overflow-x-hidden">
                 {data?.data?.cast?.map((item: any, key: any) => {
                   return (
