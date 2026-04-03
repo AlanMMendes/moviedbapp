@@ -6,7 +6,7 @@ Este projeto nasceu de uma aprendizagem: estruturar uma plataforma de streaming 
 
 ##  O que eu quis resolver (e aprender)
 
-Listar filmes, o objetivo aqui foi dominar a interface de entretenimento. 
+Listar filmes, o objetivo aqui foi dominar a interface de entretenimento **(*tentar pele menos*)**. 
 
 * **Páginas Dinâmicas:** Implementei uma arquitetura de rotas via parâmetros. Isso significa que o app não é estático; ele entende o contexto da URL. Se você clica em *Band of Brothers*, o sistema identifica o `tv/{id_show}` e constrói a página em tempo real com base nos dados da API.
 * **Gerenciamento de Estado:** Utilizei **Redux** para a funcionalidade de "Favoritos". Foi um excelente laboratório para entender como persistir escolhas do usuário globalmente na aplicação enquanto eu ainda consolidava meus estudos na biblioteca.
