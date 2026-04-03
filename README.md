@@ -41,4 +41,4 @@ Listar filmes, o objetivo aqui foi dominar a interface de entretenimento.
 
 ---
 
-> _"Lembrando que isso foi apenas para aprendizagem, a cada dia que passa, eu aprendo novas maneiras de criar projetos de forma mais organizada e eficiente, ou seja, a uma ano atrás com os mesmo conhecimento, iria ter testes via RTL, talvez um storybook, uma estrutura mais organizada de pastas, componentes mais estruturados e dinâmicos, interfaces, mais hooks ... e claro, quanto mais nativo for melhor."_
+> _"Lembrando que isso foi apenas para aprendizagem, a cada dia que passa, eu aprendo novas maneiras de criar projetos de forma mais organizada e eficiente, ou seja, a uma ano atrás com os mesmo conhecimento, iria ter testes via RTL, talvez um storybook, uma estrutura mais organizada de pastas, componentes mais estruturados e dinâmicos, interfaces, mais hooks, uns commits mais estruturados, branchs separadas ... e claro, quanto mais nativo for melhor."_
