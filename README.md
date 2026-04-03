@@ -28,7 +28,7 @@ Listar filmes, o objetivo aqui foi dominar a interface de entretenimento.
 
 * **Estética:** O projeto conta com uma *Landing Page* padrão de serviços de streaming, focada em conversão e exibição visual impactante.
 * **Evolução:** Este projeto foi focado em arquitetura e fluxo de dados. Por ser um ambiente de aprendizado inicial de Next.js, ele não conta com testes automatizados (RTL) nem otimização.
-* * **Mobile:** Criei pensando em mobile tamnbém.
+* **Mobile:** Criei pensando em mobile tamnbém.
 
 ---
 
