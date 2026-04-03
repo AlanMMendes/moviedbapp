@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎬 Movie Streaming Platform (TMDB Integration)
 
-## Getting Started
+Este projeto nasceu de uma aprendizagem: estruturar uma plataforma de streaming do zero **(*sem o streaming, Sockets são bem chatos de serem integrados sem custo**)*. Aproveitei a oportunidade para mergulhar no ecossistema do **Next.js** e entender como gerenciar grandes volumetria de dados de mídia.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+##  O que eu quis resolver (e aprender)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Listar filmes, o objetivo aqui foi dominar a interface de entretenimento. 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* **Páginas Dinâmicas:** Implementei uma arquitetura de rotas via parâmetros. Isso significa que o app não é estático; ele entende o contexto da URL. Se você clica em *Band of Brothers*, o sistema identifica o `tv/{id_show}` e constrói a página em tempo real com base nos dados da API.
+* **Gerenciamento de Estado:** Utilizei **Redux** para a funcionalidade de "Favoritos". Foi um excelente laboratório para entender como persistir escolhas do usuário globalmente na aplicação enquanto eu ainda consolidava meus estudos na biblioteca.
+* **Consumo de Dados:** Usei **React Query** para lidar com o cache e as chamadas à API do *The Movie Database (TMDB)*, garantindo que a navegação entre filmes fosse rápida e sem *loadings* desnecessários.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+---
 
-## Learn More
+##  O que tem "debaixo do capô"
 
-To learn more about Next.js, take a look at the following resources:
+* **Next.js:** Framework base para SSR e roteamento.
+* **Tailwind CSS:** Toda a estilização foi feita na mão com Tailwind (neste projeto optei por não usar componentes prontos como Shadcn para praticar o CSS utilitário puro).
+* **TMDB API:** Fonte de dados para filmes, séries e detalhes técnicos.
+* **Redux:** Gestão de estado dos favoritos.
+* **React Query:** Sincronização e cache de dados do servidor.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Observações de Desenvolvimento
 
-## Deploy on Vercel
+* **Estética:** O projeto conta com uma *Landing Page* padrão de serviços de streaming, focada em conversão e exibição visual impactante.
+* **Evolução:** Este projeto foi focado em arquitetura e fluxo de dados. Por ser um ambiente de aprendizado inicial de Next.js, ele não conta com testes automatizados (RTL) nem otimização.
+* * **Mobile:** Criei pensando em mobile tamnbém.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Como rodar o projeto
+
+1. Clone o repositório.
+2. Instale as dependências: `npm install` ou `yarn`.
+3. Crie um arquivo `.env` com sua chave da API do TMDB e o nome NEXT_PUBLIC_BASE_API_URL: **CHAVE**.
+4. Rode o ambiente de desenvolvimento: `npm run dev`.
+
+---
+
+> _"Lembrando que isso foi apenas para aprendizagem, a cada dia que passa, eu aprendo novas maneiras de criar projetos de forma mais organizada e eficiente, ou seja, a uma ano atrás com os mesmo conhecimento, iria ter testes via RTL, talvez um storybook, uma estrutura mais organizada de pastas, componentes mais estruturados e dinâmicos, interfaces, mais hooks ... e claro, quanto mais nativo for melhor."_
